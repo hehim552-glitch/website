@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azero | GFX Artist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { brand: '#0099ff' }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.4s ease; }
+        
+        .premium-card {
+            background: linear-gradient(145deg, rgba(15,15,15,1) 0%, rgba(5,5,5,1) 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-color);
+            box-shadow: 0 25px 50px -12px var(--shadow-color);
+        }
+
+        .hero-bg { background-size: cover; background-position: center; background-image: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%), url('hero-bg.png'); }
+        .pfp-mask { -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%); }
+        .toggle-thumb { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
+        .dark .toggle-thumb { transform: translateX(2.6rem); }
+        .dropdown-content { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .group:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        #contact-modal.active { display: flex; animation: fadeIn 0.4s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    </style>
+</head>
+<body class="dark:bg-[#050505] bg-white dark:text-white text-gray-900 overflow-x-hidden">
+
+
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-6 dark:bg-black/80 bg-white/80 backdrop-blur-md border-b dark:border-white/5 border-black/5">
+        <div class="flex items-center gap-8">
+            <div class="flex gap-6 md:gap-8 text-sm font-bold tracking-wide dark:text-gray-300 text-gray-600">
+                <a href="#" class="hover:text-brand transition-colors duration-300">Home</a>
+                <a href="#about" class="hover:text-brand transition-colors duration-300">About Me</a>
+                
+                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
+                    <div class="flex items-center gap-1">
+                        Examples
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="dropdown-content absolute left-0 mt-4 w-44 dark:bg-white/[0.03] bg-black/[0.03] backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="#realistic" class="block px-5 py-3 text-xs hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">Realistic Style</a>
+                        <a href="#high-ccu" class="block px-5 py-3 text-xs hover:bg-brand hover:text-white transition duration-300 border-t dark:border-white/5 dark:text-white text-gray-800">High CCU Style</a>
+                    </div>
+                </div>
+
+                <a href="#pricing" class="hover:text-brand transition-colors duration-300 hidden sm:block">Prices</a>
+
+                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
+                    <div class="flex items-center gap-1 dark:text-gray-300 text-gray-600 hover:text-brand">
+                        More
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="dropdown-content absolute right-0 md:left-0 mt-4 w-44 dark:bg-white/[0.03] bg-black/[0.03] backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="#reviews" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">Reviews</a>
+                        <a href="#faq" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">FAQ</a>
+                        <a href="#tos" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">ToS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4 md:gap-8">
+            <button id="theme-toggle" class="relative w-[5.2rem] h-10 rounded-full p-1 bg-sky-400 dark:bg-indigo-900 flex items-center group overflow-hidden ring-1 ring-black/5 dark:ring-white/10">
+                <div class="toggle-thumb w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center z-10 relative">
+                    <svg id="sun-icon" class="w-5 h-5 text-orange-400 absolute transition-all duration-500 dark:rotate-90 dark:scale-0 dark:opacity-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 text-indigo-950 absolute transition-all duration-500 -rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
+            </button>
+            <button onclick="toggleModal()" class="bg-brand px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all duration-300 shadow-lg shadow-brand/20 hover:shadow-[0_0_20px_#0099ff]">Contact Me</button>
+        </div>
+    </nav>
+
+    <!-- CONTACT MODAL -->
+<!-- CONTACT MODAL -->
+<div id="contact-modal" class="fixed inset-0 z-[100] hidden items-center justify-center px-6">
+    <div class="absolute inset-0 bg-black/90 backdrop-blur-xl" onclick="toggleModal()"></div>
+    <div class="relative glass-card w-full max-w-md p-10 rounded-[3rem] shadow-2xl text-center border border-white/10 bg-[#0a0a0a]">
+        <h2 class="text-4xl font-extrabold mb-2 tracking-tight text-white">Let's <span class="text-brand">Connect</span></h2>
+        <p class="text-gray-500 text-sm mb-8 tracking-widest uppercase font-bold"> Commission Status: <span class="text-green-500">Open</span></p>
+        
+        <div class="flex flex-col gap-4 mt-4 text-left">
+            <!-- DISCORD BUTTON: Replace YOUR_ID_HERE with your numerical Discord ID -->
+            <a href="https://discord.com/users/1297533282740600920" target="_blank" rel="noopener noreferrer" class="block bg-[#5865F2] p-5 rounded-2xl flex justify-between items-center text-white transition-all hover:shadow-[0_0_25px_#5865F2] hover:scale-[1.02]">
+                <span class="font-bold text-lg">Discord</span>
+                <span class="text-sm font-medium opacity-80">hidden.zero</span>
+            </a>
+
+            <!-- TWITTER BUTTON -->
+            <a href="https://twitter.com/RanroboGaming" target="_blank" rel="noopener noreferrer" class="block bg-black border border-white/10 p-5 rounded-2xl flex justify-between items-center text-white transition-all hover:shadow-[0_0_25px_#ffffff20] hover:scale-[1.02]">
+                <span class="font-bold text-lg">Twitter / X</span>
+                <span class="text-sm font-medium opacity-80">@RanroboGaming</span>
+            </a>
+        </div>
+        
+        <button onclick="toggleModal()" class="mt-10 text-gray-500 text-xs font-bold hover:text-white transition-all uppercase tracking-[0.3em]">Close</button>
+    </div>
+</div>
+    <!-- HERO SECTION -->
+    <section class="relative h-screen w-full flex items-center px-10 md:px-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="hero-bg.png" alt="Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent dark:from-black/90 dark:via-black/40 dark:to-transparent transition-colors duration-500"></div>
+        </div>
+        <div class="relative z-10 max-w-2xl" data-aos="fade-up" data-aos-duration="1200">
+            <p class="dark:text-gray-400 text-gray-500 font-bold mb-2 tracking-widest uppercase text-xs transition-colors duration-500">- Hey There -</p>
+            <h1 class="text-6xl md:text-8xl font-extrabold leading-tight dark:text-white text-gray-900 transition-colors duration-500">
+                I'm <span class="text-brand">Azero</span>
+            </h1>
+            <h2 class="text-4xl md:text-5xl font-bold dark:text-gray-200 text-gray-700 mt-2 tracking-tight transition-colors duration-500">
+                A 3D Render Artist
+            </h2>
+            <div class="mt-10">
+                <a href="#examples" class="bg-brand px-8 py-4 rounded-full font-bold text-white text-lg transition-all inline-block shadow-xl shadow-brand/20 hover:shadow-[0_0_25px_#0099ff] hover:scale-105">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-24 px-10 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-24">
+            <div class="w-full md:w-2/5 flex justify-center" data-aos="fade-right">
+                <div class="relative group">
+                    <img src="pfp.png" alt="Azero" class="pfp-mask relative w-full max-w-[400px] block transition-transform duration-500 group-hover:scale-[1.02]">
+                </div>
+            </div>
+            <div class="w-full md:w-3/5" data-aos="fade-left">
+                <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-sm mb-4">Discovery</h3>
+                <h2 class="text-5xl font-extrabold mb-6 leading-tight">About <span class="text-brand">Me</span></h2>
+                <div class="space-y-6 dark:text-gray-400 text-gray-600 text-lg leading-relaxed">
+                    <p>I am a <span class="dark:text-white text-gray-900 font-semibold">Roblox GFX artist for more than 3+ years</span>. I specialize in <span class="dark:text-white text-gray-900 font-semibold">Realistic</span> as well as <span class="dark:text-white text-gray-900 font-semibold">High CCU</span> thumbnails & icons.</p>
+                </div>
+                <div class="mt-12 pt-8 border-t dark:border-white/5 border-black/5">
+                    <div class="glass-card inline-flex items-center gap-4 px-8 py-4 rounded-2xl">
+                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span id="ist-clock" class="text-3xl md:text-4xl font-extrabold tracking-tighter dark:text-white text-gray-900 font-mono">00:00:00 AM</span>
+                        <span class="dark:text-gray-500 text-gray-400 font-bold text-sm uppercase">IST</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXAMPLES SECTION -->
+    <section id="examples" class="py-32 px-10 md:px-32 dark:bg-[#080808] bg-slate-50 scroll-mt-20">
+        <div class="max-w-6xl mx-auto text-center mb-16" data-aos="fade-down">
+            <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-sm mb-4">Portfolio</h3>
+            <h2 class="text-5xl font-extrabold mb-4">Work <span class="text-brand">Examples</span></h2>
+        </div>
+
+        <div id="realistic" class="scroll-mt-32 mb-24 max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10"><h4 class="text-3xl font-extrabold">Realistic <span class="text-brand">Renders</span></h4><div class="h-[2px] flex-grow bg-brand/20"></div></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="aspect-video bg-gray-200 dark:bg-white/5 rounded-3xl overflow-hidden shadow-2xl"><img src="path-1.jpg" class="w-full h-full object-cover"></div>
+                <div class="aspect-video bg-gray-200 dark:bg-white/5 rounded-3xl overflow-hidden shadow-2xl"><img src="path-2.jpg" class="w-full h-full object-cover"></div>
+                <div class="aspect-video bg-gray-200 dark:bg-white/5 rounded-3xl overflow-hidden shadow-2xl"><img src="path-3.jpg" class="w-full h-full object-cover"></div>
+            </div>
+        </div>
+
+        <div id="high-ccu" class="scroll-mt-32 max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-10"><h4 class="text-3xl font-extrabold">High CCU <span class="text-brand">Style</span></h4><div class="h-[2px] flex-grow bg-brand/20"></div></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="aspect-video bg-gray-200 dark:bg-white/5 rounded-3xl overflow-hidden shadow-2xl"><img src="ccu-1.jpg" class="w-full h-full object-cover"></div>
+                <div class="aspect-video bg-gray-200 dark:bg-white/5 rounded-3xl overflow-hidden shadow-2xl"><img src="ccu-2.jpg" class="w-full h-full object-cover"></div>
+                <div class="aspect-video bg-gray-200 dark:bg-white/5 rounded-3xl overflow-hidden shadow-2xl"><img src="ccu-3.jpg" class="w-full h-full object-cover"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing" class="py-32 px-6 md:px-32 dark:bg-[#050505] bg-white relative scroll-mt-20 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-extrabold tracking-tighter dark:text-white text-gray-900 mb-8">
+                    Service <span class="text-brand">Inventory</span>
+                </h2>
+                <div class="inline-flex p-1 dark:bg-white/5 bg-gray-100 rounded-2xl border dark:border-white/10 border-black/5 backdrop-blur-md">
+                    <button id="tab-realistic" onclick="updatePrices('realistic')" class="px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm transition-all duration-300 shadow-lg shadow-brand/20">
+                        Realistic Style
+                    </button>
+                    <button id="tab-ccu" onclick="updatePrices('ccu')" class="px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 hover:text-brand font-bold text-sm transition-all duration-300">
+                        High CTR Style
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+                <!-- 1. ICON -->
+                <div class="group relative dark:bg-[#0a0a0a] bg-slate-50 border dark:border-white/5 border-black/5 rounded-[2.5rem] p-10 flex flex-col transition-all duration-500 hover:border-brand/50">
+                    <div class="mb-12">
+                        <h4 class="dark:text-gray-500 text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-2">Module // 01</h4>
+                        <p class="text-2xl font-extrabold dark:text-white text-gray-900">Game Icon</p>
+                    </div>
+                    <div class="mb-10">
+                        <div class="flex items-baseline gap-2">
+                            <span id="price-icon-usd" class="text-6xl font-black text-brand tracking-tighter">$40</span>
+                            <span class="dark:text-gray-600 text-gray-500 font-bold uppercase text-xs tracking-widest">USD</span>
+                        </div>
+                        <p id="price-icon-rbx" class="dark:text-gray-400 text-gray-600 font-bold text-sm mt-2">10,000 Robux (+Tax)</p>
+                    </div>
+                    <div class="space-y-4 mb-12 flex-grow">
+                        <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand"></div>
+                            <span>1024x1024 Resolution</span>
+                        </div>
+                        <div id="icon-desc" class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand"></div>
+                            <span>Realistic Texturing</span>
+                        </div>
+                    </div>
+                    <button onclick="toggleModal()" class="w-full py-4 rounded-xl border dark:border-white/10 border-black/10 dark:text-white text-gray-900 font-black text-[10px] uppercase tracking-[0.3em] transition-all hover:bg-brand hover:border-brand hover:text-white">Buy Icon</button>
+                </div>
+
+                <!-- 2. BUNDLE -->
+                <div class="group relative dark:bg-[#0f0f0f] bg-white border-2 border-brand rounded-[2.5rem] p-12 flex flex-col transition-all duration-500 shadow-[0_20px_80px_rgba(0,153,255,0.15)] lg:scale-105 z-10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em]">Best Value</div>
+                    <div class="mb-12">
+                        <h4 class="text-brand font-bold uppercase tracking-[0.3em] text-[10px] mb-2">Module // 02</h4>
+                        <p class="text-3xl font-black dark:text-white text-gray-900 leading-none">Thumbnail + Icon Bundle</p>
+                    </div>
+                    <div class="mb-10 dark:bg-white/5 bg-slate-100 border dark:border-white/5 border-black/5 p-6 rounded-2xl">
+                        <div class="flex items-baseline gap-3">
+                            <span id="price-bundle-usd" class="text-6xl font-black dark:text-white text-gray-900 tracking-tighter">$80</span>
+                        </div>
+                        <p id="price-bundle-rbx" class="text-brand font-black text-sm mt-3 uppercase tracking-widest">20,000 Robux PACKAGE</p>
+                    </div>
+                    <div class="space-y-4 mb-12 flex-grow">
+                        <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700">
+                            <span>Thumbnail + Icon</span>
+                            <span class="text-brand font-black uppercase text-[10px]">Included</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700">
+                            <span>PSD Source Files</span>
+                            <span class="text-brand font-black uppercase text-[10px]">Included</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700">
+                            <span>Priority Delivery</span>
+                            <span class="text-brand font-black uppercase text-[10px]">Included</span>
+                        </div>
+                    </div>
+                    <button onclick="toggleModal()" class="w-full py-5 rounded-xl bg-brand text-white font-black text-xs uppercase tracking-[0.3em] transition-all hover:bg-gray-900 dark:hover:bg-white dark:hover:text-black">BUY BUNDLE</button>
+                </div>
+
+                <!-- 3. THUMBNAIL -->
+                <div class="group relative dark:bg-[#0a0a0a] bg-slate-50 border dark:border-white/5 border-black/5 rounded-[2.5rem] p-10 flex flex-col transition-all duration-500 hover:border-brand/50">
+                    <div class="mb-12">
+                        <h4 class="dark:text-gray-500 text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-2">Module // 03</h4>
+                        <p class="text-2xl font-extrabold dark:text-white text-gray-900">Game Thumbnail</p>
+                    </div>
+                    <div class="mb-10">
+                        <div class="flex items-baseline gap-2">
+                            <span id="price-thumb-usd" class="text-6xl font-black text-brand tracking-tighter">$57</span>
+                            <span class="dark:text-gray-600 text-gray-500 font-bold uppercase text-xs tracking-widest">USD</span>
+                        </div>
+                        <p id="price-thumb-rbx" class="dark:text-gray-400 text-gray-600 font-bold text-sm mt-2">15,000 Robux (+Tax)</p>
+                    </div>
+                    <div class="space-y-4 mb-12 flex-grow">
+                        <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand"></div>
+                            <span>1920x1080 Resolution</span>
+                        </div>
+                        <div id="thumb-desc" class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">
+                            <div class="w-1.5 h-1.5 rounded-full bg-brand"></div>
+                            <span>Realistic Lighting & Shadows</span>
+                        </div>
+                    </div>
+                    <button onclick="toggleModal()" class="w-full py-4 rounded-xl border dark:border-white/10 border-black/10 dark:text-white text-gray-900 font-black text-[10px] uppercase tracking-[0.3em] transition-all hover:bg-brand hover:border-brand hover:text-white">BUY THUMBNAIL</button>
+                </div>
+            </div>
+
+            <!-- FOOTER CRITERIA -->
+            <div class="max-w-4xl mx-auto border-t dark:border-white/5 border-black/5 pt-20">
+                <h5 class="text-2xl font-bold dark:text-white text-gray-900 mb-10 text-center uppercase tracking-widest">Pre-Order Requirements:</h5>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-2 h-2 rounded-full bg-brand mt-2"></div>
+                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">Concept</span> Clear description or a sketch of what you envision for the artwork.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-2 h-2 rounded-full bg-brand mt-2"></div>
+                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">Assets</span> Roblox Models (.RBXM / .RBXL) and character outfits ready to use.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-2 h-2 rounded-full bg-brand mt-2"></div>
+                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">References</span> Similar work or moodboards to help gauge the lighting/style.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-2 h-2 rounded-full bg-brand mt-2"></div>
+                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">Deadline</span> Information regarding specific timelines or game launch dates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="py-32 px-10 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20" data-aos="fade-up">
+                <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Reviews</h3>
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+                    <div class="max-w-2xl">
+                        <h2 class="text-5xl md:text-6xl font-extrabold mb-8 dark:text-white text-gray-900 leading-tight">What Clients <span class="text-brand">Say</span></h2>
+                        <p class="dark:text-gray-400 text-gray-600 text-xl leading-relaxed">
+                            I’ve worked with dozens of studios and creators to bring their visions to life. 
+                            Here is some of their feedback regarding my process and final delivery.
+                        </p>
+                    </div>
+                    <div id="stats-trigger" class="inline-flex items-center gap-10 bg-black/5 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 px-10 py-8 rounded-[2.5rem] backdrop-blur-xl">
+                        <div class="text-center min-w-[120px]">
+                            <p id="stat-clients" class="text-5xl font-black text-brand tracking-tighter">0</p>
+                            <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Clients Satisfied</p>
+                        </div>
+                        <div class="w-[1px] h-12 bg-black/10 dark:bg-white/10"></div>
+                        <div class="text-center min-w-[100px]">
+                            <p id="stat-rating" class="text-5xl font-black text-brand tracking-tighter">0.0</p>
+                            <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Review 1 -->
+                <div class="dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-10 rounded-[3rem] transition-all duration-500 hover:border-brand/30 hover:-translate-y-2 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <!-- PFP Container -->
+                        <div class="relative w-14 h-14 shrink-0">
+                            <div class="absolute inset-0 bg-brand/20 blur-lg rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <img src="Zackery-pfp.png" alt="PFP" class="relative w-full h-full object-cover rounded-2xl border-2 dark:border-white/10 border-black/10 shadow-xl group-hover:border-brand/50 transition-all duration-300">
+                        </div>
+                        <div>
+                            <!-- Roblox Username Link -->
+                            <a href="https://www.roblox.com/users/5781318239/profile" target="_blank" class="block font-extrabold dark:text-white text-gray-900 text-lg hover:text-brand transition-colors">
+                                SoundTrackZack
+                            </a>
+                            <p class="text-[10px] font-bold text-brand uppercase tracking-widest">Owner of Hungry Pig</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1.5 mb-6 text-orange-400">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                    <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-lg font-medium line-clamp-6">"Azero is very talented and has a good eye for what kind of thumbnail works for the algorithm, He made me a thumbnail that got 32,638,884 impressions, with 705,991 plays. Hes deff recommended!"</p>
+                    <div class="mt-10 pt-8 border-t dark:border-white/5 border-black/5">
+                        <p class="text-[10px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Project // <span class="dark:text-white text-black">High CTR Style</span></p>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-10 rounded-[3rem] transition-all duration-500 hover:border-brand/30 hover:-translate-y-2 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="relative w-14 h-14 shrink-0">
+                            <div class="absolute inset-0 bg-brand/20 blur-lg rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <img src="ATLATHIX.webp" alt="PFP" class="relative w-full h-full object-cover rounded-2xl border-2 dark:border-white/10 border-black/10 shadow-xl group-hover:border-brand/50 transition-all duration-300">
+                        </div>
+                        <div>
+                            <a href="https://www.roblox.com/users/1707464918/profile" target="_blank" class="block font-extrabold dark:text-white text-gray-900 text-lg hover:text-brand transition-colors">
+                                Atlathix
+                            </a>
+                            <p class="text-[10px] font-bold text-brand uppercase tracking-widest">OWNER OF +1 Speed Glider Escape 🪂</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1.5 mb-6 text-orange-400">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                    <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-lg font-medium line-clamp-6">"This guy got me an insanely high QPTR, averaging 3-4%. It sounds crazy and unreal. Responds fast, changes stuff when asked, just really good quality overall. Will definitely commission again."</p>
+                    <div class="mt-10 pt-8 border-t dark:border-white/5 border-black/5">
+                        <p class="text-[10px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Project // <span class="dark:text-white text-black">HIGH CTR STYLE</span></p>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-10 rounded-[3rem] transition-all duration-500 hover:border-brand/30 hover:-translate-y-2 group">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="relative w-14 h-14 shrink-0">
+                            <div class="absolute inset-0 bg-brand/20 blur-lg rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <img src="KDEQU.webp" alt="PFP" class="relative w-full h-full object-cover rounded-2xl border-2 dark:border-white/10 border-black/10 shadow-xl group-hover:border-brand/50 transition-all duration-300">
+                        </div>
+                        <div>
+                            <a href="https://www.roblox.com/users/148164262/profile" target="_blank" class="block font-extrabold dark:text-white text-gray-900 text-lg hover:text-brand transition-colors">
+                                kdequ
+                            </a>
+                            <p class="text-[10px] font-bold text-brand uppercase tracking-widest">OWNER OF Brainrot Rails</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-1.5 mb-6 text-orange-400">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+                    <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-lg font-medium line-clamp-6">"Great GFX, very good price / cheap. Took very little time to receive and satisfied with results. Highly recommend!"</p>
+                    <div class="mt-10 pt-8 border-t dark:border-white/5 border-black/5">
+                        <p class="text-[10px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Project // <span class="dark:text-white text-black">High ctr style</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ SECTION -->
+<section id="faq" class="py-32 px-10 md:px-32 dark:bg-[#080808] bg-slate-50 transition-colors duration-500 scroll-mt-24">
+    <div class="max-w-4xl mx-auto">
+        
+        <!-- Header -->
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Inquiries</h3>
+            <h2 class="text-5xl md:text-6xl font-extrabold dark:text-white text-gray-900 mb-6">Common <span class="text-brand">Questions</span></h2>
+            <p class="dark:text-gray-400 text-gray-600 text-lg">Find quick answers to common questions about my workflow and services.</p>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="space-y-4">
+            
+            <!-- Q1 -->
+            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
+                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">Do you offer revisions?</span>
+                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
+                        Yes I do, <span class="text-brand font-bold">2 Reworks at MAX</span>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="100">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
+                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">Do you model assets for your render scenes?</span>
+                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
+                        No, I prefer clients to send me the models, however I can make simple scenes.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="200">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
+                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">How long does a commission take?</span>
+                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
+                        A commission usually takes around <span class="dark:text-white text-black font-bold">3-4 days</span> for a good result. Hurrying me up will decrease the quality of your order. Priority thumbnails are done in 2-3 days or even earlier.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="300">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
+                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">What software do you use?</span>
+                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
+                        I use <span class="dark:text-white text-black font-bold">Roblox Studio, Blender & Adobe Photoshop</span>.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="400">
+                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
+                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">Do you make thumbnails without reference image?</span>
+                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
+                        Yes, I do but it may not match your hopes. Sending a reference image is always better—an <span class="text-brand font-bold">AI generated reference image works too!</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TOS SECTION -->
+<section id="tos" class="py-32 px-6 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors duration-500">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Legal</h3>
+            <h2 class="text-5xl md:text-6xl font-extrabold dark:text-white text-gray-900 mb-6 leading-tight">Terms of <span class="text-brand">Service</span></h2>
+            <p class="dark:text-gray-400 text-gray-600 text-lg max-w-2xl mx-auto">Please review my operational policies before placing an order. Booking a commission signifies your agreement to these terms.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            
+            <!-- 1. Payment & Refunds -->
+            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-right">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase tracking-tight">Payment & Refunds</h4>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Deposit Requirement:</span> A non-refundable deposit of 50% is mandatory to initiate work. Full payment is also accepted.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Refund Policy:</span> All sales are final once processed. Refunds are only granted if I am unable to deliver the project.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Workflow:</span> I do not accept "pay-upon-completion" requests or participate in group-managed projects.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 2. Turnaround & Delivery -->
+            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-left">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase tracking-tight">Turnaround & Delivery</h4>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Timeline:</span> Standard delivery is typically 2–3 business days, depending on current demand.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Deadlines:</span> Specific delivery dates must be confirmed and agreed upon before work begins.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Rush Service:</span> Expedited turnaround is available for an additional premium fee.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 3. Assets & File Management -->
+            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-right">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase tracking-tight">Assets & Management</h4>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Source Files:</span> Quote covers rendered output. Raw project files are available for an extra fee.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Client Responsibilities:</span> Please ensure all provided assets are ready-to-use before ordering.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Security:</span> All local project files and client assets are permanently deleted 48 hours after project completion.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 4. Rights & Disclaimers -->
+            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-left">
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h4 class="text-2xl font-black uppercase tracking-tight">Rights & Usage</h4>
+                </div>
+                <ul class="space-y-4">
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Licensing:</span> All external assets I provide (models/VFX) are copyright-free and suitable for commercial use.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">Promotion:</span> I reserve the right to display completed works on my portfolio and social platforms.</p>
+                    </li>
+                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
+                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
+                        <p><span class="font-bold dark:text-white text-black">General:</span> I maintain the right to decline any commission request at my own discretion.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="py-10 text-center dark:text-gray-600 text-gray-400 text-sm border-t dark:border-white/5 border-black/5">
+        &copy; 2024 Azero GFX. All rights reserved.
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        function toggleModal() { document.getElementById('contact-modal').classList.toggle('active'); }
+        
+        function updateISTClock() {
+            const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const time = new Intl.DateTimeFormat('en-US', options).format(new Date());
+            const clock = document.getElementById('ist-clock');
+            if(clock) clock.textContent = time;
+        }
+        setInterval(updateISTClock, 1000); 
+        updateISTClock();
+
+        document.getElementById('theme-toggle').addEventListener('click', () => { 
+            document.documentElement.classList.toggle('dark'); 
+        });
+
+        function updatePrices(style) {
+            const tRealistic = document.getElementById('tab-realistic');
+            const tCcu = document.getElementById('tab-ccu');
+            const pIconUsd = document.getElementById('price-icon-usd');
+            const pIconRbx = document.getElementById('price-icon-rbx');
+            const pThumbUsd = document.getElementById('price-thumb-usd');
+            const pThumbRbx = document.getElementById('price-thumb-rbx');
+            const pBundleUsd = document.getElementById('price-bundle-usd');
+            const pBundleRbx = document.getElementById('price-bundle-rbx');
+            const iconDesc = document.getElementById('icon-desc');
+            const thumbDesc = document.getElementById('thumb-desc');
+
+            const activeClass = "px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm transition-all duration-300 shadow-lg shadow-brand/20";
+            const inactiveClass = "px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 hover:text-brand font-bold text-sm transition-all duration-300";
+
+            if (style === 'realistic') {
+                tRealistic.className = activeClass;
+                tCcu.className = inactiveClass;
+                pIconUsd.innerText = '$40';
+                pIconRbx.innerText = '10,000 Robux (+Tax)';
+                pThumbUsd.innerText = '$57';
+                pThumbRbx.innerText = '15,000 Robux (+Tax)';
+                pBundleUsd.innerText = '$80';
+                pBundleRbx.innerText = '20,000 Robux package';
+                iconDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>Realistic Texturing</span>`;
+                thumbDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>Realistic Lighting & Shadows</span>`;
+            } else {
+                tCcu.className = activeClass;
+                tRealistic.className = inactiveClass;
+                pIconUsd.innerText = '$25';
+                pIconRbx.innerText = '6,000 Robux (+Tax)';
+                pThumbUsd.innerText = '$40';
+                pThumbRbx.innerText = '10,000 Robux (+Tax)';
+                pBundleUsd.innerText = '$55';
+                pBundleRbx.innerText = '13,000 Robux Package';
+                iconDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>High CTR Clickbait Style</span>`;
+                thumbDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>Action-Packed Composition</span>`;
+            }
+        }
+
+        function animateStats() {
+            const clientsTarget = 100;
+            const ratingTarget = 5.0;
+            const duration = 2500;
+            const clientsElem = document.getElementById('stat-clients');
+            const ratingElem = document.getElementById('stat-rating');
+            let startTime = null;
+            const easeOutQuad = t => t * (2 - t);
+
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutQuad(progress);
+                const currentClients = Math.floor(easedProgress * clientsTarget);
+                const currentRating = (easedProgress * ratingTarget).toFixed(1);
+                if (clientsElem) clientsElem.textContent = currentClients + "+";
+                if (ratingElem) ratingElem.textContent = currentRating;
+                if (progress < 1) window.requestAnimationFrame(step);
+            }
+            window.requestAnimationFrame(step);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const target = document.getElementById('stats-trigger');
+            if (target) observer.observe(target);
+        });
+        function toggleFaq(button) {
+    const item = button.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const icon = item.querySelector('.arrow-icon');
+    
+    // Close all other FAQs
+    document.querySelectorAll('.faq-item').forEach(otherItem => {
+        if (otherItem !== item) {
+            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+            otherItem.querySelector('.arrow-icon').style.transform = 'rotate(0deg)';
+            otherItem.classList.remove('border-brand/50');
+        }
+    });
+
+    // Toggle current FAQ
+    if (answer.style.maxHeight) {
+        answer.style.maxHeight = null;
+        icon.style.transform = 'rotate(0deg)';
+        item.classList.remove('border-brand/50');
+    } else {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        icon.style.transform = 'rotate(180deg)';
+        item.classList.add('border-brand/50');
+    }
+}
+    </script>
+</body>
+</html>
