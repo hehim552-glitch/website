@@ -127,59 +127,68 @@
 .marquee-container:hover .review-marquee-active {
     animation-play-state: paused;
 }
+.dropdown-content { 
+    opacity: 0; 
+    visibility: hidden; 
+    transform: translateY(10px); 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    z-index: 150; /* Ensure it stays above other fixed elements */
+}
     </style>
 </head>
 <body class="dark:bg-[#050505] bg-white dark:text-white text-gray-900 overflow-x-hidden">
 
 
     <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-6 dark:bg-black/80 bg-white/80 backdrop-blur-md border-b dark:border-white/5 border-black/5">
-        <div class="flex items-center gap-8">
-            <div class="flex gap-6 md:gap-8 text-sm font-bold tracking-wide dark:text-gray-300 text-gray-600">
-                <a href="#" class="hover:text-brand transition-colors duration-300">Home</a>
-                <a href="#about" class="hover:text-brand transition-colors duration-300">About Me</a>
-                
-                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
-                    <div class="flex items-center gap-1">
-                        Examples
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div class="dropdown-content absolute left-0 mt-4 w-44 dark:bg-white/[0.03] bg-black/[0.03] backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
-                        <a href="#realistic" class="block px-5 py-3 text-xs hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">Realistic Style</a>
-                        <a href="#high-ccu" class="block px-5 py-3 text-xs hover:bg-brand hover:text-white transition duration-300 border-t dark:border-white/5 dark:text-white text-gray-800">High CCU Style</a>
-                    </div>
+   <nav class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-10 py-6 dark:bg-black/80 bg-white/80 backdrop-blur-md border-b dark:border-white/5 border-black/5">
+    <div class="flex items-center gap-8">
+        <div class="flex gap-6 md:gap-8 text-sm font-bold tracking-wide dark:text-gray-300 text-gray-600">
+            <a href="#" class="hover:text-brand transition-colors">Home</a>
+            <a href="#about" class="hover:text-brand transition-colors">About Me</a>
+            
+            <!-- EXAMPLES DROPDOWN -->
+            <div class="relative group cursor-pointer transition-colors hover:text-brand">
+                <div class="flex items-center gap-1">
+                    Examples
+                    <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </div>
+                <div class="dropdown-content absolute left-0 mt-4 w-48 dark:bg-[#0a0a0a] bg-white border dark:border-white/10 border-black/10 rounded-2xl overflow-hidden shadow-2xl">
+                    <a href="#realistic" class="block px-6 py-4 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5">Realistic Style</a>
+                    <a href="#high-ccu" class="block px-6 py-4 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">High CCU Style</a>
+                </div>
+            </div>
 
-                <a href="#pricing" class="hover:text-brand transition-colors duration-300 hidden sm:block">Prices</a>
+            <a href="#pricing" class="hover:text-brand transition-colors hidden sm:block">Prices</a>
 
-                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
-                    <div class="flex items-center gap-1 dark:text-gray-300 text-gray-600 hover:text-brand">
-                        More
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div class="dropdown-content absolute right-0 md:left-0 mt-4 w-44 dark:bg-white/[0.03] bg-black/[0.03] backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
-                        <a href="#reviews" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">Reviews</a>
-                        <a href="#faq" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">FAQ</a>
-                        <a href="#tos" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">ToS</a>
-                    </div>
+            <!-- MORE DROPDOWN -->
+            <div class="relative group cursor-pointer transition-colors hover:text-brand">
+                <div class="flex items-center gap-1">
+                    More
+                    <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <div class="dropdown-content absolute right-0 md:left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white border dark:border-white/10 border-black/10 rounded-2xl overflow-hidden shadow-2xl">
+                    <a href="#reviews" class="block px-6 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5">Reviews</a>
+                    <a href="#faq" class="block px-6 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5">FAQ</a>
+                    <a href="#tos" class="block px-6 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">ToS</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="flex items-center gap-4 md:gap-8">
-            <button id="theme-toggle" class="relative w-[5.2rem] h-10 rounded-full p-1 bg-sky-400 dark:bg-indigo-900 flex items-center group overflow-hidden ring-1 ring-black/5 dark:ring-white/10">
-                <div class="toggle-thumb w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center z-10 relative">
-                    <svg id="sun-icon" class="w-5 h-5 text-orange-400 absolute transition-all duration-500 dark:rotate-90 dark:scale-0 dark:opacity-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                    <svg id="moon-icon" class="w-5 h-5 text-indigo-950 absolute transition-all duration-500 -rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                </div>
-            </button>
-            <button onclick="toggleModal()" class="bg-brand px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all duration-300 shadow-lg shadow-brand/20 hover:shadow-[0_0_20px_#0099ff]">Contact Me</button>
-        </div>
-    </nav>
+    <div class="flex items-center gap-4 md:gap-8">
+        <button id="theme-toggle" class="relative w-[5.2rem] h-10 rounded-full p-1 bg-sky-400 dark:bg-indigo-900 flex items-center group overflow-hidden ring-1 ring-black/5 dark:ring-white/10">
+            <div class="toggle-thumb w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center z-10 relative">
+                <svg id="sun-icon" class="w-5 h-5 text-orange-400 absolute transition-all duration-500 dark:rotate-90 dark:scale-0 dark:opacity-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                <svg id="moon-icon" class="w-5 h-5 text-indigo-950 absolute transition-all duration-500 -rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </div>
+        </button>
+        <button onclick="toggleModal()" class="bg-brand px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all shadow-lg shadow-brand/20 hover:shadow-[0_0_20px_#0099ff]">Contact Me</button>
+    </div>
+</nav>
 
     <!-- CONTACT MODAL -->
 <!-- CONTACT MODAL -->
@@ -258,85 +267,38 @@
 <!-- EXAMPLES SECTION -->
 <section id="examples" class="py-32 dark:bg-[#050505] bg-white overflow-hidden scroll-mt-20">
     
-    <!-- SECTION 1: CINEMATIC -->
-    <div class="max-w-6xl mx-auto px-10 mb-12">
+    <!-- REALISTIC SUB-SECTION -->
+    <div id="realistic" class="max-w-6xl mx-auto px-10 mb-12 scroll-mt-32">
         <h3 class="text-brand font-bold tracking-[0.3em] uppercase text-[10px] mb-3">01 // Style</h3>
         <h2 class="text-5xl font-black dark:text-white text-gray-900 tracking-tighter">Realistic <span class="text-brand">Style</span></h2>
     </div>
 
     <div class="marquee-container mb-24">
         <div class="marquee-content">
-            <!-- Items -->
-            <div class="portfolio-card w-[450px] aspect-video">
-                <img src="Db and Kate ps.png" class="w-full h-full object-cover">
-                <div class="card-label">
-                    <p class="text-brand font-black text-[10px] uppercase tracking-widest">Realistic</p>
-                    <h5 class="text-white font-bold text-lg">Picnic Render</h5>
-                </div>
-            </div>
-            <div class="portfolio-card w-[450px] aspect-video">
-                <img src="db and mad ps.png" class="w-full h-full object-cover">
-                <div class="card-label">
-                    <p class="text-brand font-black text-[10px] uppercase tracking-widest">Realistic</p>
-                    <h5 class="text-white font-bold text-lg">Shooting Render</h5>
-                </div>
-            </div>
-            <div class="portfolio-card w-[450px] aspect-video">
-                <img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover">
-                <div class="card-label">
-                    <p class="text-brand font-black text-[10px] uppercase tracking-widest">Realistic</p>
-                    <h5 class="text-white font-bold text-lg">Train Station Render</h5>
-                </div>
-            </div>
-            <div class="portfolio-card w-[450px] aspect-video">
-                <img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover">
-                <div class="card-label">
-                    <p class="text-brand font-black text-[10px] uppercase tracking-widest">Realistic</p>
-                    <h5 class="text-white font-bold text-lg">Classroom Render</h5>
-                </div>
-            </div>
-            <!-- Duplicate for loop -->
-            <div class="portfolio-card w-[450px] aspect-video"><img src="Db and Kate ps.png" class="w-full h-full object-cover"><div class="card-label">Picnic Render</div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="db and mad ps.png" class="w-full h-full object-cover"><div class="card-label">Shooting Render</div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png"w-full h-full object-cover"><div class="card-label">Train Station Render</div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png"w-full h-full object-cover"><div class="card-label">Classroom Render</div></div>
+            <div class="portfolio-card w-[450px] aspect-video"><img src="Db and Kate ps.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Picnic Render</h5></div></div>
+            <div class="portfolio-card w-[450px] aspect-video"><img src="db and mad ps.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Shooting Render</h5></div></div>
+            <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Train Station</h5></div></div>
+            <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Classroom</h5></div></div>
+            <!-- Loop -->
+            <div class="portfolio-card w-[450px] aspect-video"><img src="Db and Kate ps.png" class="w-full h-full object-cover"></div>
+            <div class="portfolio-card w-[450px] aspect-video"><img src="db and mad ps.png" class="w-full h-full object-cover"></div>
         </div>
     </div>
 
-    <!-- SECTION 2: HIGH CCU -->
-    <div class="max-w-6xl mx-auto px-10 mb-12">
+    <!-- HIGH CCU SUB-SECTION -->
+    <div id="high-ccu" class="max-w-6xl mx-auto px-10 mb-12 scroll-mt-32">
         <h3 class="text-brand font-bold tracking-[0.3em] uppercase text-[10px] mb-3">02 // Style</h3>
         <h2 class="text-5xl font-black dark:text-white text-gray-900 tracking-tighter">High CCU <span class="text-brand">Style</span></h2>
     </div>
 
     <div class="marquee-container">
         <div class="marquee-content">
-            <!-- Items -->
-            <div class="portfolio-card w-[450px] aspect-video">
-                <img src="ccu-1.jpg" class="w-full h-full object-cover">
-                <div class="card-label">
-                    <p class="text-brand font-black text-[10px] uppercase tracking-widest">High CTR</p>
-                    <h5 class="text-white font-bold text-lg">Game Icon v1</h5>
-                </div>
-            </div>
-            <div class="portfolio-card w-[450px] aspect-video">
-                <img src="ccu-2.jpg" class="w-full h-full object-cover">
-                <div class="card-label">
-                    <p class="text-brand font-black text-[10px] uppercase tracking-widest">High CTR</p>
-                    <h5 class="text-white font-bold text-lg">Action Sequence</h5>
-                </div>
-            </div>
-            <div class="portfolio-card w-[450px] aspect-video">
-                <img src="ccu-3.jpg" class="w-full h-full object-cover">
-                <div class="card-label">
-                    <p class="text-brand font-black text-[10px] uppercase tracking-widest">High CTR</p>
-                    <h5 class="text-white font-bold text-lg">Clickbait Master</h5>
-                </div>
-            </div>
-            <!-- Duplicate for loop -->
-            <div class="portfolio-card w-[450px] aspect-video"><img src="ccu-1.jpg" class="w-full h-full object-cover"><div class="card-label">...</div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="ccu-2.jpg" class="w-full h-full object-cover"><div class="card-label">...</div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="ccu-3.jpg" class="w-full h-full object-cover"><div class="card-label">...</div></div>
+            <!-- Add your CCU images here -->
+            <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"></div>
+            <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"></div>
+            <!-- Loop -->
+            <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"></div>
+            <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"></div>
         </div>
     </div>
 </section>
