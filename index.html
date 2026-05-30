@@ -19,6 +19,31 @@
         }
     </script>
     <style>
+        .review-card {
+    position: relative;
+    min-height: 360px;
+    overflow: hidden;
+    background: #0a0a0a;
+    transition: transform 0.35s ease, width 0.35s ease, min-height 0.35s ease, box-shadow 0.35s ease;
+}
+
+.review-card:hover {
+    width: 520px;
+    min-height: 500px;
+    transform: scale(1.04);
+    z-index: 20;
+    box-shadow: 0 25px 60px rgba(0, 153, 255, 0.22);
+}
+
+.review-message {
+    max-height: 95px;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.review-card:hover .review-message {
+    max-height: 260px;
+}
         .review-marquee-container {
     overflow: hidden;
     padding: 40px 0;
@@ -39,9 +64,7 @@
     flex-shrink: 0;
 }
 
-.review-marquee-container:hover .review-marquee-track {
-    animation-play-state: paused;
-}
+
 
 @keyframes reviewMarquee {
     from {
@@ -148,9 +171,7 @@
     animation: reviewMarquee 30s linear infinite;
 }
 
-.review-marquee-container:hover .review-marquee-track {
-    animation-play-state: paused;
-}
+
 
 @keyframes reviewMarquee {
     from {
@@ -533,62 +554,88 @@
         function toggleFaq(button) { const answer = button.nextElementSibling; if (answer.style.maxHeight) { answer.style.maxHeight = null; } else { answer.style.maxHeight = answer.scrollHeight + "px"; } }
 
         // --- THE DYNAMIC REVIEW MARQUEE FIX ---
-        async function loadDynamicReviews() {
-    try {
-        const url = 'https://raw.githubusercontent.com/hehim552-glitch/reviews/main/reviews.json';
-        const response = await fetch(url);
-        const reviews = await response.json();
-        const container = document.getElementById('dynamic-reviews-container');
+        function animateCount(element, start, end, duration, suffix = '', decimals = 0) {
+            if (!element) return;
 
-        if (!container || !Array.isArray(reviews) || !reviews.length) return;
+            const startTime = performance.now();
 
-        const validReviews = reviews.filter(rev => rev.username && rev.message);
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                const currentValue = start + (end - start) * easedProgress;
 
-        const cardTemplate = (rev) => {
-            let stars = '';
-            const starCount = parseInt(rev.stars) || 5;
+                element.textContent = currentValue.toFixed(decimals) + suffix;
 
-            for (let i = 0; i < starCount; i++) {
-                stars += '<svg class="w-4 h-4 fill-current text-orange-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>';
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
             }
 
-            return `
-                <div class="portfolio-card w-[420px] p-10 dark:bg-[#0a0a0a] bg-slate-50 border dark:border-white/5 border-black/5 rounded-[2.5rem] shrink-0">
-                    <div class="flex items-center gap-5 mb-8">
-                        <div class="w-14 h-14 bg-brand/10 flex items-center justify-center rounded-2xl border dark:border-white/10 border-black/10 text-brand font-bold text-2xl">${rev.username.charAt(0).toUpperCase()}</div>
-                        <div>
-                            <span class="block font-extrabold dark:text-white text-lg">${rev.username}</span>
-                            <p class="text-[9px] font-bold text-brand uppercase tracking-widest">Verified Client</p>
+            requestAnimationFrame(update);
+        }
+
+        async function loadDynamicReviews() {
+            try {
+                const url = 'https://raw.githubusercontent.com/hehim552-glitch/reviews/main/reviews.json';
+                const response = await fetch(url);
+                const reviews = await response.json();
+                const container = document.getElementById('dynamic-reviews-container');
+
+                if (!container || !Array.isArray(reviews) || !reviews.length) return;
+
+                const validReviews = reviews.filter(rev => rev.username && rev.message);
+
+                const cardTemplate = (rev) => {
+                    let stars = '';
+                    const starCount = parseInt(rev.stars) || 5;
+                    const profileUrl = rev.robloxProfile || rev.profileUrl || rev.profile || '#';
+
+                    for (let i = 0; i < starCount; i++) {
+                        stars += '<svg class="w-4 h-4 fill-current text-orange-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>';
+                    }
+
+                    return `
+                        <div class="review-card w-[420px] p-10 dark:bg-[#0a0a0a] bg-slate-50 border dark:border-white/5 border-black/5 rounded-[2.5rem] shrink-0">
+                            <div class="flex items-center gap-5 mb-8">
+                                <a href="${profileUrl}" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-brand/10 flex items-center justify-center rounded-2xl border dark:border-white/10 border-black/10 text-brand font-bold text-2xl hover:border-brand transition">
+                                    ${rev.username.charAt(0).toUpperCase()}
+                                </a>
+                                <div>
+                                    <a href="${profileUrl}" target="_blank" rel="noopener noreferrer" class="block font-extrabold dark:text-white text-lg hover:text-brand transition-colors">
+                                        ${rev.username}
+                                    </a>
+                                    <p class="text-[9px] font-bold text-brand uppercase tracking-widest">Verified Client</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 mb-6">${stars}</div>
+                            <p class="review-message dark:text-gray-400 text-gray-500 italic text-md leading-relaxed">"${rev.message}"</p>
+                            <div class="mt-8 pt-6 border-t dark:border-white/5 border-black/5 flex justify-between">
+                                <p class="text-[9px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">${rev.date || ''}</p>
+                                <span class="text-[9px] font-bold text-brand/50 uppercase">Verified</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex gap-1 mb-6">${stars}</div>
-                    <p class="dark:text-gray-400 text-gray-500 italic text-md leading-relaxed h-[80px] overflow-hidden">"${rev.message}"</p>
-                    <div class="mt-8 pt-6 border-t dark:border-white/5 border-black/5 flex justify-between">
-                        <p class="text-[9px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">${rev.date || ''}</p>
-                        <span class="text-[9px] font-bold text-brand/50 uppercase">Verified</span>
-                    </div>
-                </div>
-            `;
-        };
+                    `;
+                };
 
-        const content = validReviews.map(cardTemplate).join('');
+                const content = validReviews.map(cardTemplate).join('');
 
-        container.innerHTML = `
-            <div class="review-marquee-group">${content}</div>
-            <div class="review-marquee-group" aria-hidden="true">${content}</div>
-        `;
+                container.innerHTML = `
+                    <div class="review-marquee-group">${content}</div>
+                    <div class="review-marquee-group" aria-hidden="true">${content}</div>
+                `;
 
-        const statClients = document.getElementById('stat-clients');
-        const statRating = document.getElementById('stat-rating');
+                const statClients = document.getElementById('stat-clients');
+                const statRating = document.getElementById('stat-rating');
 
-        if (statClients) statClients.textContent = validReviews.length;
-        if (statRating) statRating.textContent = '5.0';
-    } catch (e) {
-        console.error("Reviews Error:", e);
-    }
-}
+                animateCount(statClients, 0, 100, 5000, '+');
+                animateCount(statRating, 0, 5, 5000, '', 1);
+            } catch (e) {
+                console.error('Reviews Error:', e);
+            }
+        }
 
-loadDynamicReviews();
+        loadDynamicReviews();
     </script>
 </body>
 </html>
