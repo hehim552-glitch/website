@@ -562,7 +562,12 @@
             </div>
         </div>
         <!-- DYNAMIC REVIEWS LOAD HERE -->
-<div id="dynamic-reviews-container" class="contents"></div>
+<!-- DYNAMIC REVIEWS CAROUSEL -->
+<div class="marquee-container mt-12">
+    <div id="dynamic-reviews-container" class="marquee-content">
+        <!-- JS will plug reviews in here -->
+    </div>
+</div>
     </section>
     <!-- FAQ SECTION -->
 <section id="faq" class="py-32 px-10 md:px-32 dark:bg-[#080808] bg-slate-50 transition-colors duration-500 scroll-mt-24">
@@ -922,45 +927,51 @@ document.addEventListener('DOMContentLoaded', () => {
             const reviews = await response.json();
             const container = document.getElementById('dynamic-reviews-container');
 
-            if (!container) return;
+            if (!container || !reviews.length) return;
 
-            reviews.forEach(rev => {
-                if (!rev.username) return;
+            // We filter out the "empty" test reviews you saw earlier
+            const validReviews = reviews.filter(rev => rev.username && rev.message);
 
-                // Create the stars based on the number provided
+            // Function to create the HTML for one review card
+            const createCard = (rev) => {
                 let starIcons = '';
                 const starCount = parseInt(rev.stars) || 5;
                 for (let i = 0; i < starCount; i++) {
                     starIcons += '<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>';
                 }
 
-                const reviewHtml = `
-                    <div class="dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-10 rounded-[3rem] transition-all duration-500 hover:border-brand/30 hover:-translate-y-2 group">
-                        <div class="flex items-center gap-5 mb-8">
-                            <div class="relative w-14 h-14 shrink-0">
-                                <div class="absolute inset-0 bg-brand/20 blur-lg rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <div class="relative w-full h-full bg-brand/10 flex items-center justify-center rounded-2xl border-2 dark:border-white/10 border-black/10 text-brand font-bold">
-                                    ${rev.username.charAt(0).toUpperCase()}
-                                </div>
+                return `
+                    <div class="portfolio-card w-[400px] dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-8 rounded-[2.5rem] transition-all duration-500 group shrink-0">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-brand/10 flex items-center justify-center rounded-2xl border dark:border-white/10 border-black/10 text-brand font-bold text-xl">
+                                ${rev.username.charAt(0).toUpperCase()}
                             </div>
                             <div>
-                                <span class="block font-extrabold dark:text-white text-gray-900 text-lg">${rev.username}</span>
-                                <p class="text-[10px] font-bold text-brand uppercase tracking-widest">Verified Client</p>
+                                <span class="block font-extrabold dark:text-white text-gray-900 text-md">${rev.username}</span>
+                                <p class="text-[9px] font-bold text-brand uppercase tracking-widest">Verified Client</p>
                             </div>
                         </div>
-                        <div class="flex gap-1.5 mb-6 text-orange-400">
+                        <div class="flex gap-1 mb-4 text-orange-400">
                             ${starIcons}
                         </div>
-                        <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-lg font-medium">"${rev.message}"</p>
-                        <div class="mt-10 pt-8 border-t dark:border-white/5 border-black/5">
-                            <p class="text-[10px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Date // <span class="dark:text-white text-black">${rev.date}</span></p>
+                        <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-md font-medium h-[80px] overflow-hidden">"${rev.message}"</p>
+                        <div class="mt-8 pt-6 border-t dark:border-white/5 border-black/5 flex justify-between items-center">
+                            <p class="text-[9px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Date // <span class="dark:text-white text-black">${rev.date}</span></p>
+                            <span class="text-[9px] font-bold text-brand/50 uppercase">${rev.type || 'GFX'}</span>
                         </div>
                     </div>
                 `;
-                container.innerHTML += reviewHtml;
+            };
+
+            // To make the carousel loop smoothly, we repeat the reviews if there are only a few
+            const displayList = validReviews.length < 5 ? [...validReviews, ...validReviews, ...validReviews] : validReviews;
+
+            displayList.forEach(rev => {
+                container.innerHTML += createCard(rev);
             });
+
         } catch (e) {
-            console.error("Reviews error:", e);
+            console.error("Dynamic Reviews Error:", e);
         }
     }
     loadDynamicReviews();
