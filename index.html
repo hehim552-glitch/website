@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -21,6 +19,38 @@
         }
     </script>
     <style>
+        .review-marquee-container {
+    overflow: hidden;
+    padding: 40px 0;
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.review-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: reviewMarquee 30s linear infinite;
+}
+
+.review-marquee-group {
+    display: flex;
+    gap: 2rem;
+    padding-right: 2rem;
+    flex-shrink: 0;
+}
+
+.review-marquee-container:hover .review-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes reviewMarquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
         html { scroll-behavior: smooth; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.4s ease; }
         
@@ -34,105 +64,101 @@
 
         .premium-card:hover {
             transform: translateY(-12px);
-            border-color: var(--accent-color);
-            box-shadow: 0 25px 50px -12px var(--shadow-color);
+            border-color: #0099ff;
+            box-shadow: 0 25px 50px -12px rgba(0,153,255,0.2);
         }
 
         .hero-bg { background-size: cover; background-position: center; background-image: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 100%), url('hero-bg.png'); }
         .pfp-mask { -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%); mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%); }
         .toggle-thumb { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); }
         .dark .toggle-thumb { transform: translateX(2.6rem); }
-        .dropdown-content { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dropdown-content { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 150; }
         .group:hover .dropdown-content { opacity: 1; visibility: visible; transform: translateY(0); }
         .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         #contact-modal.active { display: flex; animation: fadeIn 0.4s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        
         /* Carousel Animation */
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-.marquee-container {
-    display: flex;
+        .marquee-container {
+            display: flex;
+            overflow: hidden;
+            padding: 40px 0;
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 2rem;
+            flex-shrink: 0;
+            min-width: 100%;
+            animation: marquee 25s linear infinite;
+        }
+
+        .portfolio-card {
+            position: relative;
+            flex-shrink: 0;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-12px) scale(1.05);
+            border-color: rgba(0, 153, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 153, 255, 0.2);
+            z-index: 20;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        .card-label {
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            backdrop-filter: blur(12px);
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-card:hover .card-label {
+            transform: translateY(0);
+        }
+        .review-marquee-container {
     overflow: hidden;
     padding: 40px 0;
-    /* Edge fade for professional look */
     mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
     -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
-.marquee-content {
+.review-marquee-track {
     display: flex;
     gap: 2rem;
-    flex-shrink: 0;
-    min-width: 100%;
-    /* BOTH rows will use this exact 20s speed */
-    animation: marquee 20s linear infinite;
+    width: max-content;
+    animation: reviewMarquee 30s linear infinite;
 }
 
-/* PREMIUM CARD STYLING */
-.portfolio-card {
-    position: relative;
-    flex-shrink: 0;
-    border-radius: 28px;
-    overflow: hidden;
-    background: #0a0a0a;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.portfolio-card:hover {
-    transform: translateY(-12px) scale(1.05);
-    border-color: rgba(0, 153, 255, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 153, 255, 0.2);
-    z-index: 20;
-}
-
-/* Dim others when one is hovered */
-.marquee-container:hover .portfolio-card:not(:hover) {
-    filter: brightness(0.4) blur(2px);
-    transform: scale(0.92);
-}
-
-/* Glassmorphism Label */
-.card-label {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 24px;
-    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-    backdrop-filter: blur(12px);
-    transform: translateY(100%);
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.portfolio-card:hover .card-label {
-    transform: translateY(0);
-}
-/* Specific animation for reviews to ensure it loops perfectly */
-@keyframes reviewMarquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-.review-marquee-active {
-    display: flex !important;
-    gap: 2rem;
-    flex-shrink: 0;
-    min-width: 100%;
-    animation: reviewMarquee 30s linear infinite; /* Slightly slower for readability */
-}
-
-/* Pause on hover so people can actually read the reviews */
-.marquee-container:hover .review-marquee-active {
+.review-marquee-container:hover .review-marquee-track {
     animation-play-state: paused;
 }
-.dropdown-content { 
-    opacity: 0; 
-    visibility: hidden; 
-    transform: translateY(10px); 
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-    z-index: 150; /* Ensure it stays above other fixed elements */
+
+@keyframes reviewMarquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
 }
     </style>
 </head>
@@ -140,81 +166,77 @@
 
 
     <!-- NAVIGATION -->
-   <nav class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-10 py-6 dark:bg-black/80 bg-white/80 backdrop-blur-md border-b dark:border-white/5 border-black/5">
-    <div class="flex items-center gap-8">
-        <div class="flex gap-6 md:gap-8 text-sm font-bold tracking-wide dark:text-gray-300 text-gray-600">
-            <a href="#" class="hover:text-brand transition-colors">Home</a>
-            <a href="#about" class="hover:text-brand transition-colors">About Me</a>
-            
-            <!-- EXAMPLES DROPDOWN -->
-            <div class="relative group cursor-pointer transition-colors hover:text-brand">
-                <div class="flex items-center gap-1">
-                    Examples
-                    <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
-                    </svg>
+    <nav class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-10 py-6 dark:bg-black/80 bg-white/80 backdrop-blur-md border-b dark:border-white/5 border-black/5">
+        <div class="flex items-center gap-8">
+            <div class="flex gap-6 md:gap-8 text-sm font-bold tracking-wide dark:text-gray-300 text-gray-600">
+                <a href="#" class="hover:text-brand transition-colors duration-300">Home</a>
+                <a href="#about" class="hover:text-brand transition-colors duration-300">About Me</a>
+                
+                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
+                    <div class="flex items-center gap-1">
+                        Examples
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="dropdown-content absolute left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="#realistic" class="block px-5 py-3 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">Realistic Style</a>
+                        <a href="#high-ccu" class="block px-5 py-3 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 border-t dark:border-white/5 dark:text-white text-gray-800">High CCU Style</a>
+                    </div>
                 </div>
-                <div class="dropdown-content absolute left-0 mt-4 w-48 dark:bg-[#0a0a0a] bg-white border dark:border-white/10 border-black/10 rounded-2xl overflow-hidden shadow-2xl">
-                    <a href="#realistic" class="block px-6 py-4 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5">Realistic Style</a>
-                    <a href="#high-ccu" class="block px-6 py-4 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">High CCU Style</a>
-                </div>
-            </div>
 
-            <a href="#pricing" class="hover:text-brand transition-colors hidden sm:block">Prices</a>
+                <a href="#pricing" class="hover:text-brand transition-colors duration-300 hidden sm:block">Prices</a>
 
-            <!-- MORE DROPDOWN -->
-            <div class="relative group cursor-pointer transition-colors hover:text-brand">
-                <div class="flex items-center gap-1">
-                    More
-                    <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </div>
-                <div class="dropdown-content absolute right-0 md:left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white border dark:border-white/10 border-black/10 rounded-2xl overflow-hidden shadow-2xl">
-                    <a href="#reviews" class="block px-6 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5">Reviews</a>
-                    <a href="#faq" class="block px-6 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5">FAQ</a>
-                    <a href="#tos" class="block px-6 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">ToS</a>
+                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
+                    <div class="flex items-center gap-1 dark:text-gray-300 text-gray-600 hover:text-brand">
+                        More
+                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                    <div class="dropdown-content absolute right-0 md:left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
+                        <a href="#reviews" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">Reviews</a>
+                        <a href="#faq" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">FAQ</a>
+                        <a href="#tos" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">ToS</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="flex items-center gap-4 md:gap-8">
-        <button id="theme-toggle" class="relative w-[5.2rem] h-10 rounded-full p-1 bg-sky-400 dark:bg-indigo-900 flex items-center group overflow-hidden ring-1 ring-black/5 dark:ring-white/10">
-            <div class="toggle-thumb w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center z-10 relative">
-                <svg id="sun-icon" class="w-5 h-5 text-orange-400 absolute transition-all duration-500 dark:rotate-90 dark:scale-0 dark:opacity-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
-                <svg id="moon-icon" class="w-5 h-5 text-indigo-950 absolute transition-all duration-500 -rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-            </div>
-        </button>
-        <button onclick="toggleModal()" class="bg-brand px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all shadow-lg shadow-brand/20 hover:shadow-[0_0_20px_#0099ff]">Contact Me</button>
-    </div>
-</nav>
+        <div class="flex items-center gap-4 md:gap-8">
+            <button id="theme-toggle" class="relative w-[5.2rem] h-10 rounded-full p-1 bg-sky-400 dark:bg-indigo-900 flex items-center group overflow-hidden ring-1 ring-black/5 dark:ring-white/10">
+                <div class="toggle-thumb w-8 h-8 rounded-full bg-white shadow-lg flex items-center justify-center z-10 relative">
+                    <svg id="sun-icon" class="w-5 h-5 text-orange-400 absolute transition-all duration-500 dark:rotate-90 dark:scale-0 dark:opacity-0" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 text-indigo-950 absolute transition-all duration-500 -rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
+            </button>
+            <button onclick="toggleModal()" class="bg-brand px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all duration-300 shadow-lg shadow-brand/20 hover:shadow-[0_0_20px_#0099ff]">Contact Me</button>
+        </div>
+    </nav>
 
     <!-- CONTACT MODAL -->
-<!-- CONTACT MODAL -->
-<div id="contact-modal" class="fixed inset-0 z-[100] hidden items-center justify-center px-6">
-    <div class="absolute inset-0 bg-black/90 backdrop-blur-xl" onclick="toggleModal()"></div>
-    <div class="relative glass-card w-full max-w-md p-10 rounded-[3rem] shadow-2xl text-center border border-white/10 bg-[#0a0a0a]">
-        <h2 class="text-4xl font-extrabold mb-2 tracking-tight text-white">Let's <span class="text-brand">Connect</span></h2>
-        <p class="text-gray-500 text-sm mb-8 tracking-widest uppercase font-bold"> Commission Status: <span class="text-green-500">Open</span></p>
-        
-        <div class="flex flex-col gap-4 mt-4 text-left">
-            <!-- DISCORD BUTTON: Replace YOUR_ID_HERE with your numerical Discord ID -->
-            <a href="https://discord.com/users/1297533282740600920" target="_blank" rel="noopener noreferrer" class="block bg-[#5865F2] p-5 rounded-2xl flex justify-between items-center text-white transition-all hover:shadow-[0_0_25px_#5865F2] hover:scale-[1.02]">
-                <span class="font-bold text-lg">Discord</span>
-                <span class="text-sm font-medium opacity-80">hidden.zero</span>
-            </a>
+    <div id="contact-modal" class="fixed inset-0 z-[200] hidden items-center justify-center px-6">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-xl" onclick="toggleModal()"></div>
+        <div class="relative glass-card w-full max-w-md p-10 rounded-[3rem] shadow-2xl text-center border border-white/10 bg-[#0a0a0a]">
+            <h2 class="text-4xl font-extrabold mb-2 tracking-tight text-white">Let's <span class="text-brand">Connect</span></h2>
+            <p class="text-gray-500 text-sm mb-8 tracking-widest uppercase font-bold"> Commission Status: <span class="text-green-500">Open</span></p>
+            
+            <div class="flex flex-col gap-4 mt-4 text-left">
+                <a href="https://discord.com/users/1297533282740600920" target="_blank" rel="noopener noreferrer" class="block bg-[#5865F2] p-5 rounded-2xl flex justify-between items-center text-white transition-all hover:shadow-[0_0_25px_#5865F2] hover:scale-[1.02]">
+                    <span class="font-bold text-lg">Discord</span>
+                    <span class="text-sm font-medium opacity-80">hidden.zero</span>
+                </a>
 
-            <!-- TWITTER BUTTON -->
-            <a href="https://twitter.com/RanroboGaming" target="_blank" rel="noopener noreferrer" class="block bg-black border border-white/10 p-5 rounded-2xl flex justify-between items-center text-white transition-all hover:shadow-[0_0_25px_#ffffff20] hover:scale-[1.02]">
-                <span class="font-bold text-lg">Twitter / X</span>
-                <span class="text-sm font-medium opacity-80">@RanroboGaming</span>
-            </a>
+                <a href="https://twitter.com/RanroboGaming" target="_blank" rel="noopener noreferrer" class="block bg-black border border-white/10 p-5 rounded-2xl flex justify-between items-center text-white transition-all hover:shadow-[0_0_25px_#ffffff20] hover:scale-[1.02]">
+                    <span class="font-bold text-lg">Twitter / X</span>
+                    <span class="text-sm font-medium opacity-80">@RanroboGaming</span>
+                </a>
+            </div>
+            
+            <button onclick="toggleModal()" class="mt-10 text-gray-500 text-xs font-bold hover:text-white transition-all uppercase tracking-[0.3em]">Close</button>
         </div>
-        
-        <button onclick="toggleModal()" class="mt-10 text-gray-500 text-xs font-bold hover:text-white transition-all uppercase tracking-[0.3em]">Close</button>
     </div>
-</div>
+
     <!-- HERO SECTION -->
     <section class="relative h-screen w-full flex items-center px-10 md:px-32 overflow-hidden">
         <div class="absolute inset-0 z-0">
@@ -261,47 +283,59 @@
     </section>
 
     <!-- EXAMPLES SECTION -->
-    <!-- EXAMPLES SECTION -->
-<!-- EXAMPLES SECTION -->
-<!-- EXAMPLES SECTION -->
-<!-- EXAMPLES SECTION -->
-<section id="examples" class="py-32 dark:bg-[#050505] bg-white overflow-hidden scroll-mt-20">
-    
-    <!-- REALISTIC SUB-SECTION -->
-    <div id="realistic" class="max-w-6xl mx-auto px-10 mb-12 scroll-mt-32">
-        <h3 class="text-brand font-bold tracking-[0.3em] uppercase text-[10px] mb-3">01 // Style</h3>
-        <h2 class="text-5xl font-black dark:text-white text-gray-900 tracking-tighter">Realistic <span class="text-brand">Style</span></h2>
-    </div>
-
-    <div class="marquee-container mb-24">
-        <div class="marquee-content">
-            <div class="portfolio-card w-[450px] aspect-video"><img src="Db and Kate ps.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Picnic Render</h5></div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="db and mad ps.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Shooting Render</h5></div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Train Station</h5></div></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"><div class="card-label"><h5 class="text-white font-bold">Classroom</h5></div></div>
-            <!-- Loop -->
-            <div class="portfolio-card w-[450px] aspect-video"><img src="Db and Kate ps.png" class="w-full h-full object-cover"></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="db and mad ps.png" class="w-full h-full object-cover"></div>
+    <section id="examples" class="py-32 dark:bg-[#050505] bg-white overflow-hidden scroll-mt-20">
+        
+        <!-- SECTION 1: REALISTIC -->
+        <div id="realistic" class="max-w-6xl mx-auto px-10 mb-12 scroll-mt-32">
+            <h3 class="text-brand font-bold tracking-[0.3em] uppercase text-[10px] mb-3">01 // Style</h3>
+            <h2 class="text-5xl font-black dark:text-white text-gray-900 tracking-tighter">Realistic <span class="text-brand">Style</span></h2>
         </div>
-    </div>
 
-    <!-- HIGH CCU SUB-SECTION -->
-    <div id="high-ccu" class="max-w-6xl mx-auto px-10 mb-12 scroll-mt-32">
-        <h3 class="text-brand font-bold tracking-[0.3em] uppercase text-[10px] mb-3">02 // Style</h3>
-        <h2 class="text-5xl font-black dark:text-white text-gray-900 tracking-tighter">High CCU <span class="text-brand">Style</span></h2>
-    </div>
-
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <!-- Add your CCU images here -->
-            <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"></div>
-            <!-- Loop -->
-            <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"></div>
-            <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"></div>
+        <div class="marquee-container mb-24">
+            <div class="marquee-content">
+                <div class="portfolio-card w-[450px] aspect-video">
+                    <img src="Db and Kate ps.png" class="w-full h-full object-cover">
+                    <div class="card-label">
+                        <p class="text-brand font-black text-[10px] uppercase tracking-widest">Realistic</p>
+                        <h5 class="text-white font-bold text-lg">Picnic Render</h5>
+                    </div>
+                </div>
+                <div class="portfolio-card w-[450px] aspect-video">
+                    <img src="db and mad ps.png" class="w-full h-full object-cover">
+                    <div class="card-label">
+                        <p class="text-brand font-black text-[10px] uppercase tracking-widest">Realistic</p>
+                        <h5 class="text-white font-bold text-lg">Shooting Render</h5>
+                    </div>
+                </div>
+                <div class="portfolio-card w-[450px] aspect-video">
+                    <img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover">
+                    <div class="card-label">
+                        <p class="text-brand font-black text-[10px] uppercase tracking-widest">Realistic</p>
+                        <h5 class="text-white font-bold text-lg">Train Station Render</h5>
+                    </div>
+                </div>
+                <div class="portfolio-card w-[450px] aspect-video"><img src="Db and Kate ps.png" class="w-full h-full object-cover"></div>
+                <div class="portfolio-card w-[450px] aspect-video"><img src="db and mad ps.png" class="w-full h-full object-cover"></div>
+                <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"></div>
+            </div>
         </div>
-    </div>
-</section>
+
+        <!-- SECTION 2: HIGH CCU -->
+        <div id="high-ccu" class="max-w-6xl mx-auto px-10 mb-12 scroll-mt-32">
+            <h3 class="text-brand font-bold tracking-[0.3em] uppercase text-[10px] mb-3">02 // Style</h3>
+            <h2 class="text-5xl font-black dark:text-white text-gray-900 tracking-tighter">High CCU <span class="text-brand">Style</span></h2>
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"></div>
+                <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"></div>
+                <div class="portfolio-card w-[450px] aspect-video"><img src="TRAIN GFX REMAKE.png" class="w-full h-full object-cover"></div>
+                <div class="portfolio-card w-[450px] aspect-video"><img src="G0z3aI-aUAE4FYq.png" class="w-full h-full object-cover"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- PRICING SECTION -->
     <section id="pricing" class="py-32 px-6 md:px-32 dark:bg-[#050505] bg-white relative scroll-mt-20 transition-colors duration-500">
         <div class="max-w-7xl mx-auto relative z-10">
@@ -362,15 +396,9 @@
                     <div class="space-y-4 mb-12 flex-grow">
                         <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700">
                             <span>Thumbnail + Icon</span>
-                            <span class="text-brand font-black uppercase text-[10px]">Included</span>
                         </div>
                         <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700">
                             <span>PSD Source Files</span>
-                            <span class="text-brand font-black uppercase text-[10px]">Included</span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700">
-                            <span>Priority Delivery</span>
-                            <span class="text-brand font-black uppercase text-[10px]">Included</span>
                         </div>
                     </div>
                     <button onclick="toggleModal()" class="w-full py-5 rounded-xl bg-brand text-white font-black text-xs uppercase tracking-[0.3em] transition-all hover:bg-gray-900 dark:hover:bg-white dark:hover:text-black">BUY BUNDLE</button>
@@ -399,7 +427,7 @@
                             <span>Realistic Lighting & Shadows</span>
                         </div>
                     </div>
-                    <button onclick="toggleModal()" class="w-full py-4 rounded-xl border dark:border-white/10 border-black/10 dark:text-white text-gray-900 font-black text-[10px] uppercase tracking-[0.3em] transition-all hover:bg-brand hover:border-brand hover:text-white">BUY THUMBNAIL</button>
+                    <button onclick="toggleModal()" class="w-full py-4 rounded-xl border dark:border-white/10 border-black/10 dark:text-white text-gray-900 font-black text-[10px] uppercase tracking-[0.3em] transition-all hover:bg-brand hover:border-brand hover:text-white">Buy Thumbnail</button>
                 </div>
             </div>
 
@@ -413,344 +441,67 @@
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-2 h-2 rounded-full bg-brand mt-2"></div>
-                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">Assets</span> Roblox Models (.RBXM / .RBXL) and character outfits ready to use.</p>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-2 h-2 rounded-full bg-brand mt-2"></div>
-                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">References</span> Similar work or moodboards to help gauge the lighting/style.</p>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-2 h-2 rounded-full bg-brand mt-2"></div>
-                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">Deadline</span> Information regarding specific timelines or game launch dates.</p>
+                        <p class="text-gray-500 text-sm font-medium"><span class="dark:text-white text-black font-bold uppercase block mb-1">Assets</span> Roblox Models and character outfits ready to use.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- REVIEWS SECTION -->
-    <section id="reviews" class="py-32 px-10 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors duration-500">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-20" data-aos="fade-up">
-                <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Reviews</h3>
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-                    <div class="max-w-2xl">
-                        <h2 class="text-5xl md:text-6xl font-extrabold mb-8 dark:text-white text-gray-900 leading-tight">What Clients <span class="text-brand">Say</span></h2>
-                        <p class="dark:text-gray-400 text-gray-600 text-xl leading-relaxed">
-                            I’ve worked with dozens of studios and creators to bring their visions to life. 
-                            Here is some of their feedback regarding my process and final delivery.
-                        </p>
-                    </div>
-                    <div id="stats-trigger" class="inline-flex items-center gap-10 bg-black/5 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 px-10 py-8 rounded-[2.5rem] backdrop-blur-xl">
-                        <div class="text-center min-w-[120px]">
-                            <p id="stat-clients" class="text-5xl font-black text-brand tracking-tighter">0</p>
-                            <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Clients Satisfied</p>
-                        </div>
-                        <div class="w-[1px] h-12 bg-black/10 dark:bg-white/10"></div>
-                        <div class="text-center min-w-[100px]">
-                            <p id="stat-rating" class="text-5xl font-black text-brand tracking-tighter">0.0</p>
-                            <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Rating</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                
-                <!-- Review 1 -->
-                <div class="dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-10 rounded-[3rem] transition-all duration-500 hover:border-brand/30 hover:-translate-y-2 group">
-                    <div class="flex items-center gap-5 mb-8">
-                        <!-- PFP Container -->
-                        <div class="relative w-14 h-14 shrink-0">
-                            <div class="absolute inset-0 bg-brand/20 blur-lg rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <img src="Zackery-pfp.png" alt="PFP" class="relative w-full h-full object-cover rounded-2xl border-2 dark:border-white/10 border-black/10 shadow-xl group-hover:border-brand/50 transition-all duration-300">
-                        </div>
-                        <div>
-                            <!-- Roblox Username Link -->
-                            <a href="https://www.roblox.com/users/5781318239/profile" target="_blank" class="block font-extrabold dark:text-white text-gray-900 text-lg hover:text-brand transition-colors">
-                                SoundTrackZack
-                            </a>
-                            <p class="text-[10px] font-bold text-brand uppercase tracking-widest">Owner of Hungry Pig</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-1.5 mb-6 text-orange-400">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                    </div>
-                    <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-lg font-medium line-clamp-6">"Azero is very talented and has a good eye for what kind of thumbnail works for the algorithm, He made me a thumbnail that got 32,638,884 impressions, with 705,991 plays. Hes deff recommended!"</p>
-                    <div class="mt-10 pt-8 border-t dark:border-white/5 border-black/5">
-                        <p class="text-[10px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Project // <span class="dark:text-white text-black">High CTR Style</span></p>
-                    </div>
-                </div>
-
-                <!-- Review 2 -->
-                <div class="dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-10 rounded-[3rem] transition-all duration-500 hover:border-brand/30 hover:-translate-y-2 group">
-                    <div class="flex items-center gap-5 mb-8">
-                        <div class="relative w-14 h-14 shrink-0">
-                            <div class="absolute inset-0 bg-brand/20 blur-lg rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <img src="ATLATHIX.webp" alt="PFP" class="relative w-full h-full object-cover rounded-2xl border-2 dark:border-white/10 border-black/10 shadow-xl group-hover:border-brand/50 transition-all duration-300">
-                        </div>
-                        <div>
-                            <a href="https://www.roblox.com/users/1707464918/profile" target="_blank" class="block font-extrabold dark:text-white text-gray-900 text-lg hover:text-brand transition-colors">
-                                Atlathix
-                            </a>
-                            <p class="text-[10px] font-bold text-brand uppercase tracking-widest">OWNER OF +1 Speed Glider Escape 🪂</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-1.5 mb-6 text-orange-400">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                    </div>
-                    <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-lg font-medium line-clamp-6">"This guy got me an insanely high QPTR, averaging 3-4%. It sounds crazy and unreal. Responds fast, changes stuff when asked, just really good quality overall. Will definitely commission again."</p>
-                    <div class="mt-10 pt-8 border-t dark:border-white/5 border-black/5">
-                        <p class="text-[10px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Project // <span class="dark:text-white text-black">HIGH CTR STYLE</span></p>
-                    </div>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-10 rounded-[3rem] transition-all duration-500 hover:border-brand/30 hover:-translate-y-2 group">
-                    <div class="flex items-center gap-5 mb-8">
-                        <div class="relative w-14 h-14 shrink-0">
-                            <div class="absolute inset-0 bg-brand/20 blur-lg rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <img src="KDEQU.webp" alt="PFP" class="relative w-full h-full object-cover rounded-2xl border-2 dark:border-white/10 border-black/10 shadow-xl group-hover:border-brand/50 transition-all duration-300">
-                        </div>
-                        <div>
-                            <a href="https://www.roblox.com/users/148164262/profile" target="_blank" class="block font-extrabold dark:text-white text-gray-900 text-lg hover:text-brand transition-colors">
-                                kdequ
-                            </a>
-                            <p class="text-[10px] font-bold text-brand uppercase tracking-widest">OWNER OF Brainrot Rails</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-1.5 mb-6 text-orange-400">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                    </div>
-                    <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-lg font-medium line-clamp-6">"Great GFX, very good price / cheap. Took very little time to receive and satisfied with results. Highly recommend!"</p>
-                    <div class="mt-10 pt-8 border-t dark:border-white/5 border-black/5">
-                        <p class="text-[10px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Project // <span class="dark:text-white text-black">High ctr style</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- DYNAMIC REVIEWS LOAD HERE -->
-<!-- DYNAMIC REVIEWS CAROUSEL -->
-<div class="marquee-container mt-12">
-    <!-- We removed the marquee-content class here so it doesn't start empty -->
-    <div id="dynamic-reviews-container" class="flex gap-8">
-        <!-- JS will plug reviews in here -->
-    </div>
-</div>
-    <!-- FAQ SECTION -->
-<section id="faq" class="py-32 px-10 md:px-32 dark:bg-[#080808] bg-slate-50 transition-colors duration-500 scroll-mt-24">
-    <div class="max-w-4xl mx-auto">
-        
-        <!-- Header -->
-        <div class="text-center mb-20" data-aos="fade-up">
-            <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Inquiries</h3>
-            <h2 class="text-5xl md:text-6xl font-extrabold dark:text-white text-gray-900 mb-6">Common <span class="text-brand">Questions</span></h2>
-            <p class="dark:text-gray-400 text-gray-600 text-lg">Find quick answers to common questions about my workflow and services.</p>
-        </div>
-
-        <!-- Accordion Container -->
-        <div class="space-y-4">
-            
-            <!-- Q1 -->
-            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up">
-                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
-                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">Do you offer revisions?</span>
-                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
-                        Yes I do, <span class="text-brand font-bold">2 Reworks at MAX</span>.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q2 -->
-            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="100">
-                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
-                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">Do you model assets for your render scenes?</span>
-                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
-                        No, I prefer clients to send me the models, however I can make simple scenes.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q3 -->
-            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="200">
-                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
-                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">How long does a commission take?</span>
-                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
-                        A commission usually takes around <span class="dark:text-white text-black font-bold">3-4 days</span> for a good result. Hurrying me up will decrease the quality of your order. Priority thumbnails are done in 2-3 days or even earlier.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q4 -->
-            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="300">
-                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
-                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">What software do you use?</span>
-                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
-                        I use <span class="dark:text-white text-black font-bold">Roblox Studio, Blender & Adobe Photoshop</span>.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q5 -->
-            <div class="faq-item group border dark:border-white/5 border-black/5 rounded-[2rem] overflow-hidden transition-all duration-300 dark:bg-white/[0.02] bg-white" data-aos="fade-up" data-aos-delay="400">
-                <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-8 text-left outline-none">
-                    <span class="text-lg font-bold dark:text-gray-200 text-gray-800 group-hover:text-brand transition-colors">Do you make thumbnails without reference image?</span>
-                    <div class="w-8 h-8 rounded-full border dark:border-white/10 border-black/10 flex items-center justify-center transition-transform duration-300 arrow-icon">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
-                    <div class="px-8 pb-8 dark:text-gray-400 text-gray-600 leading-relaxed">
-                        Yes, I do but it may not match your hopes. Sending a reference image is always better—an <span class="text-brand font-bold">AI generated reference image works too!</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- TOS SECTION -->
-<section id="tos" class="py-32 px-6 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors duration-500">
+<!-- REVIEWS SECTION -->
+<section id="reviews" class="py-32 px-10 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors duration-500">
     <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20" data-aos="fade-up">
-            <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Legal</h3>
-            <h2 class="text-5xl md:text-6xl font-extrabold dark:text-white text-gray-900 mb-6 leading-tight">Terms of <span class="text-brand">Service</span></h2>
-            <p class="dark:text-gray-400 text-gray-600 text-lg max-w-2xl mx-auto">Please review my operational policies before placing an order. Booking a commission signifies your agreement to these terms.</p>
+        <div class="mb-20" data-aos="fade-up">
+            <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Reviews</h3>
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+                <div class="max-w-2xl">
+                    <h2 class="text-5xl md:text-6xl font-extrabold mb-8 dark:text-white text-gray-900 leading-tight">What Clients <span class="text-brand">Say</span></h2>
+                </div>
+                <div id="stats-trigger" class="inline-flex items-center gap-10 bg-black/5 dark:bg-white/[0.03] border border-black/5 dark:border-white/10 px-10 py-8 rounded-[2.5rem] backdrop-blur-xl">
+                    <div class="text-center min-w-[120px]">
+                        <p id="stat-clients" class="text-5xl font-black text-brand tracking-tighter">0</p>
+                        <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Clients Satisfied</p>
+                    </div>
+                    <div class="text-center min-w-[100px]">
+                        <p id="stat-rating" class="text-5xl font-black text-brand tracking-tighter">0.0</p>
+                        <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Rating</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            
-            <!-- 1. Payment & Refunds -->
-            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-right">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-black uppercase tracking-tight">Payment & Refunds</h4>
-                </div>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Deposit Requirement:</span> A non-refundable deposit of 50% is mandatory to initiate work. Full payment is also accepted.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Refund Policy:</span> All sales are final once processed. Refunds are only granted if I am unable to deliver the project.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Workflow:</span> I do not accept "pay-upon-completion" requests or participate in group-managed projects.</p>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 2. Turnaround & Delivery -->
-            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-left">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-black uppercase tracking-tight">Turnaround & Delivery</h4>
-                </div>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Timeline:</span> Standard delivery is typically 2–3 business days, depending on current demand.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Deadlines:</span> Specific delivery dates must be confirmed and agreed upon before work begins.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Rush Service:</span> Expedited turnaround is available for an additional premium fee.</p>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 3. Assets & File Management -->
-            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-right">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-black uppercase tracking-tight">Assets & Management</h4>
-                </div>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Source Files:</span> Quote covers rendered output. Raw project files are available for an extra fee.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Client Responsibilities:</span> Please ensure all provided assets are ready-to-use before ordering.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Security:</span> All local project files and client assets are permanently deleted 48 hours after project completion.</p>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 4. Rights & Disclaimers -->
-            <div class="glass-card p-10 rounded-[2.5rem] border dark:border-white/5 border-black/5 transition-all hover:border-brand/30" data-aos="fade-left">
-                <div class="flex items-center gap-4 mb-8">
-                    <div class="w-12 h-12 bg-brand/10 rounded-2xl flex items-center justify-center text-brand">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h4 class="text-2xl font-black uppercase tracking-tight">Rights & Usage</h4>
-                </div>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Licensing:</span> All external assets I provide (models/VFX) are copyright-free and suitable for commercial use.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">Promotion:</span> I reserve the right to display completed works on my portfolio and social platforms.</p>
-                    </li>
-                    <li class="flex items-start gap-3 text-sm dark:text-gray-400 text-gray-600">
-                        <div class="w-1.5 h-1.5 rounded-full bg-brand mt-1.5 shrink-0"></div>
-                        <p><span class="font-bold dark:text-white text-black">General:</span> I maintain the right to decline any commission request at my own discretion.</p>
-                    </li>
-                </ul>
+        <div class="review-marquee-container bg-black/5 dark:bg-white/[0.01] rounded-[3rem]">
+            <div id="dynamic-reviews-container" class="review-marquee-track">
+                <!-- JS WILL INJECT REVIEWS HERE -->
             </div>
         </div>
     </div>
 </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-32 px-10 md:px-32 dark:bg-[#080808] bg-slate-50 transition-colors duration-500 scroll-mt-24">
+        <div class="max-w-4xl mx-auto text-center mb-20" data-aos="fade-up">
+            <h2 class="text-5xl md:text-6xl font-extrabold dark:text-white text-gray-900 mb-6">Common <span class="text-brand">Questions</span></h2>
+        </div>
+        <div class="space-y-4">
+            <div class="faq-item border dark:border-white/5 p-8 rounded-[2rem] bg-white dark:bg-white/[0.02]">
+                <button onclick="toggleFaq(this)" class="w-full text-left outline-none font-bold text-lg">Do you offer revisions?</button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500"><div class="pt-4 dark:text-gray-400 text-gray-600 leading-relaxed">Yes I do, 2 Reworks at MAX.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOS SECTION -->
+    <section id="tos" class="py-32 px-6 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto text-center mb-16" data-aos="fade-up">
+            <h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">Terms of <span class="text-brand">Service</span></h2>
+            <p class="dark:text-gray-400">Please review policies before ordering.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="glass-card p-10 rounded-[2.5rem]"><h4 class="text-2xl font-black mb-4 uppercase">Payment</h4><p class="dark:text-gray-400">Non-refundable deposit mandatory.</p></div>
+            <div class="glass-card p-10 rounded-[2.5rem]"><h4 class="text-2xl font-black mb-4 uppercase">Usage</h4><p class="dark:text-gray-400">I reserve the right to display works on my portfolio.</p></div>
+        </div>
+    </section>
 
     <footer class="py-10 text-center dark:text-gray-600 text-gray-400 text-sm border-t dark:border-white/5 border-black/5">
         &copy; 2024 Azero GFX. All rights reserved.
@@ -759,202 +510,85 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
-
         function toggleModal() { document.getElementById('contact-modal').classList.toggle('active'); }
-        
         function updateISTClock() {
-            const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const time = new Intl.DateTimeFormat('en-US', options).format(new Date());
+            const time = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date());
             const clock = document.getElementById('ist-clock');
             if(clock) clock.textContent = time;
         }
-        setInterval(updateISTClock, 1000); 
-        updateISTClock();
-
-        document.getElementById('theme-toggle').addEventListener('click', () => { 
-            document.documentElement.classList.toggle('dark'); 
-        });
+        setInterval(updateISTClock, 1000); updateISTClock();
+        document.getElementById('theme-toggle').addEventListener('click', () => { document.documentElement.classList.toggle('dark'); });
 
         function updatePrices(style) {
-            const tRealistic = document.getElementById('tab-realistic');
-            const tCcu = document.getElementById('tab-ccu');
-            const pIconUsd = document.getElementById('price-icon-usd');
-            const pIconRbx = document.getElementById('price-icon-rbx');
-            const pThumbUsd = document.getElementById('price-thumb-usd');
-            const pThumbRbx = document.getElementById('price-thumb-rbx');
-            const pBundleUsd = document.getElementById('price-bundle-usd');
-            const pBundleRbx = document.getElementById('price-bundle-rbx');
-            const iconDesc = document.getElementById('icon-desc');
-            const thumbDesc = document.getElementById('thumb-desc');
-
-            const activeClass = "px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm transition-all duration-300 shadow-lg shadow-brand/20";
-            const inactiveClass = "px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 hover:text-brand font-bold text-sm transition-all duration-300";
-
+            const tRealistic = document.getElementById('tab-realistic'); const tCcu = document.getElementById('tab-ccu');
+            const pIconUsd = document.getElementById('price-icon-usd'); const pThumbUsd = document.getElementById('price-thumb-usd'); const pBundleUsd = document.getElementById('price-bundle-usd');
             if (style === 'realistic') {
-                tRealistic.className = activeClass;
-                tCcu.className = inactiveClass;
-                pIconUsd.innerText = '$40';
-                pIconRbx.innerText = '10,000 Robux (+Tax)';
-                pThumbUsd.innerText = '$57';
-                pThumbRbx.innerText = '15,000 Robux (+Tax)';
-                pBundleUsd.innerText = '$80';
-                pBundleRbx.innerText = '20,000 Robux package';
-                iconDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>Realistic Texturing</span>`;
-                thumbDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>Realistic Lighting & Shadows</span>`;
+                tRealistic.className = "px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm shadow-lg shadow-brand/20"; tCcu.className = "px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 font-bold text-sm";
+                pIconUsd.innerText = '$40'; pThumbUsd.innerText = '$57'; pBundleUsd.innerText = '$80';
             } else {
-                tCcu.className = activeClass;
-                tRealistic.className = inactiveClass;
-                pIconUsd.innerText = '$25';
-                pIconRbx.innerText = '6,000 Robux (+Tax)';
-                pThumbUsd.innerText = '$40';
-                pThumbRbx.innerText = '10,000 Robux (+Tax)';
-                pBundleUsd.innerText = '$55';
-                pBundleRbx.innerText = '13,000 Robux Package';
-                iconDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>High CTR Clickbait Style</span>`;
-                thumbDesc.innerHTML = `<div class="w-1.5 h-1.5 rounded-full bg-brand"></div><span>Action-Packed Composition</span>`;
+                tCcu.className = "px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm shadow-lg shadow-brand/20"; tRealistic.className = "px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 font-bold text-sm";
+                pIconUsd.innerText = '$25'; pThumbUsd.innerText = '$40'; pBundleUsd.innerText = '$55';
             }
         }
+        function toggleFaq(button) { const answer = button.nextElementSibling; if (answer.style.maxHeight) { answer.style.maxHeight = null; } else { answer.style.maxHeight = answer.scrollHeight + "px"; } }
 
-        function animateStats() {
-            const clientsTarget = 100;
-            const ratingTarget = 5.0;
-            const duration = 2500;
-            const clientsElem = document.getElementById('stat-clients');
-            const ratingElem = document.getElementById('stat-rating');
-            let startTime = null;
-            const easeOutQuad = t => t * (2 - t);
+        // --- THE DYNAMIC REVIEW MARQUEE FIX ---
+        async function loadDynamicReviews() {
+    try {
+        const url = 'https://raw.githubusercontent.com/hehim552-glitch/reviews/main/reviews.json';
+        const response = await fetch(url);
+        const reviews = await response.json();
+        const container = document.getElementById('dynamic-reviews-container');
 
-            function step(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const elapsed = timestamp - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                const easedProgress = easeOutQuad(progress);
-                const currentClients = Math.floor(easedProgress * clientsTarget);
-                const currentRating = (easedProgress * ratingTarget).toFixed(1);
-                if (clientsElem) clientsElem.textContent = currentClients + "+";
-                if (ratingElem) ratingElem.textContent = currentRating;
-                if (progress < 1) window.requestAnimationFrame(step);
+        if (!container || !Array.isArray(reviews) || !reviews.length) return;
+
+        const validReviews = reviews.filter(rev => rev.username && rev.message);
+
+        const cardTemplate = (rev) => {
+            let stars = '';
+            const starCount = parseInt(rev.stars) || 5;
+
+            for (let i = 0; i < starCount; i++) {
+                stars += '<svg class="w-4 h-4 fill-current text-orange-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>';
             }
-            window.requestAnimationFrame(step);
-        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const target = document.getElementById('stats-trigger');
-            if (target) observer.observe(target);
-        });
-        function toggleFaq(button) {
-    const item = button.parentElement;
-    const answer = item.querySelector('.faq-answer');
-    const icon = item.querySelector('.arrow-icon');
-    
-    // Close all other FAQs
-    document.querySelectorAll('.faq-item').forEach(otherItem => {
-        if (otherItem !== item) {
-            otherItem.querySelector('.faq-answer').style.maxHeight = null;
-            otherItem.querySelector('.arrow-icon').style.transform = 'rotate(0deg)';
-            otherItem.classList.remove('border-brand/50');
-        }
-    });
-
-    // Toggle current FAQ
-    if (answer.style.maxHeight) {
-        answer.style.maxHeight = null;
-        icon.style.transform = 'rotate(0deg)';
-        item.classList.remove('border-brand/50');
-    } else {
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        icon.style.transform = 'rotate(180deg)';
-        item.classList.add('border-brand/50');
-    }
-}
-document.addEventListener('DOMContentLoaded', () => {
-    const containers = document.querySelectorAll('.marquee-container');
-
-    containers.forEach(container => {
-        const content = container.querySelector('.marquee-content');
-        
-        // This targets the CSS animation directly
-        const animation = content.getAnimations()[0];
-
-        if (animation) {
-            container.addEventListener('mouseenter', () => {
-                // Smoothly slows to 35% speed
-                animation.updatePlaybackRate(0.85); 
-            });
-
-            container.addEventListener('mouseleave', () => {
-                // Returns to 100% speed
-                animation.updatePlaybackRate(1);
-            });
-        }
-    });
-});
-    </script>
-<script>
-    async function loadDynamicReviews() {
-        try {
-            const url = 'https://raw.githubusercontent.com/hehim552-glitch/reviews/main/reviews.json';
-            const response = await fetch(url);
-            const reviews = await response.json();
-            const container = document.getElementById('dynamic-reviews-container');
-
-            if (!container || !reviews.length) return;
-
-            const validReviews = reviews.filter(rev => rev.username && rev.message);
-
-            const createCard = (rev) => {
-                let starIcons = '';
-                const starCount = parseInt(rev.stars) || 5;
-                for (let i = 0; i < starCount; i++) {
-                    starIcons += '<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>';
-                }
-
-                return `
-                    <div class="portfolio-card w-[450px] dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-8 rounded-[2.5rem] transition-all duration-500 group shrink-0">
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-brand/10 flex items-center justify-center rounded-2xl border dark:border-white/10 border-black/10 text-brand font-bold text-xl">
-                                ${rev.username.charAt(0).toUpperCase()}
-                            </div>
-                            <div>
-                                <span class="block font-extrabold dark:text-white text-gray-900 text-md">${rev.username}</span>
-                                <p class="text-[9px] font-bold text-brand uppercase tracking-widest">Verified Client</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-1 mb-4 text-orange-400">
-                            ${starIcons}
-                        </div>
-                        <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-md font-medium">"${rev.message}"</p>
-                        <div class="mt-8 pt-6 border-t dark:border-white/5 border-black/5 flex justify-between items-center">
-                            <p class="text-[9px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Date // <span class="dark:text-white text-black">${rev.date}</span></p>
-                            <span class="text-[9px] font-bold text-brand/50 uppercase">Order Verified</span>
+            return `
+                <div class="portfolio-card w-[420px] p-10 dark:bg-[#0a0a0a] bg-slate-50 border dark:border-white/5 border-black/5 rounded-[2.5rem] shrink-0">
+                    <div class="flex items-center gap-5 mb-8">
+                        <div class="w-14 h-14 bg-brand/10 flex items-center justify-center rounded-2xl border dark:border-white/10 border-black/10 text-brand font-bold text-2xl">${rev.username.charAt(0).toUpperCase()}</div>
+                        <div>
+                            <span class="block font-extrabold dark:text-white text-lg">${rev.username}</span>
+                            <p class="text-[9px] font-bold text-brand uppercase tracking-widest">Verified Client</p>
                         </div>
                     </div>
-                `;
-            };
+                    <div class="flex gap-1 mb-6">${stars}</div>
+                    <p class="dark:text-gray-400 text-gray-500 italic text-md leading-relaxed h-[80px] overflow-hidden">"${rev.message}"</p>
+                    <div class="mt-8 pt-6 border-t dark:border-white/5 border-black/5 flex justify-between">
+                        <p class="text-[9px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">${rev.date || ''}</p>
+                        <span class="text-[9px] font-bold text-brand/50 uppercase">Verified</span>
+                    </div>
+                </div>
+            `;
+        };
 
-            // To ensure the marquee never gaps, we repeat the list until it's very long
-            const contentHtml = validReviews.map(rev => createCard(rev)).join('');
-            
-            // We put the reviews in twice (once for the original, once for the loop)
-            container.innerHTML = contentHtml + contentHtml;
+        const content = validReviews.map(cardTemplate).join('');
 
-            // CRITICAL: Now that content is added, we trigger the animation class
-            container.classList.add('review-marquee-active');
+        container.innerHTML = `
+            <div class="review-marquee-group">${content}</div>
+            <div class="review-marquee-group" aria-hidden="true">${content}</div>
+        `;
 
-        } catch (e) {
-            console.error("Dynamic Reviews Error:", e);
-        }
+        const statClients = document.getElementById('stat-clients');
+        const statRating = document.getElementById('stat-rating');
+
+        if (statClients) statClients.textContent = validReviews.length;
+        if (statRating) statRating.textContent = '5.0';
+    } catch (e) {
+        console.error("Reviews Error:", e);
     }
-    loadDynamicReviews();
-</script>
+}
+
+loadDynamicReviews();
+    </script>
 </body>
 </html>
