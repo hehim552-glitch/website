@@ -109,6 +109,24 @@
 .portfolio-card:hover .card-label {
     transform: translateY(0);
 }
+/* Specific animation for reviews to ensure it loops perfectly */
+@keyframes reviewMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.review-marquee-active {
+    display: flex !important;
+    gap: 2rem;
+    flex-shrink: 0;
+    min-width: 100%;
+    animation: reviewMarquee 30s linear infinite; /* Slightly slower for readability */
+}
+
+/* Pause on hover so people can actually read the reviews */
+.marquee-container:hover .review-marquee-active {
+    animation-play-state: paused;
+}
     </style>
 </head>
 <body class="dark:bg-[#050505] bg-white dark:text-white text-gray-900 overflow-x-hidden">
@@ -564,11 +582,11 @@
         <!-- DYNAMIC REVIEWS LOAD HERE -->
 <!-- DYNAMIC REVIEWS CAROUSEL -->
 <div class="marquee-container mt-12">
-    <div id="dynamic-reviews-container" class="marquee-content">
+    <!-- We removed the marquee-content class here so it doesn't start empty -->
+    <div id="dynamic-reviews-container" class="flex gap-8">
         <!-- JS will plug reviews in here -->
     </div>
 </div>
-    </section>
     <!-- FAQ SECTION -->
 <section id="faq" class="py-32 px-10 md:px-32 dark:bg-[#080808] bg-slate-50 transition-colors duration-500 scroll-mt-24">
     <div class="max-w-4xl mx-auto">
@@ -929,10 +947,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!container || !reviews.length) return;
 
-            // We filter out the "empty" test reviews you saw earlier
             const validReviews = reviews.filter(rev => rev.username && rev.message);
 
-            // Function to create the HTML for one review card
             const createCard = (rev) => {
                 let starIcons = '';
                 const starCount = parseInt(rev.stars) || 5;
@@ -941,7 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 return `
-                    <div class="portfolio-card w-[400px] dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-8 rounded-[2.5rem] transition-all duration-500 group shrink-0">
+                    <div class="portfolio-card w-[450px] dark:bg-white/[0.02] bg-slate-50 border dark:border-white/5 border-black/5 p-8 rounded-[2.5rem] transition-all duration-500 group shrink-0">
                         <div class="flex items-center gap-4 mb-6">
                             <div class="w-12 h-12 bg-brand/10 flex items-center justify-center rounded-2xl border dark:border-white/10 border-black/10 text-brand font-bold text-xl">
                                 ${rev.username.charAt(0).toUpperCase()}
@@ -954,21 +970,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="flex gap-1 mb-4 text-orange-400">
                             ${starIcons}
                         </div>
-                        <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-md font-medium h-[80px] overflow-hidden">"${rev.message}"</p>
+                        <p class="dark:text-gray-400 text-gray-500 leading-relaxed italic text-md font-medium">"${rev.message}"</p>
                         <div class="mt-8 pt-6 border-t dark:border-white/5 border-black/5 flex justify-between items-center">
                             <p class="text-[9px] font-black uppercase dark:text-gray-600 text-gray-400 tracking-widest">Date // <span class="dark:text-white text-black">${rev.date}</span></p>
-                            <span class="text-[9px] font-bold text-brand/50 uppercase">${rev.type || 'GFX'}</span>
+                            <span class="text-[9px] font-bold text-brand/50 uppercase">Order Verified</span>
                         </div>
                     </div>
                 `;
             };
 
-            // To make the carousel loop smoothly, we repeat the reviews if there are only a few
-            const displayList = validReviews.length < 5 ? [...validReviews, ...validReviews, ...validReviews] : validReviews;
+            // To ensure the marquee never gaps, we repeat the list until it's very long
+            const contentHtml = validReviews.map(rev => createCard(rev)).join('');
+            
+            // We put the reviews in twice (once for the original, once for the loop)
+            container.innerHTML = contentHtml + contentHtml;
 
-            displayList.forEach(rev => {
-                container.innerHTML += createCard(rev);
-            });
+            // CRITICAL: Now that content is added, we trigger the animation class
+            container.classList.add('review-marquee-active');
 
         } catch (e) {
             console.error("Dynamic Reviews Error:", e);
