@@ -2603,7 +2603,7 @@ function setModalStyle(style) {
 
     <!-- Roblox Studio -->
     <span class="flex items-center gap-2.5 px-4 py-2 bg-white/[0.03] border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-brand hover:bg-white/[0.07] transition-all duration-300">
-        <img src="0654ecc7e90d39916e241150e7d3970e.WEBP" class="w-4 h-4" alt="Roblox Studio">
+        <img src="0654ecc7e90d39916e241150e7d3970e.webp" class="w-4 h-4" alt="Roblox Studio">
         Roblox Studio
     </span>
 </div>
@@ -3556,6 +3556,12 @@ function selectGalleryStyle(style, shouldScroll = false) {
         }
     }
 }
+// Find this line in your script and add loading="lazy"
+track.innerHTML = items.map((src, index) => 
+    `<div class="gallery-slide" data-gallery-slide="${name}" data-index="${index}">
+        <img src="${src}" alt="Work" loading="lazy">
+    </div>`
+).join('');
 </script>
 
    
