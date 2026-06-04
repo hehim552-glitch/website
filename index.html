@@ -19,6 +19,1411 @@
         }
     </script>
    <style>
+    /* --- PREMIUM TOS MODULE STYLES --- */
+.tos-module {
+    background: #080808;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.tos-module:hover {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+/* Hover Scanner Animation */
+.tos-scanner {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #0099ff, transparent);
+    box-shadow: 0 0 15px #0099ff;
+    opacity: 0;
+    z-index: 10;
+}
+
+.tos-module:hover .tos-scanner {
+    animation: tosScan 3s infinite linear;
+    opacity: 0.5;
+}
+
+@keyframes tosScan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+.tos-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 900;
+    color: #0099ff;
+    letter-spacing: 0.1em;
+}
+
+.tos-protocol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+.tos-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+}
+
+.tos-body {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.8;
+    font-weight: 600;
+}
+
+.tos-module:hover .tos-id { color: #fff; }
+/* --- CLEAN FAQ STYLES --- */
+.faq-elite-inner p {
+    font-size: 18px; /* Consistent font size */
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    font-weight: 600;
+}
+
+/* Ensure highlights don't change size */
+.faq-elite-inner p span {
+    font-size: inherit; 
+}
+
+/* Tightening Accordion spacing */
+.faq-elite-inner p { padding-bottom: 30px; }
+.faq-elite-btn { padding: 30px 0; }
+    /* --- BUTTON & SPACING POLISH --- */
+.studio-command-btn {
+    position: relative;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-content {
+    position: relative;
+    z-index: 2;
+    background: #0a0a0a;
+    padding: 20px 40px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: background 0.4s;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 150%; height: 150%;
+    background: radial-gradient(circle, rgba(0, 153, 255, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease;
+    z-index: 1;
+}
+
+.btn-arrow {
+    width: 36px; height: 36px;
+    background: rgba(0, 153, 255, 0.1);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    color: #0099ff;
+    transition: all 0.4s;
+}
+
+/* Hover Animations */
+.studio-command-btn:hover {
+    transform: scale(1.03);
+    background: #0099ff;
+    box-shadow: 0 20px 60px rgba(0, 153, 255, 0.2);
+}
+
+.studio-command-btn:hover .btn-glow { transform: translate(-50%, -50%) scale(1); }
+.studio-command-btn:hover .btn-content { background: rgba(0, 0, 0, 0.85); }
+
+.studio-command-btn:hover .btn-arrow {
+    background: #0099ff;
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Tightening Accordion spacing */
+.faq-elite-inner p { padding-bottom: 30px; }
+.faq-elite-btn { padding: 30px 0; }
+    /* --- BUTTON & SPACING POLISH --- */
+
+.studio-command-btn {
+    position: relative;
+    display: inline-block;
+    padding: 2px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-content {
+    position: relative;
+    z-index: 2;
+    background: #0a0a0a;
+    padding: 20px 40px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: background 0.4s;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 150%; height: 150%;
+    background: radial-gradient(circle, rgba(0, 153, 255, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s ease;
+    z-index: 1;
+}
+
+.btn-arrow {
+    width: 36px; height: 36px;
+    background: rgba(0, 153, 255, 0.1);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    color: #0099ff;
+    transition: all 0.4s;
+}
+
+/* Hover Animations */
+.studio-command-btn:hover {
+    transform: scale(1.03);
+    background: #0099ff;
+    box-shadow: 0 20px 60px rgba(0, 153, 255, 0.2);
+}
+
+.studio-command-btn:hover .btn-glow {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.studio-command-btn:hover .btn-content {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.studio-command-btn:hover .btn-arrow {
+    background: #0099ff;
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Fix spacing for the FAQ Elite Inner */
+.faq-elite-inner p {
+    padding-bottom: 30px; /* Reduced from 40px */
+}
+
+.faq-elite-btn {
+    padding: 30px 0; /* Reduced from 40px */
+}
+    /* --- ELITE SMOOTH ACCORDION STYLES --- */
+.faq-elite-item {
+    background: #050505;
+    transition: background 0.4s ease;
+}
+
+.faq-elite-btn {
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.faq-elite-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.4s ease;
+}
+
+.faq-elite-q {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* The Grid Transition Trick */
+.faq-elite-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-elite-inner {
+    overflow: hidden;
+    padding-left: 54px; /* Matches Num + Gap spacing */
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+    line-height: 1.7;
+    font-weight: 600;
+}
+
+.faq-elite-inner p {
+    padding-bottom: 40px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.4s ease;
+}
+
+/* Active States */
+.faq-elite-item.is-active {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.faq-elite-item.is-active .faq-elite-answer {
+    grid-template-rows: 1fr;
+}
+
+.faq-elite-item.is-active .faq-elite-inner p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 150ms;
+}
+
+.faq-elite-item.is-active .faq-elite-num,
+.faq-elite-item.is-active .faq-elite-q {
+    color: #0099ff;
+}
+
+.faq-elite-icon {
+    width: 20px; height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: 0.4s;
+}
+
+.faq-elite-icon::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    transform: rotate(90deg);
+    transition: 0.4s;
+}
+
+.faq-elite-item.is-active .faq-elite-icon {
+    background: #0099ff;
+    transform: rotate(180deg);
+}
+
+.faq-elite-item.is-active .faq-elite-icon::after {
+    transform: rotate(0deg);
+    opacity: 0;
+}
+
+@media (max-width: 768px) {
+    .faq-elite-q { font-size: 18px; }
+    .faq-elite-inner { padding-left: 0; font-size: 15px; }
+}
+    /* --- COMMAND CENTER FAQ STYLES --- */
+.op-module {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Scanner Line */
+.op-module::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #0099ff, transparent);
+    box-shadow: 0 0 15px #0099ff;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.op-module:hover::after {
+    opacity: 0.6;
+    animation: faqScan 3s infinite linear;
+}
+
+@keyframes faqScan {
+    0% { top: 0%; } 100% { top: 100%; }
+}
+
+.op-module:hover {
+    background: rgba(255, 255, 255, 0.02);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.module-bit {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 900;
+    color: #0099ff;
+    letter-spacing: 0.1em;
+}
+
+.module-q {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    transition: color 0.4s;
+}
+
+.op-module:hover .module-q { color: #0099ff; }
+
+.module-cross {
+    position: relative;
+    width: 24px; height: 24px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.module-cross::before, .module-cross::after {
+    content: "";
+    position: absolute;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    transition: 0.4s;
+}
+
+.module-cross::before { width: 100%; height: 2px; top: 50%; left: 0; transform: translateY(-50%); }
+.module-cross::after { width: 2px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
+
+.module-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+}
+
+.module-a {
+    font-size: 18px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    font-weight: 600;
+}
+
+/* Active State */
+.op-module.is-active {
+    background: rgba(0, 153, 255, 0.03);
+    border-color: #0099ff;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+}
+
+.op-module.is-active .module-body { max-height: 600px; opacity: 1; }
+.op-module.is-active .module-cross { transform: rotate(45deg); }
+.op-module.is-active .module-cross::before, .op-module.is-active .module-cross::after { background: #0099ff; }
+.op-module.is-active .module-q { color: #fff; }
+    /* --- PREMIUM INTERFACE FAQ STYLES --- */
+.faq-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.faq-card:hover {
+    background: rgba(0, 153, 255, 0.03);
+    border-color: rgba(0, 153, 255, 0.4);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,153,255,0.05);
+    transform: translateY(-5px);
+}
+
+.faq-card-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 900;
+    color: #0099ff;
+    padding: 12px;
+    background: rgba(0,153,255,0.1);
+    border-radius: 12px;
+    line-height: 1;
+    transition: 0.4s;
+}
+
+.faq-card:hover .faq-card-id {
+    background: #0099ff;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(0,153,255,0.4);
+}
+
+.faq-card-trigger {
+    color: rgba(255,255,255,0.2);
+    transition: color 0.4s;
+}
+
+.faq-card:hover .faq-card-trigger {
+    color: #0099ff;
+}
+
+.faq-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+}
+
+/* Active State */
+.faq-card.is-active {
+    background: rgba(0, 153, 255, 0.05);
+    border-color: #0099ff;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+}
+
+.faq-card.is-active .faq-card-content {
+    max-height: 600px;
+    opacity: 1;
+}
+
+.faq-card.is-active .faq-card-trigger svg {
+    transform: rotate(45deg);
+    color: #0099ff;
+}
+/* --- CLEAN INDUSTRIAL FAQ STYLES --- */
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+}
+
+.faq-item:hover {
+    background: rgba(255, 255, 255, 0.01);
+}
+
+.faq-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 900;
+    color: #0099ff;
+    opacity: 0.3;
+    transition: 0.3s;
+}
+
+.faq-item:hover .faq-id {
+    opacity: 1;
+}
+
+.faq-protocol {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    font-weight: 900;
+    color: #0099ff;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: 0.4s;
+}
+
+.faq-item:hover .faq-protocol {
+    opacity: 0.6;
+    transform: translateY(0);
+}
+
+.faq-question {
+    font-size: 24px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.faq-plus-icon {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.faq-plus-icon::before, .faq-plus-icon::after {
+    content: "";
+    position: absolute;
+    background: #0099ff;
+    transition: 0.4s;
+}
+
+.faq-plus-icon::before { width: 100%; height: 2px; top: 9px; left: 0; }
+.faq-plus-icon::after { width: 2px; height: 100%; left: 9px; top: 0; }
+
+/* Active States */
+.faq-item.is-active .faq-plus-icon::after { transform: rotate(90deg); opacity: 0; }
+.faq-item.is-active .faq-question { color: #0099ff; }
+
+.faq-answer-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+}
+
+.faq-item.is-active .faq-answer-container {
+    max-height: 500px;
+    opacity: 1;
+}
+    /* --- ELITE FEEDBACK TERMINAL v2.0 --- */
+.terminal-metric-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 30px 60px;
+    display: flex;
+    gap: 60px;
+    backdrop-filter: blur(20px);
+    position: relative;
+}
+
+/* Review Card Redesign: Hardware Look */
+.terminal-signal {
+    width: 450px;
+    background: #080808;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    padding: 40px;
+    position: relative;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    margin: 0 20px;
+}
+
+.terminal-signal::before, .terminal-signal::after {
+    content: "";
+    position: absolute;
+    width: 15px; height: 15px;
+    border: 1px solid #0099ff;
+    opacity: 0.2;
+    transition: 0.4s;
+}
+.terminal-signal::before { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.terminal-signal::after { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+
+.terminal-signal:hover {
+    border-color: rgba(0, 153, 255, 0.3);
+    background: rgba(0, 153, 255, 0.01);
+    transform: translateY(-10px);
+}
+.terminal-signal:hover::before, .terminal-signal:hover::after {
+    opacity: 1; width: 30px; height: 30px;
+}
+
+/* --- CLEAN MARQUEE SYSTEM --- */
+.review-marquee-container {
+    overflow: hidden;
+    width: 100%;
+    cursor: default;
+}
+
+.review-marquee-track {
+    display: flex;
+    width: max-content;
+    /* Use a unique name to avoid conflicts */
+    animation: marquee-infinite 40s linear infinite;
+}
+
+@keyframes marquee-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Base style for the cards to ensure they are high-tier */
+.terminal-signal {
+    width: 450px;
+    background: #080808;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    margin: 0 20px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.avatar-block {
+    width: 55px; height: 55px;
+    background: #0099ff;
+    color: #fff;
+    display: grid; place-items: center;
+    font-weight: 900; font-size: 22px;
+    border-radius: 2px;
+    box-shadow: 0 10px 20px rgba(0, 153, 255, 0.2);
+}
+
+.signal-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    color: #00ff85;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+    /* --- FEEDBACK TERMINAL STYLES --- */
+.metric-terminal {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 30px 50px;
+    display: flex;
+    gap: 60px;
+    backdrop-filter: blur(10px);
+}
+
+.review-packet {
+    width: 450px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px; /* Sharp industrial corners */
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.review-packet::before {
+    content: "SIGNAL_STABLE";
+    position: absolute;
+    top: 15px; right: 20px;
+    font-family: monospace;
+    font-size: 8px;
+    color: #00ff85;
+    letter-spacing: 0.1em;
+}
+
+.review-packet:hover {
+    border-color: #0099ff;
+    background: rgba(0, 153, 255, 0.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    background: #0099ff;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 20px;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0, 153, 255, 0.3);
+}
+
+.star-rating {
+    display: flex;
+    gap: 4px;
+    color: #ffd700;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.review-text {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* Fix for the Infinite Marquee */
+.review-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 40s linear infinite;
+}
+
+
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+    
+    /* --- ENHANCED ROBUX PRICE STYLING --- */
+#price-icon-rbx, #price-thumb-rbx, #price-bundle-rbx {
+    font-size: 18px; /* Significantly larger */
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 10px;
+    display: block;
+    transition: color 0.4s ease;
+}
+
+/* Neutral look for standard cards */
+#price-icon-rbx, #price-thumb-rbx {
+    color: rgba(255, 255, 255, 0.4); /* Subtle grey for standard modules */
+}
+
+/* Featured brand color for the Bundle card */
+#price-bundle-rbx {
+    color: #0099ff; /* Matching your brand blue */
+    font-size: 20px; /* Even bigger for the bundle */
+    text-shadow: 0 0 15px rgba(0, 153, 255, 0.2);
+}
+
+/* Hover effect to make the data "light up" */
+.pricing-module:hover #price-icon-rbx, 
+.pricing-module:hover #price-thumb-rbx {
+    color: #fff;
+}
+    /* --- OVERSIZED LOGO & PROTOCOL FLAGS --- */
+.module-flag {
+    position: absolute;
+    top: -1px;
+    left: 40px;
+    padding: 4px 12px;
+    background: #0099ff;
+    color: #000;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    z-index: 20;
+}
+
+.module-flag.warning {
+    background: #ff0055;
+    color: #fff;
+}
+
+.power-module {
+    padding-top: 60px; /* Increased padding to make room for flags */
+}
+
+/* Massive Logo Styling */
+.gateway-logo-xl {
+    width: 80px; /* Doubled from previous size */
+    height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(0, 153, 255, 0.3));
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.power-module:hover .gateway-logo-xl {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+.power-module:hover .robux-logo {
+    transform: scale(1.15) rotate(5deg);
+}
+ /* --- THE OVERSIZED POWER-CONSOLE v3.0 --- */
+.power-console {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.4fr;
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.power-module {
+    position: relative;
+    background: #080808;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px; /* Industrial sharp edges */
+    padding: 40px;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Background Technical Grid Texture */
+.power-module::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 153, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+/* THE L-BRACKETS (Hardware Detail) */
+.power-module::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 30px; height: 30px;
+    border-top: 2px solid #0099ff;
+    border-left: 2px solid #0099ff;
+    opacity: 0.2;
+    transition: 0.4s;
+}
+
+.power-module:hover {
+    border-color: #0099ff;
+    box-shadow: 0 0 50px rgba(0, 153, 255, 0.15), inset 0 0 20px rgba(0, 153, 255, 0.05);
+    transform: translateY(-5px);
+}
+
+.power-module:hover::after {
+    opacity: 1;
+    width: 60px; height: 60px;
+}
+
+.module-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #0099ff;
+    letter-spacing: 0.5em;
+    font-weight: 900;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.module-title {
+    font-size: 32px; /* Much larger for readability */
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+    line-height: 1;
+}
+
+/* POLICY MODULE (PINK/RED SCHEME) */
+.policy-active {
+    border-color: rgba(255, 0, 85, 0.2);
+    background: linear-gradient(145deg, rgba(255, 0, 85, 0.02), transparent);
+}
+
+.policy-active .module-id { color: #ff0055; }
+.policy-active::after { border-color: #ff0055; }
+
+.policy-active:hover {
+    border-color: #ff0055;
+    box-shadow: 0 0 50px rgba(255, 0, 85, 0.15);
+}
+
+.policy-text {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.policy-highlight {
+    color: #fff;
+    font-weight: 900;
+    text-decoration: underline;
+    text-decoration-color: #ff0055;
+    text-underline-offset: 6px;
+}
+
+@media (max-width: 1200px) {
+    .power-console { grid-template-columns: 1fr; }
+}
+
+/* Blinking Status Light */
+.status-light {
+    width: 6px;
+    height: 6px;
+    background: #00ff85;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff85;
+    animation: blink 2s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Micro Data Meter decoration */
+.data-meter {
+    height: 2px;
+    width: 40px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.data-meter-fill {
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    background: #0099ff;
+    animation: moveMeter 3s infinite alternate ease-in-out;
+}
+
+@keyframes moveMeter {
+    from { left: 0; }
+    to { left: 40%; }
+}
+
+/* Warning Protocol Styling */
+.warning-protocol {
+    background: linear-gradient(90deg, rgba(255, 0, 85, 0.03), transparent);
+}
+
+.warning-protocol .status-light {
+    background: #ff0055;
+    box-shadow: 0 0 10px #ff0055;
+}
+
+@media (max-width: 1024px) {
+    .console-inner { grid-template-columns: 1fr; }
+}
+    /* --- HIGH-IMPACT SETTLEMENT DASHBOARD --- */
+.settlement-dashboard {
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 2fr;
+    gap: 20px;
+    perspective: 1000px;
+}
+
+.gateway-card-pro {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.4s ease;
+}
+
+.gateway-card-pro:hover {
+    background: rgba(0, 153, 255, 0.05);
+    border-color: #0099ff;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+.gateway-icon-large {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0, 153, 255, 0.3));
+}
+
+.regulation-alert {
+    background: rgba(0, 153, 255, 0.05);
+    border: 1px solid rgba(0, 153, 255, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Eye-catching pulse effect for the tax notice */
+.regulation-alert::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    animation: alertSheen 4s infinite linear;
+}
+
+@keyframes alertSheen {
+    0% { left: -100%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+.alert-icon-wrap {
+    width: 44px; height: 44px;
+    background: #0099ff;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 153, 255, 0.4);
+    flex-shrink: 0;
+}
+
+.regulation-alert h5 {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    color: #0099ff;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.regulation-alert p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+}
+
+.regulation-alert strong {
+    color: #fff;
+    text-decoration: underline;
+    text-decoration-color: #0099ff;
+}
+
+/* Mobile Layout */
+@media (max-width: 1024px) {
+    .settlement-dashboard { grid-template-columns: 1fr; }
+}
+    /* --- SETTLEMENT PROTOCOL STYLES --- */
+.protocol-strip {
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 24px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.protocol-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.protocol-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 900;
+    color: #0099ff;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.gateway-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.gateway-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(0, 153, 255, 0.2));
+}
+
+.tax-notice-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 30px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tax-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.4;
+    max-width: 300px;
+}
+
+.tax-text strong {
+    color: #fff;
+}
+
+@media (max-width: 1024px) {
+    .protocol-strip { flex-direction: column; align-items: flex-start; }
+    .tax-notice-box { border-left: 0; padding-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; width: 100%; }
+}
+    /* --- INDUSTRIAL BRIEFING MODULES --- */
+.briefing-module {
+    position: relative;
+    background: rgba(8, 8, 8, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(30px);
+    border-radius: 4px; /* Industrial sharp edges look more professional than round ones */
+    padding: 35px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+/* THE CORNER BRACKETS */
+.briefing-module::before, .briefing-module::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #0099ff;
+    opacity: 0.3;
+    transition: 0.5s;
+}
+
+/* Top-Left Bracket */
+.briefing-module::before {
+    top: 0; left: 0;
+    border-right: 0; border-bottom: 0;
+}
+
+/* Bottom-Right Bracket */
+.briefing-module::after {
+    bottom: 0; right: 0;
+    border-left: 0; border-top: 0;
+}
+
+.briefing-module:hover::before, .briefing-module:hover::after {
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+}
+
+/* THE MOVING SCAN LINE */
+.scanner-line {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0099ff, transparent);
+    box-shadow: 0 0 15px #0099ff;
+    opacity: 0;
+    z-index: 10;
+}
+
+.briefing-module:hover .scanner-line {
+    animation: moduleScan 3s infinite linear;
+    opacity: 0.4;
+}
+
+@keyframes moduleScan {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+.briefing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 15px;
+}
+
+.briefing-label {
+    font-family: 'JetBrains Mono', monospace; /* Monospace for technical look */
+    font-size: 9px;
+    color: #0099ff;
+    letter-spacing: 0.3em;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.briefing-serial {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.2);
+    font-family: monospace;
+}
+
+/* PAYMENT SPECIAL MODULE */
+.payment-module {
+    background: linear-gradient(145deg, rgba(0, 153, 255, 0.03) 0%, transparent 100%);
+    border: 1px solid rgba(0, 153, 255, 0.15);
+}
+
+.payment-module .briefing-label {
+    color: #fff;
+    background: #0099ff;
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+    /* --- MISSION BRIEFING / CRITERIA STYLES --- */
+.briefing-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.briefing-card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(0, 153, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.briefing-id {
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 900;
+    color: #0099ff;
+    letter-spacing: 0.2em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.briefing-id::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(0, 153, 255, 0.3), transparent);
+}
+
+.briefing-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+}
+
+.briefing-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+}
+
+/* Master Authorization Card (Payment) */
+.auth-module {
+    background: linear-gradient(145deg, rgba(0, 153, 255, 0.05), transparent);
+    border: 1px solid rgba(0, 153, 255, 0.2);
+}
+
+.auth-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(0, 153, 255, 0.1);
+    border: 1px solid rgba(0, 153, 255, 0.2);
+    border-radius: 6px;
+    font-size: 9px;
+    font-weight: 900;
+    color: #0099ff;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+    /* --- PREMIUM STUDIO PRICING STYLES --- */
+.pricing-module {
+    position: relative;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mouse Spotlight Effect */
+.pricing-module::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(0, 153, 255, 0.12), transparent 40%);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.pricing-module:hover::before { opacity: 1; }
+
+.pricing-module:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 153, 255, 0.4);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+}
+
+/* Technical Module Header Strip */
+.module-strip {
+    height: 4px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    position: absolute;
+    top: 0; left: 0;
+    overflow: hidden;
+}
+
+.module-strip-inner {
+    position: absolute;
+    height: 100%;
+    width: 30%;
+    background: #0099ff;
+    box-shadow: 0 0 15px #0099ff;
+    animation: dataSlide 4s infinite linear;
+}
+
+@keyframes dataSlide {
+    0% { left: -30%; }
+    100% { left: 110%; }
+}
+
+.price-value {
+    font-variant-numeric: tabular-nums; /* Prevents text jumping */
+}
+
+.feature-bullet {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s;
+}
+
+.pricing-module:hover .feature-bullet { color: rgba(255, 255, 255, 0.9); }
+
+.bullet-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #0099ff;
+    box-shadow: 0 0 10px #0099ff;
+}
+    @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.animate-bounce-slow {
+    animation: bounce-slow 4s ease-in-out infinite;
+}
+
+/* Custom mask for the profile picture to fade into the background */
+.pfp-mask {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
     /* CUSTOM CROSSHAIR CURSOR */
     .gallery-slide {
         cursor: crosshair;
@@ -133,237 +1538,550 @@
     .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
     #contact-modal.active { display: flex; animation: fadeIn 0.4s ease forwards; }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-
- /* --- PROFESSIONAL GALLERY SYSTEM --- */
-  /* --- THE CLEAN PREMIUM GALLERY --- */
-   /* --- STUDIO GRADE GALLERY --- */
-    .gallery-page { 
-        position: relative; 
-        padding: 100px 0; 
-        background: radial-gradient(circle at center, #0a1829 0%, #050505 100%);
+ /* --- SIGNATURE EXAMPLES / GALLERY V2 --- */
+    .gallery-page {
+        position: relative;
+        padding: 128px 0 145px;
         overflow: hidden;
+        isolation: isolate;
+        background:
+            radial-gradient(circle at 18% 20%, rgba(0,153,255,0.16), transparent 28%),
+            radial-gradient(circle at 84% 30%, rgba(181, 141, 74, 0.10), transparent 30%),
+            linear-gradient(180deg, #050608 0%, #07101a 42%, #050505 100%);
     }
-    /* --- PASTE THIS: PREMIUM TOGGLE STYLING --- */
-   /* --- ELITE SLIDING SWITCHER --- */
+    .gallery-page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+            linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.055) 50%, transparent 100%);
+        background-size: 74px 74px, 74px 74px, 100% 100%;
+        mask-image: linear-gradient(to bottom, transparent, black 16%, black 78%, transparent);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 16%, black 78%, transparent);
+        opacity: 0.22;
+        pointer-events: none;
+        z-index: -2;
+    }
+    .gallery-page::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 7%;
+        width: min(1040px, 90vw);
+        height: 240px;
+        transform: translateX(-50%);
+        background: radial-gradient(ellipse, rgba(0,153,255,0.18), transparent 68%);
+        filter: blur(30px);
+        pointer-events: none;
+        z-index: -1;
+    }
+    .gallery-shell {
+        position: relative;
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 0 24px;
+    }
+    .gallery-watermark {
+        position: absolute;
+        top: -48px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: clamp(6rem, 16vw, 14rem);
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.024);
+        pointer-events: none;
+        user-select: none;
+        white-space: nowrap;
+    }
+    .gallery-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+        color: #7bd5ff;
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.44em;
+        text-transform: uppercase;
+    }
+    .gallery-kicker::before,
+    .gallery-kicker::after {
+        content: "";
+        width: 42px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0,153,255,0.9));
+    }
+    .gallery-kicker::after { background: linear-gradient(90deg, rgba(0,153,255,0.9), transparent); }
+    .gallery-heading {
+        font-size: clamp(3.35rem, 7.4vw, 7.35rem);
+        line-height: 0.85;
+        font-weight: 900;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: #fff;
+        text-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+    .gallery-heading span {
+        color: transparent;
+        background: linear-gradient(135deg, #fff 0%, #cfefff 22%, #0099ff 58%, #83dcff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+    .gallery-subcopy {
+        max-width: 670px;
+        margin: 24px auto 0;
+        color: rgba(219, 230, 244, 0.70);
+        font-size: 15px;
+        line-height: 1.78;
+        font-weight: 700;
+    }
     .style-switcher-container {
         display: flex;
         justify-content: center;
-        margin-bottom: 50px;
+        margin: 38px 0 54px;
         position: relative;
         z-index: 50;
     }
-
-    /* --- STUDIO-GRADE ELITE SWITCHER --- */
     .style-toggle {
         position: relative;
-        display: inline-flex;
-        background: rgba(10, 10, 10, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        padding: 5px;
-        border-radius: 100px;
-        backdrop-filter: blur(25px);
-        box-shadow: 
-            inset 0 1px 1px rgba(255,255,255,0.05),
-            0 20px 40px rgba(0,0,0,0.4);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        width: min(720px, 100%);
+        padding: 8px;
+        border-radius: 16px;
+        background:
+            linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.035)),
+            rgba(7, 12, 18, 0.84);
+        border: 1px solid rgba(255,255,255,0.14);
+        box-shadow:
+            0 30px 90px rgba(0,0,0,0.42),
+            inset 0 1px 0 rgba(255,255,255,0.11),
+            inset 0 -1px 0 rgba(0,0,0,0.55);
+        backdrop-filter: blur(24px);
+        overflow: hidden;
     }
-
-    /* THE ELITE PILL (The Select Button) */
     .style-toggle::before {
         content: "";
         position: absolute;
-        top: 5px;
-        left: 5px;
-        width: calc(50% - 5px);
-        height: calc(100% - 10px);
-        
-        /* Premium Liquid Gradient */
-        background: linear-gradient(145deg, #00b3ff 0%, #0077ff 100%);
-        border-radius: 100px;
-        transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1);
+        top: 8px;
+        left: 8px;
+        width: calc(50% - 12px);
+        height: calc(100% - 16px);
+        border-radius: 12px;
+        background:
+            linear-gradient(135deg, rgba(255,255,255,0.22), transparent 28%),
+            linear-gradient(135deg, #f7fbff 0%, #7dd8ff 18%, #0099ff 54%, #005be8 100%);
+        border: 1px solid rgba(255,255,255,0.42);
+        box-shadow:
+            0 18px 42px rgba(0,153,255,0.34),
+            0 0 60px rgba(0,153,255,0.26),
+            inset 0 1px 0 rgba(255,255,255,0.58),
+            inset 0 -18px 38px rgba(0,49,112,0.24);
+        transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 0;
-
-        /* 1. Top Edge Highlight (Rim Light) */
-        border-top: 1.5px solid rgba(255, 255, 255, 0.4);
-        
-        /* 2. Layered Bloom/Glow */
-        box-shadow: 
-            0 0 0 1px rgba(0, 153, 255, 0.2),
-            0 8px 20px rgba(0, 119, 255, 0.4),
-            0 0 40px rgba(0, 153, 255, 0.2);
-            
-        /* 3. Glass Shimmer Effect */
-        background-image: linear-gradient(
-            110deg, 
-            rgba(255,255,255,0) 20%, 
-            rgba(255,255,255,0.2) 45%, 
-            rgba(255,255,255,0.2) 55%, 
-            rgba(255,255,255,0) 80%
-        );
-        background-size: 200% 100%;
-        animation: shimmer 4s infinite linear;
     }
-
-    /* Shimmer Animation Move */
-    @keyframes shimmer {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+    .style-toggle::after {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: -22%;
+        width: 45%;
+        height: 220%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.20), transparent);
+        transform: rotate(18deg);
+        opacity: 0.45;
+        animation: gallerySwitchSheen 5s linear infinite;
+        z-index: 1;
+        pointer-events: none;
     }
-
-    /* Movement Logic */
-    .style-toggle.is-ctr::before {
-        transform: translateX(100%);
+    .style-toggle.is-ctr::before { transform: translateX(calc(100% + 8px)); }
+    @keyframes gallerySwitchSheen {
+        0% { left: -35%; }
+        42%, 100% { left: 120%; }
     }
-
     .style-toggle button {
         position: relative;
-        z-index: 1;
-        padding: 16px 45px;
-        border-radius: 100px;
-        font-size: 11px;
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 2.5px; /* Wider spacing looks more expensive */
-        transition: all 0.4s ease;
-        color: rgba(255, 255, 255, 0.25);
-        text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        z-index: 2;
+        min-height: 92px;
+        padding: 18px 22px;
+        border-radius: 12px;
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 14px;
+        align-items: center;
+        text-align: left;
+        color: rgba(226, 235, 246, 0.46);
+        transition: color 0.28s ease, transform 0.28s ease;
     }
-
-    .style-toggle button.is-active {
-        color: white;
-        /* Slight scale up when active */
-        transform: scale(1.05);
-    }
-
-    /* Subtle hover for non-active buttons */
     .style-toggle button:hover:not(.is-active) {
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255,255,255,0.82);
+        transform: translateY(-1px);
     }
-
-    /* Technical Floor Glow */
-    .gallery-stage::after {
-        content: ""; position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
-        width: 80%; height: 120px; background: rgba(0, 153, 255, 0.12);
-        filter: blur(80px); border-radius: 100%; pointer-events: none; z-index: 1;
+    .style-toggle button.is-active {
+        color: #03111d;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.45);
     }
-
-    .gallery-stage { 
-        position: relative; height: 480px; width: 100%; 
-        display: flex; align-items: center; justify-content: center;
-        perspective: 2000px; z-index: 10;
+    .toggle-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.10);
+        color: currentColor;
+        transition: background 0.28s ease, border-color 0.28s ease;
     }
-
-    .gallery-slide {
-        position: absolute; top: 50%; left: 50%;
-        width: min(70vw, 750px); aspect-ratio: 16/9; 
-        border-radius: 4px; /* Sharper, more professional corners */
-        overflow: hidden;
-        transform: translate(-50%, -50%) translateX(var(--offset)) scale(var(--scale));
-        opacity: var(--opacity); z-index: var(--z); 
-        filter: blur(var(--blur));
-        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+    .style-toggle button.is-active .toggle-icon {
+        background: rgba(255,255,255,0.32);
+        border-color: rgba(3,17,29,0.14);
     }
-
-    /* The "Studio Viewfinder" Brackets - only visible on center slide */
-    .gallery-slide[style*="--scale: 1"]::before,
-    .gallery-slide[style*="--scale: 1"]::after {
-        content: ""; position: absolute; width: 30px; height: 30px;
-        border: 2px solid #0099ff; z-index: 20; pointer-events: none;
+    .toggle-copy { min-width: 0; }
+    .toggle-eyebrow {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        opacity: 0.68;
     }
-    .gallery-slide[style*="--scale: 1"]::before { top: 15px; left: 15px; border-right: 0; border-bottom: 0; }
-    .gallery-slide[style*="--scale: 1"]::after { bottom: 15px; right: 15px; border-left: 0; border-top: 0; }
-
-    .gallery-slide img { width: 100%; height: 100%; object-fit: cover; filter: brightness(var(--brightness)); transition: filter 0.8s ease; }
-
-    /* Glassmorphism Arrows */
-    .gallery-arrow {
-        position: absolute; top: 50%; z-index: 100; width: 55px; height: 55px; 
-        display: grid; place-items: center; border-radius: 50%; 
-        background: rgba(255, 255, 255, 0.03); color: white; border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(15px); transform: translateY(-50%); transition: all 0.4s ease;
+    .toggle-title {
+        display: block;
+        font-size: 15px;
+        line-height: 1;
+        font-weight: 900;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        white-space: nowrap;
     }
-    .gallery-arrow:hover { background: #0099ff; border-color: #0099ff; box-shadow: 0 0 30px rgba(0,153,255,0.4); }
-    .gallery-prev { left: calc(50% - min(35vw, 375px) - 90px); }
-    .gallery-next { right: calc(50% - min(35vw, 375px) - 90px); }
-
-    /* Premium Dots */
-    .gallery-dots { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
-    .gallery-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); cursor: pointer; transition: 0.4s; }
-    .gallery-dot.is-active { background: #0099ff; width: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,153,255,0.5); }
-    /* FOOTER / REQUIREMENTS */
-    .requirement-line {
-        display: inline-flex;
+    .toggle-note {
+        display: block;
+        margin-top: 7px;
+        font-size: 11px;
+        line-height: 1.25;
+        font-weight: 800;
+        opacity: 0.62;
+        white-space: nowrap;
+    }
+    .gallery-showcase {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 245px;
+        gap: 24px;
+        align-items: stretch;
+        padding: 18px;
+        border: 1px solid rgba(255,255,255,0.13);
+        background:
+            linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.026)),
+            rgba(5, 8, 12, 0.78);
+        box-shadow:
+            0 38px 120px rgba(0,0,0,0.50),
+            0 0 0 1px rgba(0,153,255,0.05),
+            inset 0 1px 0 rgba(255,255,255,0.10);
+        backdrop-filter: blur(22px);
+        border-radius: 10px;
+    }
+    .gallery-showcase::before {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        border: 1px solid rgba(255,255,255,0.055);
+        border-radius: 7px;
+        pointer-events: none;
+    }
+    .gallery-showcase::after {
+        content: "AZERO / GFX SHOWREEL";
+        position: absolute;
+        top: -12px;
+        left: 28px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #070b10;
+        border: 1px solid rgba(255,255,255,0.12);
+        color: rgba(205,222,240,0.62);
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+    }
+    .gallery-stage {
+        position: relative;
+        min-height: 565px;
+        width: 100%;
+        display: flex;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
-        color: rgb(190 199 216);
-        font-size: 1rem;
+        perspective: 2000px;
+        overflow: hidden;
+        border-radius: 7px;
+        background:
+            radial-gradient(circle at center, rgba(0,153,255,0.12), transparent 42%),
+            linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.012));
+    }
+    .gallery-stage::before {
+        content: "";
+        position: absolute;
+        inset: 22px;
+        border: 1px solid rgba(0,153,255,0.15);
+        border-radius: 6px;
+        pointer-events: none;
+        z-index: 2;
+    }
+    .gallery-track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .gallery-slide {
+        cursor: crosshair;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: min(74vw, 810px);
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        border-radius: 7px;
+        transform: translate(-50%, -50%) translateX(var(--offset)) scale(var(--scale));
+        opacity: var(--opacity);
+        z-index: var(--z);
+        filter: blur(var(--blur));
+        transition: transform 0.86s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.86s ease, filter 0.86s ease;
+        border: 1px solid rgba(255,255,255,0.19);
+        box-shadow: 0 46px 105px rgba(0,0,0,0.76), 0 0 0 1px rgba(0,153,255,0.08);
+        background:
+            linear-gradient(135deg, rgba(255,255,255,0.06), transparent),
+            #060a0f;
+    }
+    .gallery-slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(255,255,255,0.13), transparent 18%, transparent 68%, rgba(0,0,0,0.38));
+        z-index: 2;
+        pointer-events: none;
+    }
+    .gallery-slide::after {
+        content: "SELECTED FRAME";
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        padding: 8px 10px;
+        border: 1px solid rgba(0,153,255,0.35);
+        background: rgba(3, 10, 18, 0.66);
+        color: #8edaff;
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        opacity: 0;
+        transition: opacity 0.28s ease;
+        z-index: 5;
+    }
+    .gallery-slide:hover::after { opacity: 1; }
+    .gallery-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(var(--brightness)) saturate(1.08) contrast(1.05);
+        transition: filter 0.8s ease, transform 0.8s ease;
+    }
+    .gallery-slide:hover img { transform: scale(1.018); }
+    .gallery-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 100;
+        width: 50px;
+        height: 68px;
+        display: grid;
+        place-items: center;
+        border-radius: 7px;
+        background: rgba(8, 15, 24, 0.78);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.14);
+        backdrop-filter: blur(18px);
+        transform: translateY(-50%);
+        transition: background 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+    }
+    .gallery-arrow:hover {
+        background: #0099ff;
+        border-color: rgba(255,255,255,0.44);
+        box-shadow: 0 0 38px rgba(0,153,255,0.48);
+        transform: translateY(-50%) scale(1.04);
+    }
+    .gallery-prev { left: 22px; }
+    .gallery-next { right: 22px; }
+    .gallery-side-panel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 24px 22px;
+        border-left: 1px solid rgba(255,255,255,0.09);
+        color: white;
+    }
+    .gallery-panel-label {
+        color: rgba(255,255,255,0.38);
+        font-size: 10px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+    }
+    .gallery-panel-value {
+        margin-top: 10px;
+        color: white;
+        font-size: 24px;
+        line-height: 1.05;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+    .gallery-panel-accent {
+        display: inline-flex;
+        margin-top: 12px;
+        padding: 7px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(0,153,255,0.26);
+        background: rgba(0,153,255,0.08);
+        color: #81d7ff;
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+    }
+    .gallery-panel-copy {
+        margin-top: 16px;
+        color: rgba(213,224,238,0.66);
+        font-size: 13px;
         line-height: 1.65;
         font-weight: 700;
     }
-    .requirement-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: #00c8ff;
-        box-shadow: 0 0 22px rgba(0,200,255,0.72);
+    .gallery-stat-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
     }
-
-    @media (max-width: 900px) {
-        .gallery-slide { width: min(82vw, 680px); }
-        .gallery-prev { left: 18px; }
-        .gallery-next { right: 18px; }
+    .gallery-stat {
+        padding: 15px;
+        border-radius: 7px;
+        border: 1px solid rgba(255,255,255,0.11);
+        background: rgba(255,255,255,0.04);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .gallery-stat strong {
+        display: block;
+        color: #5cc8ff;
+        font-size: 19px;
+        font-weight: 900;
+    }
+    .gallery-stat span {
+        color: rgba(255,255,255,0.44);
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+    }
+    .gallery-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 26px;
+        min-height: 12px;
+    }
+    .gallery-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.24);
+        cursor: pointer;
+        transition: width 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .gallery-dot.is-active {
+        width: 42px;
+        background: #0099ff;
+        box-shadow: 0 0 20px rgba(0,153,255,0.62);
+    }
+    @media (max-width: 980px) {
+        .gallery-page { padding: 100px 0 112px; }
+        .gallery-showcase { grid-template-columns: 1fr; gap: 0; padding: 14px; }
+        .gallery-stage { min-height: 450px; }
+        .gallery-side-panel { border-left: 0; border-top: 1px solid rgba(255,255,255,0.09); }
+        .gallery-stat-grid { grid-template-columns: repeat(3, 1fr); }
+        .gallery-slide { width: min(82vw, 740px); }
+        .gallery-prev { left: 12px; }
+        .gallery-next { right: 12px; }
+    }
+    @media (max-width: 700px) {
+        .style-toggle { width: 100%; grid-template-columns: 1fr; }
+        .style-toggle::before { width: calc(100% - 16px); height: calc(50% - 12px); }
+        .style-toggle.is-ctr::before { transform: translateY(calc(100% + 8px)); }
+        .style-toggle button { min-height: 82px; padding: 16px; }
+        .toggle-note { white-space: normal; }
+    }
+    @media (max-width: 640px) {
+        .gallery-shell { padding: 0 16px; }
+        .gallery-heading { font-size: clamp(2.65rem, 15vw, 4.4rem); }
+        .gallery-subcopy { font-size: 13px; }
+        .gallery-stage { min-height: 335px; }
+        .gallery-slide { width: 78vw; }
+        .gallery-arrow { width: 40px; height: 54px; }
+        .gallery-stat-grid { grid-template-columns: 1fr; }
+        .toggle-title { font-size: 13px; }
     }
 </style>
 </head>
 <body class="dark:bg-[#050505] bg-white dark:text-white text-gray-900 overflow-x-hidden">
 
 
-    <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-10 py-6 dark:bg-black/80 bg-white/80 backdrop-blur-md border-b dark:border-white/5 border-black/5">
-        <div class="flex items-center gap-8">
-            <div class="flex gap-6 md:gap-8 text-sm font-bold tracking-wide dark:text-gray-300 text-gray-600">
-                <a href="#" class="hover:text-brand transition-colors duration-300">Home</a>
-                <a href="#about" class="hover:text-brand transition-colors duration-300">About Me</a>
-                
-                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
-                    <div class="flex items-center gap-1">
-                        Examples
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div class="dropdown-content absolute left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
-                     <!-- Replace the links inside your Examples dropdown with these -->
-<a href="javascript:void(0)" onclick="selectGalleryStyle('realistic', true)" class="block px-5 py-3 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">Realism</a>
-<a href="javascript:void(0)" onclick="selectGalleryStyle('ctr', true)" class="block px-5 py-3 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 border-t dark:border-white/5 dark:text-white text-gray-800">High CTR</a>
-                    </div>
+<!-- CLEANED NAVIGATION -->
+<nav class="fixed top-0 w-full z-[100] flex justify-between items-center px-6 md:px-10 py-6 dark:bg-black/80 bg-white/80 backdrop-blur-md border-b dark:border-white/5 border-black/5">
+    <div class="flex items-center gap-8">
+        <div class="flex gap-6 md:gap-10 text-sm font-bold tracking-wide dark:text-gray-300 text-gray-600">
+            <a href="#" class="hover:text-brand transition-colors duration-300">Home</a>
+            <a href="#about" class="hover:text-brand transition-colors duration-300">About Me</a>
+            
+            <!-- EXAMPLES DROPDOWN (ONLY ONE) -->
+            <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
+                <a href="#examples" class="flex items-center gap-1">
+                    Examples
+                    <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </a>
+                <div class="dropdown-content absolute left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
+                    <button onclick="selectGalleryStyle('realistic', true)" class="w-full text-left block px-5 py-3 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">Realism</button>
+                    <button onclick="selectGalleryStyle('ctr', true)" class="w-full text-left block px-5 py-3 text-xs font-bold hover:bg-brand hover:text-white transition duration-300 border-t dark:border-white/5 dark:text-white text-gray-800">High CTR</button>
                 </div>
+            </div>
 
-                <a href="#pricing" class="hover:text-brand transition-colors duration-300 hidden sm:block">Prices</a>
+            <a href="#pricing" class="hover:text-brand transition-colors duration-300">Prices</a>
 
-                <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
-                    <div class="flex items-center gap-1 dark:text-gray-300 text-gray-600 hover:text-brand">
-                        More
-                        <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </div>
-                    <div class="dropdown-content absolute right-0 md:left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
-                        <a href="#reviews" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">Reviews</a>
-                        <a href="#faq" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">FAQ</a>
-                        <a href="#tos" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">ToS</a>
-                    </div>
+            <!-- MORE DROPDOWN -->
+            <div class="relative group cursor-pointer transition-colors duration-300 hover:text-brand">
+                <div class="flex items-center gap-1 dark:text-gray-300 text-gray-600 hover:text-brand">
+                    More
+                    <svg class="w-3 h-3 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                <div class="dropdown-content absolute right-0 md:left-0 mt-4 w-44 dark:bg-[#0a0a0a] bg-white backdrop-blur-xl border dark:border-white/10 border-black/10 rounded-xl overflow-hidden shadow-2xl">
+                    <a href="#reviews" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">Reviews</a>
+                    <a href="#faq" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800 border-b dark:border-white/5 border-black/5">FAQ</a>
+                    <a href="#tos" class="block px-5 py-4 text-sm font-bold hover:bg-brand hover:text-white transition duration-300 dark:text-white text-gray-800">ToS</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="flex items-center gap-4 md:gap-8">
-            
-            <button onclick="toggleModal()" class="bg-brand px-6 py-2.5 rounded-full text-sm font-bold text-white transition-all duration-300 shadow-lg shadow-brand/20 hover:shadow-[0_0_20px_#0099ff]">ORDER NOW!</button>
-        </div>
-    </nav>
+    <!-- ORDER BUTTON (STAYS ON THE RIGHT) -->
+    <div class="flex items-center gap-4">
+        <button onclick="toggleModal()" class="bg-brand px-8 py-3 rounded-full text-sm font-black text-white transition-all duration-300 shadow-lg shadow-brand/20 hover:shadow-[0_0_30px_#0099ff] hover:scale-105 active:scale-95">ORDER NOW!</button>
+    </div>
+</nav>
 
     <!-- CONTACT MODAL -->
 <!-- CONTACT MODAL - CLEAN VERSION -->
@@ -412,7 +2130,7 @@
                     <div class="text-left">
                         <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1">Module 01</p>
                         <h4 class="text-xl font-bold text-white">Game Icon</h4>
-                        <p class="text-xs text-gray-500">1024x1024 · Realistic Texturing</p>
+                        <p class="text-xs text-gray-500">1024x1024 Â· Realistic Texturing</p>
                     </div>
                     <div class="text-right">
                         <p class="text-2xl font-black text-brand">$40</p>
@@ -439,7 +2157,7 @@
                     <div class="text-left">
                         <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1">Module 03</p>
                         <h4 class="text-xl font-bold text-white">Game Thumbnail</h4>
-                        <p class="text-xs text-gray-500">1920x1080 · Realistic Lighting</p>
+                        <p class="text-xs text-gray-500">1920x1080 Â· Realistic Lighting</p>
                     </div>
                     <div class="text-right">
                         <p class="text-2xl font-black text-brand">$57</p>
@@ -455,7 +2173,7 @@
                     <div class="text-left">
                         <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1">Module 01</p>
                         <h4 class="text-xl font-bold text-white">Game Icon</h4>
-                        <p class="text-xs text-gray-500">1024x1024 · Vibrant Colour Combination</p>
+                        <p class="text-xs text-gray-500">1024x1024 Â· Vibrant Colour Combination</p>
                     </div>
                     <div class="text-right">
                         <p class="text-2xl font-black text-brand">$25</p>
@@ -482,7 +2200,7 @@
                     <div class="text-left">
                         <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1">Module 03</p>
                         <h4 class="text-xl font-bold text-white">Game Thumbnail</h4>
-                        <p class="text-xs text-gray-500">1920x1080 · High CCU Compositions</p>
+                        <p class="text-xs text-gray-500">1920x1080 Â· High CCU Compositions</p>
                     </div>
                     <div class="text-right">
                         <p class="text-2xl font-black text-brand">$40</p>
@@ -539,10 +2257,10 @@
 
         <!-- FOOTER -->
         <div class="p-8 border-t border-white/5 flex justify-between items-center bg-black/20">
-            <button id="modal-back" onclick="modalPrev()" class="text-gray-500 font-bold text-[10px] uppercase tracking-widest hover:text-white transition-all opacity-0 pointer-events-none">← Back</button>
+            <button id="modal-back" onclick="modalPrev()" class="text-gray-500 font-bold text-[10px] uppercase tracking-widest hover:text-white transition-all opacity-0 pointer-events-none">â† Back</button>
             <div class="flex gap-4 items-center">
                 <button onclick="toggleModal()" class="text-gray-500 font-bold text-[10px] uppercase tracking-widest hover:text-white transition-all">Close</button>
-                <button id="modal-next" onclick="modalNext()" disabled class="bg-brand px-10 py-3 rounded-xl text-white font-black text-[10px] uppercase tracking-widest transition-all opacity-40 cursor-not-allowed">Next Step →</button>
+                <button id="modal-next" onclick="modalNext()" disabled class="bg-brand px-10 py-3 rounded-xl text-white font-black text-[10px] uppercase tracking-widest transition-all opacity-40 cursor-not-allowed">Next Step â†’</button>
             </div>
         </div>
     </div>
@@ -697,12 +2415,12 @@ function setModalStyle(style) {
         const styleName = selectedStyle === 'realistic' ? 'Realistic Style' : 'High CTR Style';
 
         const html = `
-            <p>Hey Azero! 👋 I'd like to commission you.</p>
-            <p class="mt-4">📦 <b>Package:</b> ${selectedPackage.name} (${styleName}) — $${selectedPackage.priceUsd}</p>
-            <p>👤 <b>Characters:</b> ${chars}</p>
-            <p>🎨 <b>Description:</b> ${desc}</p>
-            <p>🔗 <b>References:</b> ${refs}</p>
-            <p class="mt-4">— ${name} (Discord: ${disc})</p>
+            <p>Hey Azero! ðŸ‘‹ I'd like to commission you.</p>
+            <p class="mt-4">ðŸ“¦ <b>Package:</b> ${selectedPackage.name} (${styleName}) â€” $${selectedPackage.priceUsd}</p>
+            <p>ðŸ‘¤ <b>Characters:</b> ${chars}</p>
+            <p>ðŸŽ¨ <b>Description:</b> ${desc}</p>
+            <p>ðŸ”— <b>References:</b> ${refs}</p>
+            <p class="mt-4">â€” ${name} (Discord: ${disc})</p>
         `;
         document.getElementById('final-preview').innerHTML = html;
     }
@@ -715,7 +2433,7 @@ function setModalStyle(style) {
         const refs = document.getElementById('form-refs').value || 'None';
         const styleName = selectedStyle === 'realistic' ? 'Realistic Style' : 'High CTR Style';
 
-        const text = `Hey Azero! 👋 I'd like to commission you.\n\n📦 Package: ${selectedPackage.name} (${styleName}) — $${selectedPackage.priceUsd}\n👤 Characters: ${chars}\n🎨 Description: ${desc}\n🔗 References: ${refs}\n\n— ${name} (Discord: ${disc})`;
+        const text = `Hey Azero! ðŸ‘‹ I'd like to commission you.\n\nðŸ“¦ Package: ${selectedPackage.name} (${styleName}) â€” $${selectedPackage.priceUsd}\nðŸ‘¤ Characters: ${chars}\nðŸŽ¨ Description: ${desc}\nðŸ”— References: ${refs}\n\nâ€” ${name} (Discord: ${disc})`;
 
         navigator.clipboard.writeText(text).then(() => {
             window.open(discordProfileUrl, '_blank');
@@ -824,445 +2542,698 @@ function setModalStyle(style) {
 </section>
 
     <!-- ABOUT SECTION -->
-    <section id="about" class="py-24 px-10 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-24">
-            <div class="w-full md:w-2/5 flex justify-center" data-aos="fade-right">
-                <div class="relative group">
-                    <img src="pfp.png" alt="Azero" class="pfp-mask relative w-full max-w-[400px] block transition-transform duration-500 group-hover:scale-[1.02]">
+  <!-- UPDATED ABOUT SECTION -->
+<section id="about" class="py-32 px-10 md:px-32 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors relative overflow-hidden">
+    <!-- Subtle Background Glow -->
+    <div class="absolute top-1/2 left-0 w-64 h-64 bg-brand/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 md:gap-32 relative z-10">
+        
+        <!-- Left: Image with Decorative Elements -->
+        <div class="w-full md:w-2/5 flex justify-center" data-aos="fade-right">
+            <div class="relative group">
+                <!-- Background Decorative Square -->
+                <div class="absolute -inset-4 border border-brand/20 rounded-[3rem] rotate-3 group-hover:rotate-0 transition-transform duration-700"></div>
+                
+                <img src="pfp.png" alt="Azero" 
+                     class="relative w-full max-w-[420px] block transition-all duration-700 group-hover:scale-[1.02] drop-shadow-2xl"
+                     style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);">
+                
+                <!-- Experience Badge Overlay -->
+                <div class="absolute -bottom-6 -right-6 bg-brand p-6 rounded-3xl shadow-xl shadow-brand/30 animate-bounce-slow">
+                    <p class="text-white font-black text-3xl tracking-tighter">3+</p>
+                    <p class="text-white/80 text-[8px] font-bold uppercase tracking-widest leading-none">Years of<br>Rendering</p>
                 </div>
             </div>
-            <div class="w-full md:w-3/5" data-aos="fade-left">
-                <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-sm mb-4">Discovery</h3>
-                <h2 class="text-5xl font-extrabold mb-6 leading-tight">About <span class="text-brand">Me</span></h2>
-                <div class="space-y-6 dark:text-gray-400 text-gray-600 text-lg leading-relaxed">
-                    <p>I am a <span class="dark:text-white text-gray-900 font-semibold">Roblox GFX artist for more than 3+ years</span>. I specialize in <span class="dark:text-white text-gray-900 font-semibold">Realistic</span> as well as <span class="dark:text-white text-gray-900 font-semibold">High CTR</span> thumbnails & icons.</p>
-                </div>
-                <div class="mt-12 pt-8 border-t dark:border-white/5 border-black/5">
-                    <div class="glass-card inline-flex items-center gap-4 px-8 py-4 rounded-2xl">
-                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                        <span id="ist-clock" class="text-3xl md:text-4xl font-extrabold tracking-tighter dark:text-white text-gray-900 font-mono">00:00:00 AM</span>
-                        <span class="dark:text-gray-500 text-gray-400 font-bold text-sm uppercase">IST</span>
+        </div>
+
+        <!-- Right: Content -->
+        <div class="w-full md:w-3/5" data-aos="fade-left">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-[1px] bg-brand"></div>
+                <h3 class="text-brand font-black tracking-[0.4em] uppercase text-[10px]">Artist Profile</h3>
+            </div>
+            
+            <h2 class="text-6xl font-black mb-8 leading-tight tracking-tighter dark:text-white text-gray-900 uppercase">
+                The Mind Behind <br><span class="text-brand">The Renders.</span>
+            </h2>
+
+            <div class="space-y-6 dark:text-gray-400 text-gray-600 text-lg leading-relaxed max-w-xl">
+                <p>
+                    I am a professional <span class="dark:text-white text-gray-900 font-bold underline decoration-brand/30 underline-offset-4">Roblox GFX Artist</span> specializing in the intersection of technical realism and marketing psychology. 
+                </p>
+                <p>
+                    Over the last <span class="dark:text-white text-gray-900 font-bold">3+ years</span>, I've helped game developers boost their conversion rates through high-CTR thumbnails and cinematic game icons that demand attention.
+                </p>
+            </div>
+
+<!-- Expertise Pills with Logos -->
+<div class="flex flex-wrap gap-3 mt-10">
+    <!-- Blender -->
+    <span class="flex items-center gap-2.5 px-4 py-2 bg-white/[0.03] border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-brand hover:bg-white/[0.07] transition-all duration-300">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Blender_logo_no_text.svg" class="w-4 h-4" alt="Blender">
+        Blender 4.0
+    </span>
+
+    <!-- Adobe Photoshop -->
+    <span class="flex items-center gap-2.5 px-4 py-2 bg-white/[0.03] border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-brand hover:bg-white/[0.07] transition-all duration-300">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" class="w-4 h-4" alt="Photoshop">
+        Photoshop CC
+    </span>
+
+    <!-- Roblox Studio -->
+    <span class="flex items-center gap-2.5 px-4 py-2 bg-white/[0.03] border border-white/10 rounded-full text-[10px] font-black uppercase tracking-widest text-brand hover:bg-white/[0.07] transition-all duration-300">
+        <img src="0654ecc7e90d39916e241150e7d3970e.WEBP" class="w-4 h-4" alt="Roblox Studio">
+        Roblox Studio
+    </span>
+</div>
+
+            <!-- UPGRADED IST CLOCK CARD -->
+            <div class="mt-16 pt-10 border-t dark:border-white/5 border-black/5">
+                <div class="flex flex-col sm:flex-row sm:items-center gap-8">
+                    <div class="bg-[#0a0a0a] border border-white/10 p-6 rounded-[2rem] inline-flex items-center gap-6 shadow-2xl relative overflow-hidden group">
+                        <!-- Clock Pulse -->
+                        <div class="flex flex-col">
+                            <div class="flex items-center gap-2 mb-1">
+                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+                                <span class="text-[9px] font-black text-gray-500 uppercase tracking-widest">Local Time (IST)</span>
+                            </div>
+                            <span id="ist-clock" class="text-4xl font-black tracking-tighter dark:text-white text-gray-900 font-mono">00:00:00</span>
+                        </div>
+                        <div class="h-10 w-[1px] bg-white/10 hidden sm:block"></div>
+                        <div class="hidden sm:block">
+                            <p class="text-[9px] font-black text-brand uppercase tracking-widest mb-1">Current Status</p>
+                            <p class="text-xs font-bold text-gray-400">Available for Work</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+    
 
 <section id="examples" class="gallery-page">
-    <div class="max-w-7xl mx-auto px-6 relative">
-        
-        <!-- MASSIVE BACKGROUND TEXT FOR DEPTH -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 font-black text-[12vw] text-white/[0.02] uppercase pointer-events-none tracking-tighter select-none">
-            Portfolio
+    <div class="gallery-shell">
+        <div class="gallery-watermark">Portfolio</div>
+
+        <div class="text-center relative z-10">
+            <p class="gallery-kicker">Gallery</p>
+            <h2 class="gallery-heading">Selected <span>Works</span></h2>
+            <p class="gallery-subcopy">A sharper showreel built around cinematic detail, premium framing, and Roblox visuals that feel ready for serious launch pages.</p>
+
+            <div class="style-switcher-container">
+                <div id="style-toggle-ui" class="style-toggle" aria-label="Gallery style selector">
+                    <button class="is-active" data-style-select="realistic" type="button">
+                        <span class="toggle-icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h3"/><path d="M20 7V4h-3"/><path d="M4 17v3h3"/><path d="M20 17v3h-3"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+                        </span>
+                        <span class="toggle-copy">
+                            <span class="toggle-eyebrow">Render Mode</span>
+                            <span class="toggle-title">Realism</span>
+                            <span class="toggle-note">Lighting, texture, atmosphere</span>
+                        </span>
+                    </button>
+                    <button data-style-select="ctr" type="button">
+                        <span class="toggle-icon" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h5l2-7 4 14 2-7h5"/><path d="M5 19h14"/></svg>
+                        </span>
+                        <span class="toggle-copy">
+                            <span class="toggle-eyebrow">Impact Mode</span>
+                            <span class="toggle-title">High CTR</span>
+                            <span class="toggle-note">Color, contrast, instant read</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <!-- TOP CONTENT -->
-        <div class="text-center mb-16 relative z-10">
-            <p class="text-[10px] font-black text-brand uppercase tracking-[0.5em] mb-4">Gallery</p>
-            <h2 class="text-6xl font-black text-white tracking-tighter uppercase mb-10">Selected <span class="text-brand">Works</span></h2>
-            
-           <div class="style-switcher-container">
-    <!-- The ID 'style-toggle-ui' is used for the sliding animation -->
-    <div id="style-toggle-ui" class="style-toggle">
-        <button class="is-active" data-style-select="realistic">Realism</button>
-        <button data-style-select="ctr">HIGH CTR</button>
-    </div>
-</div>
+        <div class="gallery-showcase relative z-10">
+            <div class="gallery-stage">
+                <button class="gallery-arrow gallery-prev" onclick="moveGalleryMaster(-1)" aria-label="Previous example" type="button">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
 
-        <!-- THE STAGE -->
-        <div class="gallery-stage">
-            <button class="gallery-arrow gallery-prev" onclick="moveGalleryMaster(-1)">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="3"/></svg>
-            </button>
+                <div class="style-gallery w-full h-full" data-gallery="realistic">
+                    <div class="gallery-track" data-gallery-track="realistic"></div>
+                </div>
 
-            <div class="style-gallery w-full h-full" data-gallery="realistic">
-                <div class="gallery-track" data-gallery-track="realistic"></div>
+                <div class="style-gallery w-full h-full hidden" data-gallery="ctr">
+                    <div class="gallery-track" data-gallery-track="ctr"></div>
+                </div>
+
+                <button class="gallery-arrow gallery-next" onclick="moveGalleryMaster(1)" aria-label="Next example" type="button">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
             </div>
 
-            <div class="style-gallery w-full h-full hidden" data-gallery="ctr">
-                <div class="gallery-track" data-gallery-track="ctr"></div>
-            </div>
+            <aside class="gallery-side-panel">
+                <div>
+                    <p class="gallery-panel-label">Creative Direction</p>
+                    <h3 id="viewing-text" class="gallery-panel-value">Realistic</h3>
+                    <span id="viewing-accent" class="gallery-panel-accent">Cinematic Grade</span>
+                    <p id="viewing-copy" class="gallery-panel-copy">Depth-driven scenes with polished lighting, grounded materials, and a premium portfolio finish.</p>
+                </div>
 
-            <button class="gallery-arrow gallery-next" onclick="moveGalleryMaster(1)">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3"/></svg>
-            </button>
+                <div class="gallery-stat-grid">
+                    <div class="gallery-stat">
+                        <strong>16:9</strong>
+                        <span>Thumbnail Ready</span>
+                    </div>
+                    <div class="gallery-stat">
+                        <strong>4K</strong>
+                        <span>Render Detail</span>
+                    </div>
+                    <div class="gallery-stat">
+                        <strong>PRO</strong>
+                        <span>Portfolio Grade</span>
+                    </div>
+                </div>
+            </aside>
         </div>
 
-        <!-- DOTS -->
         <div class="gallery-dots" data-gallery-dots="realistic"></div>
         <div class="gallery-dots hidden" data-gallery-dots="ctr"></div>
-
     </div>
 </section>
     <!-- PRICING SECTION -->
     <!-- PRICING SECTION -->
-    <section id="pricing" class="py-32 px-6 md:px-32 dark:bg-[#050505] bg-white relative scroll-mt-20 transition-colors duration-500">
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-20">
-                <h2 class="text-5xl md:text-6xl font-extrabold tracking-tighter dark:text-white text-gray-900 mb-8">
-                    Service <span class="text-brand">Inventory</span>
-                </h2>
-                <div class="inline-flex p-1 dark:bg-white/5 bg-gray-100 rounded-2xl border dark:border-white/10 border-black/5 backdrop-blur-md">
-                    <button id="tab-realistic" onclick="updatePrices('realistic')" class="px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm transition-all duration-300 shadow-lg shadow-brand/20">
-                        Realistic Style
-                    </button>
-                    <button id="tab-ccu" onclick="updatePrices('ccu')" class="px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 hover:text-brand font-bold text-sm transition-all duration-300">
-                        High CTR Style
-                    </button>
-                </div>
+    <!-- THE ELITE INVENTORY SECTION -->
+<section id="pricing" class="py-40 px-6 md:px-24 dark:bg-[#050505] bg-white transition-colors duration-700 scroll-mt-20">
+    <div class="max-w-7xl mx-auto relative z-10">
+        
+        <!-- Header -->
+        <div class="text-center mb-24">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-brand/10 border border-brand/20 text-brand text-[10px] font-black uppercase tracking-[0.4em]">Inventory System // 2026</div>
+            <h2 class="text-6xl md:text-8xl font-black tracking-tighter dark:text-white text-gray-900 uppercase mb-12">
+                Services<span class="text-brand">.</span>
+            </h2>
+<!-- THE SETTLEMENT CONSOLE v3.5 -->
+<div class="max-w-7xl mx-auto mb-32 px-6" data-aos="fade-up">
+    <div class="power-console">
+        
+        <!-- MODULE: FIAT -->
+        <div class="power-module group" onmousemove="pricingSpotlight(event)">
+            <div class="module-flag">Modes of Payment</div>
+            <div class="module-id">
+                <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
+                CHANNEL_01 // SECURE
             </div>
+            <div class="flex items-center gap-10 mb-10">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="gateway-logo-xl" alt="PayPal">
+                <h4 class="module-title">PAYPAL / <br><span class="text-brand">FIAT</span></h4>
+            </div>
+            <div class="w-full h-[2px] bg-white/5 relative">
+                <div class="absolute top-0 left-0 h-full w-2/3 bg-brand shadow-[0_0_10px_#0099ff]"></div>
+            </div>
+        </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
-                <!-- 1. ICON -->
-                <div class="group relative dark:bg-[#0a0a0a] bg-slate-50 border dark:border-white/5 border-black/5 rounded-[2.5rem] p-10 flex flex-col transition-all duration-500 hover:border-brand/50">
-                    <div class="mb-12">
-                        <h4 class="dark:text-gray-500 text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-2">Module // 01</h4>
-                        <p class="text-2xl font-extrabold dark:text-white text-gray-900">Game Icon</p>
-                    </div>
-                    <div class="mb-10">
-                        <div class="flex items-baseline gap-2">
-                            <span id="price-icon-usd" class="text-6xl font-black text-brand tracking-tighter">$40</span>
-                            <span class="dark:text-gray-600 text-gray-500 font-bold uppercase text-xs tracking-widest">USD</span>
-                        </div>
-                        <p id="price-icon-rbx" class="dark:text-gray-400 text-gray-600 font-bold text-sm mt-2">10,000 Robux (+Tax)</p>
-                    </div>
-                    
-                    <!-- THE FEATURE LIST FOR ICON -->
-                    <div id="icon-features" class="space-y-4 mb-12 flex-grow">
-                        <!-- JS WILL FILL THIS -->
-                    </div>
+        <!-- MODULE: PLATFORM -->
+        <div class="power-module group" onmousemove="pricingSpotlight(event)">
+            <div class="module-flag">Modes of Payment</div>
+            <div class="module-id">
+                <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
+                CHANNEL_02 // SYSTEM
+            </div>
+            <div class="flex items-center gap-10 mb-10">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Robux_2019_Logo_gold.svg" class="gateway-logo-xl robux-logo" alt="Robux">
+                <h4 class="module-title">ROBUX / <br><span class="text-brand">PLATFORM</span></h4>
+            </div>
+            <div class="w-full h-[2px] bg-white/5 relative">
+                <div class="absolute top-0 left-0 h-full w-1/2 bg-brand shadow-[0_0_10px_#0099ff]"></div>
+            </div>
+        </div>
 
-                    <button onclick="toggleModal()" class="w-full py-4 rounded-xl border dark:border-white/10 border-black/10 dark:text-white text-gray-900 font-black text-[10px] uppercase tracking-[0.3em] transition-all hover:bg-brand hover:border-brand hover:text-white">Buy Icon</button>
-                </div>
+        <!-- MODULE: POLICY -->
+        <div class="power-module policy-active" onmousemove="pricingSpotlight(event)">
+            <div class="module-flag warning">Important Notice</div>
+            <div class="module-id">
+                <span class="w-2 h-2 bg-[#ff0055] rounded-full animate-pulse"></span>
+                PROTOCOL_403 // MANDATORY
+            </div>
+            <h4 class="module-title mb-6">MARKETPLACE <span class="text-[#ff0055]">TAX</span></h4>
+            <p class="policy-text">
+                For settlements via platform currency (Robux), the standard <span class="policy-highlight">30% Marketplace Fee</span> is required to be calculated and covered by the client at the time of transaction.
+            </p>
+        </div>
 
-                <!-- 2. BUNDLE -->
-                <div class="group relative dark:bg-[#0f0f0f] bg-white border-2 border-brand rounded-[2.5rem] p-12 flex flex-col transition-all duration-500 shadow-[0_20px_80px_rgba(0,153,255,0.15)] lg:scale-105 z-10">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand text-white px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em]">Best Value</div>
-                    <div class="mb-12">
-                        <h4 class="text-brand font-bold uppercase tracking-[0.3em] text-[10px] mb-2">Module // 02</h4>
-                        <p class="text-3xl font-black dark:text-white text-gray-900 leading-none">Thumbnail + Icon Bundle</p>
-                    </div>
-                    <div class="mb-10 dark:bg-white/5 bg-slate-100 border dark:border-white/5 border-black/5 p-6 rounded-2xl">
-                        <div class="flex items-baseline gap-3">
-                            <span id="price-bundle-usd" class="text-6xl font-black dark:text-white text-gray-900 tracking-tighter">$80</span>
-                        </div>
-                        <p id="price-bundle-rbx" class="text-brand font-black text-sm mt-3 uppercase tracking-widest">20,000 Robux PACKAGE</p>
-                    </div>
-
-                    <!-- THE FEATURE LIST FOR BUNDLE -->
-                    <div id="bundle-features" class="space-y-4 mb-12 flex-grow">
-                        <!-- JS WILL FILL THIS -->
-                    </div>
-
-                    <button onclick="toggleModal()" class="w-full py-5 rounded-xl bg-brand text-white font-black text-xs uppercase tracking-[0.3em] transition-all hover:bg-gray-900 dark:hover:bg-white dark:hover:text-black">BUY BUNDLE</button>
-                </div>
-
-                <!-- 3. THUMBNAIL -->
-                <div class="group relative dark:bg-[#0a0a0a] bg-slate-50 border dark:border-white/5 border-black/5 rounded-[2.5rem] p-10 flex flex-col transition-all duration-500 hover:border-brand/50">
-                    <div class="mb-12">
-                        <h4 class="dark:text-gray-500 text-gray-400 font-bold uppercase tracking-[0.3em] text-[10px] mb-2">Module // 03</h4>
-                        <p class="text-2xl font-extrabold dark:text-white text-gray-900">Game Thumbnail</p>
-                    </div>
-                    <div class="mb-10">
-                        <div class="flex items-baseline gap-2">
-                            <span id="price-thumb-usd" class="text-6xl font-black text-brand tracking-tighter">$57</span>
-                            <span class="dark:text-gray-600 text-gray-500 font-bold uppercase text-xs tracking-widest">USD</span>
-                        </div>
-                        <p id="price-thumb-rbx" class="dark:text-gray-400 text-gray-600 font-bold text-sm mt-2">15,000 Robux (+Tax)</p>
-                    </div>
-
-                    <!-- THE FEATURE LIST FOR THUMBNAIL -->
-                    <div id="thumb-features" class="space-y-4 mb-12 flex-grow">
-                        <!-- JS WILL FILL THIS -->
-                    </div>
-
-                    <button onclick="toggleModal()" class="w-full py-4 rounded-xl border dark:border-white/10 border-black/10 dark:text-white text-gray-900 font-black text-[10px] uppercase tracking-[0.3em] transition-all hover:bg-brand hover:border-brand hover:text-white">Buy Thumbnail</button>
+    </div>
+</div>
+            
+            <!-- Professional Switcher -->
+            <div class="style-switcher-container">
+                <div id="price-toggle-ui" class="style-toggle scale-110">
+                    <button class="is-active" id="tab-realistic" onclick="updatePrices('realistic')">Realistic</button>
+                    <button id="tab-ccu" onclick="updatePrices('ccu')">High CTR</button>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            
+            
+            <!-- MODULE 01: ICON -->
+            <div class="pricing-module group h-full" onmousemove="pricingSpotlight(event)">
+                <div class="module-strip"><div class="module-strip-inner" style="animation-delay: 0s"></div></div>
+                <div class="relative z-10">
+                    <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-2">Module_0.1</p>
+                    <h3 class="text-3xl font-black text-white mb-10">GAME ICON</h3>
+                    
+                    <div class="mb-10">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-black text-brand">$</span>
+                            <span id="price-icon-usd" class="text-7xl font-black text-white tracking-tighter price-value">40</span>
+                        </div>
+                        <p id="price-icon-rbx" class="text-gray-500 text-[10px] font-black tracking-[0.2em] mt-3 uppercase">10,000 ROBUX</p>
+                    </div>
+
+                    <div id="icon-features" class="space-y-5 mb-12 flex-grow border-t border-white/5 pt-10">
+                        <!-- JS Controlled -->
+                    </div>
+
+                    <button onclick="toggleModal()" class="w-full py-5 rounded-xl border border-white/10 text-white font-black text-[10px] tracking-widest uppercase hover:bg-brand hover:border-brand hover:scale-[1.02] transition-all">Select Module</button>
+                </div>
+            </div>
+
+            <!-- MODULE 02: BUNDLE (Featured) -->
+            <div class="pricing-module group h-full !border-brand/30 ring-1 ring-brand/10 shadow-[0_0_60px_rgba(0,153,255,0.1)]" onmousemove="pricingSpotlight(event)">
+                <div class="module-strip"><div class="module-strip-inner" style="background:#fff; box-shadow:0 0 15px #fff; animation-delay: 0.5s"></div></div>
+                <div class="relative z-10">
+                    <p class="text-[9px] font-black text-brand uppercase tracking-widest mb-2">Module_0.2 // Preferred</p>
+                    <h3 class="text-4xl font-black text-white mb-10">STUDIO BUNDLE</h3>
+                    
+                    <div class="mb-10 bg-brand/5 p-8 rounded-2xl border border-brand/10">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-black text-brand">$</span>
+                            <span id="price-bundle-usd" class="text-8xl font-black text-white tracking-tighter price-value">80</span>
+                        </div>
+                        <p id="price-bundle-rbx" class="text-brand text-[11px] font-black tracking-[0.2em] mt-4 uppercase italic">20,000 ROBUX PACKAGE</p>
+                    </div>
+
+                    <div id="bundle-features" class="space-y-5 mb-12 flex-grow border-t border-brand/20 pt-10">
+                        <!-- JS Controlled -->
+                    </div>
+
+                    <button onclick="toggleModal()" class="w-full py-6 bg-brand text-white rounded-xl font-black text-xs tracking-widest uppercase hover:bg-white hover:text-black hover:scale-[1.02] transition-all shadow-[0_10px_30px_rgba(0,153,255,0.3)]">Acquire Bundle</button>
+                </div>
+            </div>
+
+            <!-- MODULE 03: THUMBNAIL -->
+            <div class="pricing-module group h-full" onmousemove="pricingSpotlight(event)">
+                <div class="module-strip"><div class="module-strip-inner" style="animation-delay: 1s"></div></div>
+                <div class="relative z-10">
+                    <p class="text-[9px] font-black text-gray-500 uppercase tracking-widest mb-2">Module_0.3</p>
+                    <h3 class="text-3xl font-black text-white mb-10">THUMBNAIL</h3>
+                    
+                    <div class="mb-10">
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-3xl font-black text-brand">$</span>
+                            <span id="price-thumb-usd" class="text-7xl font-black text-white tracking-tighter price-value">57</span>
+                        </div>
+                        <p id="price-thumb-rbx" class="text-gray-500 text-[10px] font-black tracking-[0.2em] mt-3 uppercase">15,000 ROBUX</p>
+                    </div>
+
+                    <div id="thumb-features" class="space-y-5 mb-12 flex-grow border-t border-white/5 pt-10">
+                        <!-- JS Controlled -->
+                    </div>
+
+                    <button onclick="toggleModal()" class="w-full py-5 rounded-xl border border-white/10 text-white font-black text-[10px] tracking-widest uppercase hover:bg-brand hover:border-brand hover:scale-[1.02] transition-all">Select Module</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- SETTLEMENT PROTOCOL STRIP -->
+
+</section>
+    
 
           <!-- FOOTER CRITERIA -->
-            <div class="max-w-6xl mx-auto border-t dark:border-white/5 border-black/5 pt-24 pb-12">
-                <div class="text-center mb-16">
-                    <h5 class="text-3xl font-black dark:text-white text-gray-900 uppercase tracking-tighter mb-4">Pre-Order <span class="text-brand">Criteria</span></h5>
-                    <p class="text-gray-500 font-bold uppercase tracking-[0.3em] text-[10px]">Please ensure you have the following ready before reaching out</p>
+            <!-- THE PROJECT BRIEFING / CRITERIA -->
+<!-- THE PROJECT BRIEFING / CRITERIA -->
+<div class="max-w-7xl mx-auto pt-40 pb-32 px-6 relative">
+    
+    <!-- BACKGROUND DECORATION -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 text-[15vw] font-black text-white/[0.01] pointer-events-none select-none uppercase">Briefing</div>
+
+    <div class="text-center mb-24" data-aos="fade-up">
+        <div class="flex items-center justify-center gap-4 mb-6">
+            <span class="w-12 h-[1px] bg-brand/30"></span>
+            <p class="text-brand font-black uppercase tracking-[0.6em] text-[10px]">Operational Criteria v4.0</p>
+            <span class="w-12 h-[1px] bg-brand/30"></span>
+        </div>
+        <h2 class="text-6xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none">PRE-ORDER<br><span class="text-brand">CRITERIA.</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- MODULE 01 -->
+        <div class="briefing-module group" onmousemove="pricingSpotlight(event)" data-aos="fade-up">
+            <div class="scanner-line"></div>
+            <div class="briefing-header">
+                <span class="briefing-label">ID // VISION</span>
+                <span class="briefing-serial">SN: 44-01-PRJ</span>
+            </div>
+            <h6 class="text-xl font-black text-white uppercase mb-4 tracking-tight">Project Vision</h6>
+            <p class="text-sm text-gray-500 leading-relaxed">A clear description or a rough sketch of the scene. Include details on character positioning and the overall atmosphere.</p>
+        </div>
+
+        <!-- MODULE 02 -->
+        <div class="briefing-module group" onmousemove="pricingSpotlight(event)" data-aos="fade-up" data-aos-delay="100">
+            <div class="scanner-line"></div>
+            <div class="briefing-header">
+                <span class="briefing-label">ID // SOURCE</span>
+                <span class="briefing-serial">SN: 82-05-AST</span>
+            </div>
+            <h6 class="text-xl font-black text-white uppercase mb-4 tracking-tight">Technical Assets</h6>
+            <p class="text-sm text-gray-500 leading-relaxed">Roblox models and character outfits exported as <span class="text-white font-bold">.RBXM</span> or <span class="text-white font-bold">.RBXL</span> files for high-fidelity rendering.</p>
+        </div>
+
+        <!-- MODULE 03 -->
+        <div class="briefing-module group" onmousemove="pricingSpotlight(event)" data-aos="fade-up" data-aos-delay="200">
+            <div class="scanner-line"></div>
+            <div class="briefing-header">
+                <span class="briefing-label">ID // STYLE</span>
+                <span class="briefing-serial">SN: 11-09-REF</span>
+            </div>
+            <h6 class="text-xl font-black text-white uppercase mb-4 tracking-tight">Style Guides</h6>
+            <p class="text-sm text-gray-500 leading-relaxed">Visual references or existing GFX examples that demonstrate your preferred lighting and composition style.</p>
+        </div>
+
+        <!-- MODULE 04 -->
+        <div class="briefing-module group" onmousemove="pricingSpotlight(event)" data-aos="fade-up" data-aos-delay="300">
+            <div class="scanner-line"></div>
+            <div class="briefing-header">
+                <span class="briefing-label">ID // TIME</span>
+                <span class="briefing-serial">SN: 99-00-DUE</span>
+            </div>
+            <h6 class="text-xl font-black text-white uppercase mb-4 tracking-tight">Timeline</h6>
+            <p class="text-sm text-gray-500 leading-relaxed">A defined deadline. Please specify if you require a <span class="text-brand font-bold uppercase">Priority/Rush</span> delivery in advance.</p>
+        </div>
+
+        <!-- MODULE 05 (Wider) -->
+        <div class="briefing-module payment-module col-span-1 md:col-span-2 lg:col-span-4 mt-8" onmousemove="pricingSpotlight(event)" data-aos="zoom-in">
+            <div class="scanner-line"></div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+                <div class="max-w-3xl">
+                    <div class="briefing-header">
+                        <span class="briefing-label">Critical Protocol</span>
+                        <span class="briefing-serial">AUTH_STATUS: MANDATORY</span>
+                    </div>
+                    <h6 class="text-3xl font-black text-white uppercase tracking-tighter mb-4">Financial Commitment</h6>
+                    <p class="text-lg text-gray-400">To secure your slot in the queue, a <span class="text-brand font-black uppercase">50% upfront deposit</span> is mandatory before the creative process begins. The remaining balance is due upon completion.</p>
                 </div>
+                <!-- Technical Hexagon decoration -->
+                <div class="hidden lg:block opacity-20 hover:opacity-100 transition-opacity">
+                    <svg width="120" height="120" viewBox="0 0 100 100" fill="none" class="text-brand animate-spin-slow">
+                        <path d="M50 5 L95 27.5 V72.5 L50 95 L5 72.5 V27.5 L50 5Z" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="10" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- REVIEWS SECTION -->
+<!-- THE FEEDBACK TERMINAL -->
+<!-- THE ELITE FEEDBACK TERMINAL -->
+<section id="reviews" class="py-40 bg-[#050505] overflow-hidden relative">
+    
+    <!-- BACKGROUND DECORATION -->
+    <div class="absolute top-0 right-10 text-[18vw] font-black text-white/[0.01] pointer-events-none select-none uppercase">Feedback</div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="max-w-7xl mx-auto px-6 mb-24 relative z-10">
+        <div class="flex flex-col lg:flex-row justify-between items-end gap-12">
+            <div data-aos="fade-right">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="w-10 h-[1px] bg-brand"></span>
+                    <p class="text-brand font-black tracking-[0.5em] uppercase text-[10px]">Neural_Archive // System_Stable</p>
+                </div>
+                <h2 class="text-6xl md:text-8xl font-black text-white tracking-tighter uppercase leading-none">Global <br><span class="text-brand">Sentiment.</span></h2>
+            </div>
+
+            <!-- STATS TERMINAL (IDs FIXED) -->
+            <div class="terminal-metric-box" id="reviews-stats-trigger" data-aos="fade-left">
+                <div class="text-center min-w-[140px]">
+                    <p id="counter-clients" class="text-6xl font-black text-white tracking-tighter">0</p>
+                    <p class="text-[9px] font-black text-brand uppercase tracking-widest mt-3">Projects Delivered</p>
+                </div>
+                <div class="w-[1px] h-16 bg-white/10"></div>
+                <div class="text-center min-w-[120px]">
+                    <p id="counter-rating" class="text-6xl font-black text-white tracking-tighter">0.0</p>
+                    <p class="text-[9px] font-black text-brand uppercase tracking-widest mt-3">Studio Rating</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INFINITE REVIEW STREAM -->
+    <div class="relative border-y border-white/5 py-16 bg-white/[0.01]">
+        <div class="review-marquee-container">
+            <div id="dynamic-reviews-container" class="review-marquee-track">
+                <!-- JS Populated -->
+            </div>
+        </div>
+        <div class="absolute inset-y-0 left-0 w-60 bg-gradient-to-r from-[#050505] to-transparent z-10"></div>
+        <div class="absolute inset-y-0 right-0 w-60 bg-gradient-to-l from-[#050505] to-transparent z-10"></div>
+    </div>
+</section>
+ <!-- PROFESSIONAL FAQ SECTION -->
+<!-- HIGH-TIER FAQ SECTION -->
+<!-- SLEEK INDUSTRIAL FAQ SECTION -->
+<!-- PREMIUM INTERFACE FAQ SECTION -->
+<!-- THE COMMAND CENTER FAQ // MILLION-DOLLAR OVERHAUL -->
+<!-- THE ELITE COMMAND CENTER FAQ -->
+<!-- THE ELITE COMMAND CENTER FAQ -->
+<!-- THE ELITE COMMAND CENTER FAQ -->
+<!-- THE ELITE COMMAND CENTER FAQ -->
+<section id="faq" class="py-32 dark:bg-[#050505] bg-white scroll-mt-24 relative overflow-hidden">
+    
+    <div class="max-w-[1440px] mx-auto px-10 md:px-20 relative z-10">
+        <div class="flex flex-col lg:flex-row gap-20">
+            
+            <!-- LEFT: FIXED HEADER -->
+            <div class="lg:w-1/3 lg:sticky lg:top-40 h-fit" data-aos="fade-right">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="w-10 h-[1px] bg-brand"></span>
+                    <p class="text-brand font-black uppercase tracking-[0.5em] text-[10px]">Information Archive</p>
+                </div>
+                <h2 class="text-6xl md:text-8xl font-black dark:text-white text-gray-900 tracking-tighter leading-[0.9] uppercase mb-12">
+                    Common<br><span class="text-brand">Inquiries.</span>
+                </h2>
+                <div class="space-y-8 border-l border-white/5 pl-8">
+                    <div>
+                        <p class="text-gray-500 font-bold uppercase tracking-widest text-[9px] mb-2">Live Status</p>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
+                            <span class="text-xs font-black text-white uppercase tracking-widest">Available    for     work.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: SMOOTH ACCORDION LIST -->
+            <div class="lg:w-2/3">
+                <div class="space-y-px bg-white/5 border-y border-white/5 mb-20">
                     
-                    <!-- 01. VISION -->
-                    <div class="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 transition-all hover:border-brand/30 hover:bg-white/[0.04]">
-                        <span class="text-brand font-black text-2xl italic block mb-4">01.</span>
-                        <h6 class="text-white font-extrabold uppercase tracking-widest text-sm mb-3">Project Vision</h6>
-                        <p class="text-gray-400 text-sm leading-relaxed">A clear description or a rough sketch of the scene. Include details on character positioning and the overall atmosphere.</p>
-                    </div>
-
-                    <!-- 02. ASSETS -->
-                    <div class="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 transition-all hover:border-brand/30 hover:bg-white/[0.04]">
-                        <span class="text-brand font-black text-2xl italic block mb-4">02.</span>
-                        <h6 class="text-white font-extrabold uppercase tracking-widest text-sm mb-3">Technical Assets</h6>
-                        <p class="text-gray-400 text-sm leading-relaxed">Roblox models and character outfits exported as <span class="text-white font-bold">.RBXM</span> or <span class="text-white font-bold">.RBXL</span> files to ensure high-fidelity rendering.</p>
-                    </div>
-
-                    <!-- 03. REFERENCES -->
-                    <div class="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 transition-all hover:border-brand/30 hover:bg-white/[0.04]">
-                        <span class="text-brand font-black text-2xl italic block mb-4">03.</span>
-                        <h6 class="text-white font-extrabold uppercase tracking-widest text-sm mb-3">Style Guides</h6>
-                        <p class="text-gray-400 text-sm leading-relaxed">Visual references or existing GFX examples that demonstrate your preferred lighting and composition style.</p>
-                    </div>
-
-                    <!-- 04. DEADLINE -->
-                    <div class="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5 transition-all hover:border-brand/30 hover:bg-white/[0.04]">
-                        <span class="text-brand font-black text-2xl italic block mb-4">04.</span>
-                        <h6 class="text-white font-extrabold uppercase tracking-widest text-sm mb-3">Project Timeline</h6>
-                        <p class="text-gray-400 text-sm leading-relaxed">A defined deadline for the work. Please specify if you require a <span class="text-white font-bold">Priority/Rush</span> delivery in advance.</p>
-                    </div>
-
-                    <!-- 05. PAYMENT -->
-                    <div class="p-8 rounded-[2rem] bg-brand/5 border border-brand/20 transition-all hover:bg-brand/10 lg:col-span-2">
-                        <div class="flex flex-col md:flex-row md:items-center gap-6">
-                            <span class="text-brand font-black text-4xl italic">05.</span>
-                            <div>
-                                <h6 class="text-white font-extrabold uppercase tracking-widest text-sm mb-2">Financial Commitment</h6>
-                                <p class="text-gray-300 text-sm leading-relaxed">To secure your slot in the queue, a <span class="text-brand font-bold uppercase">50% upfront deposit</span> is mandatory before the creative process begins. The remaining balance is due upon completion.</p>
+                    <!-- [01] REVISIONS -->
+                    <div class="faq-elite-item group">
+                        <button onclick="toggleFaq(this)" class="faq-elite-btn">
+                            <div class="flex items-center gap-8">
+                                <span class="faq-elite-num">01</span>
+                                <span class="faq-elite-q">What is my revision policy?</span>
+                            </div>
+                            <div class="faq-elite-icon"></div>
+                        </button>
+                        <div class="faq-elite-answer">
+                            <div class="faq-elite-inner">
+                                <p>I offer a simple revision process. Every project includes <span class="text-brand font-bold">two free rounds of changes</span> for things like lighting, character poses, and colors. If you need major changes after the final render is already finished, there will be an extra fee.</p>
                             </div>
                         </div>
                     </div>
 
-                </div>
-            </div>
+                    <!-- [02] TURNAROUND -->
+                    <div class="faq-elite-item group">
+                        <button onclick="toggleFaq(this)" class="faq-elite-btn">
+                            <div class="flex items-center gap-8">
+                                <span class="faq-elite-num">02</span>
+                                <span class="faq-elite-q">How long does delivery take?</span>
+                            </div>
+                            <div class="faq-elite-icon"></div>
+                        </button>
+                        <div class="faq-elite-answer">
+                            <div class="faq-elite-inner">
+                                <p>I usually finish projects within <span class="text-white font-bold">3 to 4 business days</span>, depending on how complex the request is. If you have a very tight deadline, I offer a <span class="text-brand font-bold">Priority Pass</span> to get your work done within 48 hours for an extra cost.</p>
+                            </div>
+                        </div>
+                    </div>
 
-<!-- REVIEWS SECTION -->
-<section id="reviews" class="py-32 px-6 md:px-12 dark:bg-[#050505] bg-white scroll-mt-24 transition-colors duration-500">
-    <!-- Header stays at 7xl for alignment with other sections -->
-    <div class="max-w-7xl mx-auto mb-20">
-        <div data-aos="fade-up">
-            <h3 class="text-brand font-bold tracking-[0.2em] uppercase text-xs mb-4">Reviews</h3>
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-                <div class="max-w-2xl">
-                    <h2 class="text-5xl md:text-7xl font-extrabold mb-8 dark:text-white text-gray-900 leading-tight">What Clients <span class="text-brand">Say</span></h2>
+                    <!-- [03] SOFTWARE -->
+                    <div class="faq-elite-item group">
+                        <button onclick="toggleFaq(this)" class="faq-elite-btn">
+                            <div class="flex items-center gap-8">
+                                <span class="faq-elite-num">03</span>
+                                <span class="faq-elite-q">What software do I use?</span>
+                            </div>
+                            <div class="faq-elite-icon"></div>
+                        </button>
+                        <div class="faq-elite-answer">
+                            <div class="faq-elite-inner">
+                                <p>I use a professional setup to create my work: <span class="text-brand font-bold">Blender 4.0</span> for high-quality rendering, <span class="text-white font-bold">Roblox Studio</span> to get the assets, and <span class="text-white font-bold">Adobe Photoshop CC</span> for final colors and special effects.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- [04] ASSETS -->
+                    <div class="faq-elite-item group">
+                        <button onclick="toggleFaq(this)" class="faq-elite-btn">
+                            <div class="flex items-center gap-8">
+                                <span class="faq-elite-num">04</span>
+                                <span class="faq-elite-q">Can I work without custom models?</span>
+                            </div>
+                            <div class="faq-elite-icon"></div>
+                        </button>
+                        <div class="faq-elite-answer">
+                            <div class="faq-elite-inner">
+                                <p>I can work without your models, but the quality will be much better if you provide your own <span class="text-white font-bold">.RBXM</span> or <span class="text-white font-bold">.RBXL</span> files. Using public models can look generic, so custom assets are the best way to get a unique result.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- [05] DELIVERABLES -->
+                    <div class="faq-elite-item group">
+                        <button onclick="toggleFaq(this)" class="faq-elite-btn">
+                            <div class="flex items-center gap-8">
+                                <span class="faq-elite-num">05</span>
+                                <span class="faq-elite-q">What files will you receive?</span>
+                            </div>
+                            <div class="faq-elite-icon"></div>
+                        </button>
+                        <div class="faq-elite-answer">
+                            <div class="faq-elite-inner">
+                                <p>I deliver final images in high-resolution, unwatermarked <span class="text-brand font-bold">4K PNG</span> format so they look perfect on any platform. Please keep in mind that I do not provide <span class="text-white font-bold">PSD source files</span>, as they contain my private editing techniques.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="stats-trigger" class="inline-flex items-center gap-10 ...">
-    <div class="text-center min-w-[120px]">
-        <!-- The ID stat-clients is what the script looks for -->
-        <p id="stat-clients" class="text-5xl font-black text-brand tracking-tighter">0</p>
-        <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Clients Satisfied</p>
-    </div>
-    <div class="text-center min-w-[100px]">
-        <!-- The ID stat-rating is what the script looks for -->
-        <p id="stat-rating" class="text-5xl font-black text-brand tracking-tighter">0.0</p>
-        <p class="text-[10px] uppercase font-bold dark:text-gray-500 text-gray-400 tracking-[0.2em] mt-1">Rating</p>
-    </div>
-</div>
+
+                <!-- CONTACT BUTTON -->
+                <div class="flex flex-col items-center lg:items-start" data-aos="fade-up">
+                    <p class="text-gray-500 font-bold uppercase tracking-[0.4em] text-[9px] mb-6">Contact Me Directly</p>
+                    <a href="https://discord.com/users/1297533282740600920" target="_blank" class="studio-command-btn">
+                        <div class="btn-glow"></div>
+                        <div class="btn-content">
+                            <svg class="w-6 h-6 text-[#5865F2]" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037a19.736 19.736 0 0 0-4.885 1.515a.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.086 2.157 2.419c0 1.334-.946 2.419-2.157 2.419z"/>
+                            </svg>
+                            <span class="text-white font-black text-sm uppercase tracking-[0.2em]">Message @hidden.zero</span>
+                            <div class="btn-arrow">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Carousel Container: widened to 1600px to show more horizontal length -->
-    <!-- REVIEWS SECTION -->
-<div class="max-w-[1600px] mx-auto">
-    <div class="review-marquee-container bg-white/[0.01] border-y border-white/5">
-        <!-- This is the container the JS looks for -->
-        <div id="dynamic-reviews-container" class="review-marquee-track">
-            <!-- JS will put reviews here. If JS fails, fallback kicks in -->
-             <p class="text-gray-500 font-bold animate-pulse py-20 text-center w-full">Initializing Studio Reviews...</p>
-        </div>
-    </div>
-</div>
 </section>
- <!-- PROFESSIONAL FAQ SECTION -->
-<section id="faq" class="py-40 dark:bg-[#050505] bg-white transition-colors duration-500 scroll-mt-24">
-    <div class="max-w-5xl mx-auto px-6">
+<!-- THE COMMAND CENTER: TERMS OF SERVICE -->
+<section id="tos" class="py-40 dark:bg-[#050505] bg-white transition-colors duration-700 scroll-mt-24 relative overflow-hidden">
+    
+    <!-- Background Tech Detail -->
+    <div class="absolute top-0 right-0 p-20 opacity-[0.02] pointer-events-none select-none">
+        <h2 class="text-[20vw] font-black leading-none uppercase">Legal</h2>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-10 md:px-20 relative z-10">
         
         <!-- Header -->
-        <div class="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div class="max-w-2xl">
-                <h3 class="text-brand font-black tracking-[0.4em] uppercase text-[10px] mb-4">Customer Support</h3>
-                <h2 class="text-6xl md:text-7xl font-black dark:text-white text-gray-900 tracking-tighter leading-none">
-                    Common <span class="text-brand">Inquiries.</span>
-                </h2>
+        <div class="mb-32 text-center md:text-left" data-aos="fade-up">
+            <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+                <span class="w-12 h-[2px] bg-brand"></span>
+                <p class="text-brand font-black uppercase tracking-[0.6em] text-[10px]">Legal Protocols // 2026</p>
             </div>
-            <p class="text-gray-500 font-bold uppercase tracking-widest text-[10px] border-l border-white/10 pl-6">
-                Project Workflow & <br>Technical Details
-            </p>
-        </div>
-
-        <!-- FAQ List -->
-        <div class="space-y-0 border-t border-white/5">
-            
-            <!-- Q1. Revisions -->
-            <div class="group border-b border-white/5 transition-all duration-500 hover:bg-white/[0.01]">
-                <button onclick="toggleFaq(this)" class="w-full py-10 text-left flex items-center justify-between outline-none">
-                    <div class="flex items-center gap-8 md:gap-16">
-                        <span class="text-brand font-black text-sm italic opacity-40 group-hover:opacity-100 transition-opacity">01</span>
-                        <span class="font-extrabold text-xl md:text-2xl dark:text-white text-gray-800 tracking-tight">What is the professional revision policy?</span>
-                    </div>
-                    <div class="relative w-6 h-6 flex items-center justify-center">
-                        <div class="absolute w-full h-[2px] bg-brand rounded-full"></div>
-                        <div class="faq-icon-v absolute h-full w-[2px] bg-brand rounded-full transition-transform duration-500"></div>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-                    <div class="pb-10 pl-16 md:pl-32 max-w-3xl dark:text-gray-400 text-gray-600 leading-relaxed font-medium text-lg">
-                        I provide <span class="text-brand font-bold underline decoration-brand/30 underline-offset-8">two complimentary rounds</span> of revisions per asset. This covers lighting adjustments, pose tweaks, and minor color grading. Major structural changes or redesigns requested after the final render has been delivered will be subject to a surcharge.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q2. Turnaround -->
-            <div class="group border-b border-white/5 transition-all duration-500 hover:bg-white/[0.01]">
-                <button onclick="toggleFaq(this)" class="w-full py-10 text-left flex items-center justify-between outline-none">
-                    <div class="flex items-center gap-8 md:gap-16">
-                        <span class="text-brand font-black text-sm italic opacity-40 group-hover:opacity-100 transition-opacity">02</span>
-                        <span class="font-extrabold text-xl md:text-2xl dark:text-white text-gray-800 tracking-tight">Expected turnaround and project delivery?</span>
-                    </div>
-                    <div class="relative w-6 h-6 flex items-center justify-center">
-                        <div class="absolute w-full h-[2px] bg-brand rounded-full"></div>
-                        <div class="faq-icon-v absolute h-full w-[2px] bg-brand rounded-full transition-transform duration-500"></div>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-                    <div class="pb-10 pl-16 md:pl-32 max-w-3xl dark:text-gray-400 text-gray-600 leading-relaxed font-medium text-lg">
-                        Standard project completion is typically achieved within <span class="text-brand font-bold uppercase tracking-widest text-sm">3 to 4 Business Days</span>. For time-sensitive projects, a priority queue option is available, guaranteeing delivery within 48 hours for an additional premium.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q3. Software -->
-            <div class="group border-b border-white/5 transition-all duration-500 hover:bg-white/[0.01]">
-                <button onclick="toggleFaq(this)" class="w-full py-10 text-left flex items-center justify-between outline-none">
-                    <div class="flex items-center gap-8 md:gap-16">
-                        <span class="text-brand font-black text-sm italic opacity-40 group-hover:opacity-100 transition-opacity">03</span>
-                        <span class="font-extrabold text-xl md:text-2xl dark:text-white text-gray-900 tracking-tight">What software is used in the workflow?</span>
-                    </div>
-                    <div class="relative w-6 h-6 flex items-center justify-center">
-                        <div class="absolute w-full h-[2px] bg-brand rounded-full"></div>
-                        <div class="faq-icon-v absolute h-full w-[2px] bg-brand rounded-full transition-transform duration-500"></div>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-                    <div class="pb-10 pl-16 md:pl-32 max-w-3xl dark:text-gray-400 text-gray-600 leading-relaxed font-medium text-lg">
-                        My studio utilizes an industry-standard stack: <span class="text-white font-bold">Blender 4.0</span> for high-fidelity path-traced rendering, <span class="text-white font-bold">Roblox Studio</span> for asset extraction, and <span class="text-white font-bold">Adobe Photoshop</span> for professional color grading and VFX composition.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q4. Missing Assets -->
-            <div class="group border-b border-white/5 transition-all duration-500 hover:bg-white/[0.01]">
-                <button onclick="toggleFaq(this)" class="w-full py-10 text-left flex items-center justify-between outline-none">
-                    <div class="flex items-center gap-8 md:gap-16">
-                        <span class="text-brand font-black text-sm italic opacity-40 group-hover:opacity-100 transition-opacity">04</span>
-                        <span class="font-extrabold text-xl md:text-2xl dark:text-white text-gray-800 tracking-tight">Orders without custom models or references?</span>
-                    </div>
-                    <div class="relative w-6 h-6 flex items-center justify-center">
-                        <div class="absolute w-full h-[2px] bg-brand rounded-full"></div>
-                        <div class="faq-icon-v absolute h-full w-[2px] bg-brand rounded-full transition-transform duration-500"></div>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-                    <div class="pb-10 pl-16 md:pl-32 max-w-3xl dark:text-gray-400 text-gray-600 leading-relaxed font-medium text-lg">
-                        While I do accept commissions without provided models, please be advised that this <span class="text-red-500 font-bold uppercase tracking-widest text-sm">reduces overall visual quality</span>. I am forced to rely on public toolbox assets which may appear generic. For a unique, high-tier result, custom models are essential.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Q5. Files -->
-            <div class="group border-b border-white/5 transition-all duration-500 hover:bg-white/[0.01]">
-                <button onclick="toggleFaq(this)" class="w-full py-10 text-left flex items-center justify-between outline-none">
-                    <div class="flex items-center gap-8 md:gap-16">
-                        <span class="text-brand font-black text-sm italic opacity-40 group-hover:opacity-100 transition-opacity">05</span>
-                        <span class="font-extrabold text-xl md:text-2xl dark:text-white text-gray-900 tracking-tight">What final file deliverables are included?</span>
-                    </div>
-                    <div class="relative w-6 h-6 flex items-center justify-center">
-                        <div class="absolute w-full h-[2px] bg-brand rounded-full"></div>
-                        <div class="faq-icon-v absolute h-full w-[2px] bg-brand rounded-full transition-transform duration-500"></div>
-                    </div>
-                </button>
-                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500">
-                    <div class="pb-10 pl-16 md:pl-32 max-w-3xl dark:text-gray-400 text-gray-600 leading-relaxed font-medium text-lg">
-                        Clients receive high-resolution, unwatermarked <span class="text-brand font-bold">PNG</span> files. Please note that <span class="text-white font-bold">PSD (Photoshop) source files are not provided</span> under standard licensing to protect studio proprietary techniques and workflow.
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-      <!-- CTA -->
-        <div class="mt-20 text-center">
-            <p class="text-gray-500 font-bold uppercase tracking-widest text-[10px] mb-6">Still have questions?</p>
-            <a href="https://discord.com/users/1297533282740600920" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               class="inline-block px-10 py-4 border border-[#5865F2] text-[#5865F2] font-black text-xs uppercase tracking-[0.3em] rounded-full transition-all hover:bg-[#5865F2] hover:text-white hover:shadow-[0_10px_30px_rgba(88,101,242,0.3)] hover:scale-105 active:scale-95">
-               DM @hidden.zero
-            </a>
-        </div>
-   <!-- PROFESSIONAL TOS SECTION -->
-<section id="tos" class="py-40 dark:bg-[#050505] bg-white transition-colors duration-500 scroll-mt-24">
-    <div class="max-w-6xl mx-auto px-6">
-        
-        <!-- Header -->
-        <div class="text-center mb-24" data-aos="fade-up">
-            <h3 class="text-brand font-black tracking-[0.4em] uppercase text-[10px] mb-4">Legal & Policies</h3>
-            <h2 class="text-6xl md:text-7xl font-black dark:text-white text-gray-900 tracking-tighter leading-none mb-6 uppercase">
-                Terms of <span class="text-brand">Service.</span>
+            <h2 class="text-7xl md:text-9xl font-black dark:text-white text-gray-900 tracking-tighter leading-[0.85] uppercase mb-8">
+                Terms of <br><span class="text-brand">Service.</span>
             </h2>
-            <p class="text-gray-500 font-bold uppercase tracking-widest text-[10px]">By commissioning Azero GFX, you automatically agree to the following terms.</p>
+            <p class="text-gray-500 font-bold uppercase tracking-[0.4em] text-[9px]">By commissioning me, you automatically agree to the following operational terms.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-[2rem] overflow-hidden">
+        <!-- TOS Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/5 border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
             
-            <!-- 01. Payment Policy -->
-            <div class="p-10 md:p-12 dark:bg-[#080808] bg-white transition-all hover:bg-white/[0.02] group">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-brand font-black text-2xl italic opacity-30 group-hover:opacity-100 transition-opacity">01</span>
-                    <h4 class="text-xl font-black dark:text-white text-gray-900 uppercase tracking-widest">Financial Agreement</h4>
+            <!-- 01. Financial -->
+            <div class="tos-module group" data-aos="fade-up">
+                <div class="tos-scanner"></div>
+                <div class="p-12 md:p-16">
+                    <div class="flex items-center gap-6 mb-8">
+                        <span class="tos-id">[01]</span>
+                        <span class="tos-protocol">Protocol_Finance</span>
+                    </div>
+                    <h4 class="tos-title">Financial Commitment</h4>
+                    <p class="tos-body">
+                        I require a <span class="text-brand font-bold uppercase tracking-widest text-[11px]">50% non-refundable deposit</span> before I begin any work. The remaining balance must be cleared once I show you the watermarked final preview. I will only deliver the high-resolution, unwatermarked files after I have received full payment.
+                    </p>
                 </div>
-                <p class="dark:text-gray-400 text-gray-600 leading-relaxed font-medium">
-                    A <span class="text-white font-bold">50% non-refundable deposit</span> is required before any project initiation. The remaining balance must be cleared upon the presentation of the watermarked final preview. No final unwatermarked files will be delivered until full payment is received.
-                </p>
             </div>
 
-            <!-- 02. Ownership & Usage -->
-            <div class="p-10 md:p-12 dark:bg-[#080808] bg-white transition-all hover:bg-white/[0.02] group">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-brand font-black text-2xl italic opacity-30 group-hover:opacity-100 transition-opacity">02</span>
-                    <h4 class="text-xl font-black dark:text-white text-gray-900 uppercase tracking-widest">Usage Rights</h4>
+            <!-- 02. Usage -->
+            <div class="tos-module group" data-aos="fade-up" data-aos-delay="50">
+                <div class="tos-scanner"></div>
+                <div class="p-12 md:p-16">
+                    <div class="flex items-center gap-6 mb-8">
+                        <span class="tos-id">[02]</span>
+                        <span class="tos-protocol">Protocol_Rights</span>
+                    </div>
+                    <h4 class="tos-title">Usage & Ownership</h4>
+                    <p class="tos-body">
+                        I grant you full rights to use the finished artwork for your Roblox games and marketing. However, <span class="text-white font-bold">I reserve the right</span> to display the artwork in my portfolio and on social media for my own promotion. You are strictly prohibited from reselling my work or claiming you created it.
+                    </p>
                 </div>
-                <p class="dark:text-gray-400 text-gray-600 leading-relaxed font-medium">
-                    The client is granted full rights to utilize the artwork for their Roblox games and marketing. However, <span class="text-brand font-bold">Azero reserves the right</span> to display the artwork in portfolios and social media for promotional purposes. Redistributing or reselling the artwork as your own is strictly prohibited.
-                </p>
             </div>
 
-            <!-- 03. Workflow & Conduct -->
-            <div class="p-10 md:p-12 dark:bg-[#080808] bg-white transition-all hover:bg-white/[0.02] group">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-brand font-black text-2xl italic opacity-30 group-hover:opacity-100 transition-opacity">03</span>
-                    <h4 class="text-xl font-black dark:text-white text-gray-900 uppercase tracking-widest">Communication</h4>
+            <!-- 03. Communication -->
+            <div class="tos-module group" data-aos="fade-up" data-aos-delay="100">
+                <div class="tos-scanner"></div>
+                <div class="p-12 md:p-16">
+                    <div class="flex items-center gap-6 mb-8">
+                        <span class="tos-id">[03]</span>
+                        <span class="tos-protocol">Protocol_Sync</span>
+                    </div>
+                    <h4 class="tos-title">Communication Sync</h4>
+                    <p class="tos-body">
+                        Fast communication helps me deliver on time. If I do not hear from you for more than <span class="text-white font-bold uppercase tracking-widest text-[11px]">7 consecutive days</span> without prior notice, I will consider the commission abandoned. In this case, I will terminate the project, and your deposit will not be refunded.
+                    </p>
                 </div>
-                <p class="dark:text-gray-400 text-gray-600 leading-relaxed font-medium">
-                    Prompt communication is essential. If a client "ghosts" or fails to respond for more than <span class="text-white font-bold">7 consecutive days</span> without prior notice, the commission will be terminated, the slot forfeited, and the deposit will not be refunded.
-                </p>
             </div>
 
-            <!-- 04. Refund Policy -->
-            <div class="p-10 md:p-12 dark:bg-[#080808] bg-white transition-all hover:bg-white/[0.02] group">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-brand font-black text-2xl italic opacity-30 group-hover:opacity-100 transition-opacity">04</span>
-                    <h4 class="text-xl font-black dark:text-white text-gray-900 uppercase tracking-widest">Cancellations</h4>
+            <!-- 04. Cancellations -->
+            <div class="tos-module group" data-aos="fade-up" data-aos-delay="150">
+                <div class="tos-scanner"></div>
+                <div class="p-12 md:p-16">
+                    <div class="flex items-center gap-6 mb-8">
+                        <span class="tos-id">[04]</span>
+                        <span class="tos-protocol">Protocol_Abort</span>
+                    </div>
+                    <h4 class="tos-title">Project Termination</h4>
+                    <p class="tos-body">
+                        I only issue refunds if I am unable to complete your project due to my own personal circumstances. If you decide to cancel the order <span class="text-red-500 font-bold uppercase tracking-widest text-[11px]">after I have started working</span>, I will not issue a refund regardless of the payment status.
+                    </p>
                 </div>
-                <p class="dark:text-gray-400 text-gray-600 leading-relaxed font-medium">
-                    Refunds are only issued if the artist is unable to complete the project due to personal circumstances. If the client decides to cancel the project <span class="text-red-500 font-bold uppercase">after work has begun</span>, no refund will be issued regardless of the payment status.
-                </p>
             </div>
 
         </div>
 
-        <!-- Warning Note -->
-        <div class="mt-12 flex items-center justify-center gap-4 py-6 px-8 rounded-2xl bg-brand/5 border border-brand/20">
-            <svg class="w-5 h-5 text-brand" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-            <p class="text-xs font-bold text-brand uppercase tracking-widest">Chargebacks will result in a permanent blacklist from all future services.</p>
+        <!-- HIGH-IMPACT WARNING BAR -->
+        <div class="mt-12 group" data-aos="zoom-in">
+            <div class="relative overflow-hidden bg-red-500/5 border border-red-500/20 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-center gap-6 transition-all hover:bg-red-500/10 hover:border-red-500/40">
+                <div class="w-3 h-3 bg-red-600 rounded-full animate-ping"></div>
+                <p class="text-red-500 font-black text-center uppercase tracking-[0.4em] text-[10px]">
+                    Warning: Chargebacks will result in a permanent blacklist from all future services.
+                </p>
+                <div class="hidden md:block w-3 h-3 bg-red-600 rounded-full animate-ping"></div>
+            </div>
         </div>
     </div>
 </section>
@@ -1273,101 +3244,107 @@ function setModalStyle(style) {
 
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
+    // 1. INITIALIZE AOS & UI
     AOS.init({ duration: 800, once: true });
 
-    function toggleModal() { document.getElementById('contact-modal').classList.toggle('active'); }
+    function toggleModal() { 
+        document.getElementById('contact-modal').classList.toggle('active'); 
+    }
 
+    // 2. LIVE IST CLOCK
     function updateISTClock() {
-        const time = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }).format(new Date());
-        const clock = document.getElementById('ist-clock');
-        if(clock) clock.textContent = time;
+        const options = {
+            timeZone: 'Asia/Kolkata',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        };
+        const formatter = new Intl.DateTimeFormat('en-US', options);
+        const timeString = formatter.format(new Date());
+        
+        const clockElement = document.getElementById('ist-clock');
+        if (clockElement) {
+            clockElement.textContent = timeString;
+        }
     }
     setInterval(updateISTClock, 1000); 
     updateISTClock();
 
-   
+    // 3. PRICING CONTROLLER
+    function pricingSpotlight(e) {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+    }
+
+    function animatePrice(id, targetValue, suffix = "") {
+        const el = document.getElementById(id);
+        if (!el) return;
+        
+        const startValue = parseInt(el.innerText.replace(/[^0-9]/g, '')) || 0;
+        const duration = 1500;
+        let startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 4); 
+            const current = Math.floor(ease * (targetValue - startValue) + startValue);
+            const formattedNumber = current >= 1000 ? current.toLocaleString() : current;
+            el.innerText = suffix ? `${formattedNumber} ${suffix}` : formattedNumber;
+            if (progress < 1) window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+    }
 
     function updatePrices(style) {
-    const tRealistic = document.getElementById('tab-realistic'); 
-    const tCcu = document.getElementById('tab-ccu');
-    
-    // Price Elements
-    const pIconUsd = document.getElementById('price-icon-usd'); 
-    const pThumbUsd = document.getElementById('price-thumb-usd'); 
-    const pBundleUsd = document.getElementById('price-bundle-usd');
-    const pIconRbx = document.getElementById('price-icon-rbx');
-    const pThumbRbx = document.getElementById('price-thumb-rbx');
-    const pBundleRbx = document.getElementById('price-bundle-rbx');
-
-    // Feature Lists
-    const fIcon = document.getElementById('icon-features');
-    const fBundle = document.getElementById('bundle-features');
-    const fThumb = document.getElementById('thumb-features');
-
-    const bullet = '<div class="w-1.5 h-1.5 rounded-full bg-brand"></div>';
-
-    if (style === 'realistic') {
-        tRealistic.className = "px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm shadow-lg shadow-brand/20"; 
-        tCcu.className = "px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 font-bold text-sm";
+        const isRealistic = (style === 'realistic');
         
-        pIconUsd.innerText = '$40'; pIconRbx.innerText = '10,000 Robux (+Tax)';
-        pThumbUsd.innerText = '$57'; pThumbRbx.innerText = '15,000 Robux (+Tax)';
-        pBundleUsd.innerText = '$80'; pBundleRbx.innerText = '20,000 Robux PACKAGE';
+        // UI Tabs
+        const realTab = document.getElementById('tab-realistic');
+        const ccuTab = document.getElementById('tab-ccu');
+        const toggleUI = document.getElementById('price-toggle-ui');
 
-        // REALISTIC LISTS
-        fIcon.innerHTML = `
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>1024x1024 Resolution</span></div>
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>Realistic Texturing</span></div>`;
-        
-        fThumb.innerHTML = `
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>1920x1080 Resolution</span></div>
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>Realistic Lighting & Shadows</span></div>`;
+        if(realTab) realTab.classList.toggle('is-active', isRealistic);
+        if(ccuTab) ccuTab.classList.toggle('is-active', !isRealistic);
+        if(toggleUI) toggleUI.classList.toggle('is-ctr', !isRealistic);
 
-        fBundle.innerHTML = `
-            <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700"><span>Thumbnail + Icon</span></div>
-            <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700"><span>Priority Delivery</span></div>`;
+        // Animate USD
+        animatePrice('price-icon-usd', isRealistic ? 40 : 25);
+        animatePrice('price-bundle-usd', isRealistic ? 80 : 55);
+        animatePrice('price-thumb-usd', isRealistic ? 57 : 40);
 
-    } else {
-        tCcu.className = "px-8 py-3 rounded-xl bg-brand text-white font-bold text-sm shadow-lg shadow-brand/20"; 
-        tRealistic.className = "px-8 py-3 rounded-xl dark:text-gray-400 text-gray-500 font-bold text-sm";
-        
-        pIconUsd.innerText = '$25'; pIconRbx.innerText = '6,000 Robux (+Tax)';
-        pThumbUsd.innerText = '$40'; pThumbRbx.innerText = '10,000 Robux (+Tax)';
-        pBundleUsd.innerText = '$55'; pBundleRbx.innerText = '13,000 Robux PACKAGE';
+        // Animate Robux
+        animatePrice('price-icon-rbx', isRealistic ? 10000 : 6000, "ROBUX");
+        animatePrice('price-thumb-rbx', isRealistic ? 15000 : 10000, "ROBUX");
+        animatePrice('price-bundle-rbx', isRealistic ? 20000 : 13000, "ROBUX PACKAGE");
 
-        // HIGH CTR LISTS
-        fIcon.innerHTML = `
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>1024x1024 Resolution</span></div>
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>Vibrant Colour Combination</span></div>`;
+        // Features
+        const bullet = (text) => `<div class="feature-bullet"><div class="bullet-dot"></div><span>${text}</span></div>`;
+        const iconF = document.getElementById('icon-features');
+        const bundleF = document.getElementById('bundle-features');
+        const thumbF = document.getElementById('thumb-features');
 
-        fThumb.innerHTML = `
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>1920x1080 Resolution</span></div>
-            <div class="flex items-center gap-3 text-sm dark:text-gray-400 text-gray-600">${bullet}<span>High CCU Compositions</span></div>`;
-
-        fBundle.innerHTML = `
-            <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700"><span>Thumbnail + Icon Bundle</span></div>
-            <div class="flex justify-between items-center text-sm font-bold dark:text-gray-300 text-gray-700"><span>Priority Delivery</span></div>`;
-    }
-}
-
-// MAKE SURE TO ADD THIS LINE SO THE PAGE LOADS CONTENT ON START
-updatePrices('realistic');
-
-    function toggleFaq(button) {
-        const answer = button.nextElementSibling;
-        if (answer.style.maxHeight) {
-            answer.style.maxHeight = null;
+        if(isRealistic) {
+            iconF.innerHTML = bullet("Realistic Textures") + bullet("4K PBR Materials");
+            thumbF.innerHTML = bullet("Cinematic Atmosphere") + bullet("Custom Lighting");
+            bundleF.innerHTML = bullet("All-In-One Identity") + bullet("Priority Delivery");
         } else {
-            answer.style.maxHeight = answer.scrollHeight + "px";
+            iconF.innerHTML = bullet("High-CTR Palette") + bullet("Vibrant Composition");
+            thumbF.innerHTML = bullet("Viral Optimized") + bullet("Aggressive CCU VFX");
+            bundleF.innerHTML = bullet("Full Game Overhaul") + bullet("Priority Delivery") + bullet("A/B Support");
         }
     }
 
-    // --- GALLERY SYSTEM ---
+    // 4. GALLERY SYSTEM
     const galleryData = {
         realistic: ["Db and Kate ps.png", "db and mad ps.png", "TRAIN GFX REMAKE.png", "bus render.png"],
         ctr: ["pickaxe tn blurred out.png", "updated thumbnail sheriff.png", "piggy tn 2.png","bacon boy chasing girl tn.png","bacon girl and boy slide game thumbnail w text 2.png","bacon man ski thumbnail.png","piggy tn 3.png"]
     };
-    
     let galleryState = { realistic: 0, ctr: 0 };
     let activeGalleryName = 'realistic';
 
@@ -1377,39 +3354,23 @@ updatePrices('realistic');
         const dots = document.querySelector(`[data-gallery-dots="${name}"]`);
         if(!track || !dots) return;
 
-        track.innerHTML = items.map((src, index) => `
-            <div class="gallery-slide" data-gallery-slide="${name}" data-index="${index}">
-                <img src="${src}" alt="Portfolio Work">
-            </div>
-        `).join('');
-
-        dots.innerHTML = items.map((_, index) => `
-            <div class="gallery-dot" data-gallery-dot="${name}" data-index="${index}" onclick="jumpToSlide('${name}', ${index})"></div>
-        `).join('');
-
+        track.innerHTML = items.map((src, index) => `<div class="gallery-slide" data-gallery-slide="${name}" data-index="${index}"><img src="${src}" alt="Work"></div>`).join('');
+        dots.innerHTML = items.map((_, index) => `<div class="gallery-dot" data-gallery-dot="${name}" data-index="${index}" onclick="jumpToSlide('${name}', ${index})"></div>`).join('');
         updateGallery(name);
     }
 
-    function jumpToSlide(name, index) {
-        galleryState[name] = index;
-        updateGallery(name);
-    }
+    function jumpToSlide(name, index) { galleryState[name] = index; updateGallery(name); }
 
-  function updateGallery(name) {
+    function updateGallery(name) {
         const items = galleryData[name];
         const active = galleryState[name];
         const slides = document.querySelectorAll(`[data-gallery-slide="${name}"]`);
-
         slides.forEach((slide) => {
             const index = Number(slide.dataset.index);
             let pos = index - active;
-            
             if (pos > items.length / 2) pos -= items.length;
             if (pos < -items.length / 2) pos += items.length;
-            
             const abs = Math.abs(pos);
-            
-            // 50% offset keeps side images visible but nicely tucked in
             slide.style.setProperty('--offset', `${pos * 50}%`); 
             slide.style.setProperty('--scale', pos === 0 ? '1' : '0.8');
             slide.style.setProperty('--opacity', abs > 1 ? '0' : pos === 0 ? '1' : '0.2'); 
@@ -1417,12 +3378,9 @@ updatePrices('realistic');
             slide.style.setProperty('--blur', pos === 0 ? '0px' : '8px');
             slide.style.setProperty('--brightness', pos === 0 ? '1' : '0.3');
         });
-
-        // Sync Dots
-        document.querySelectorAll(`[data-gallery-dot="${name}"]`).forEach((dot, i) => {
-            dot.classList.toggle('is-active', i === active);
-        });
+        document.querySelectorAll(`[data-gallery-dot="${name}"]`).forEach((dot, i) => dot.classList.toggle('is-active', i === active));
     }
+
     function moveGalleryMaster(dir) {
         const name = activeGalleryName;
         const len = galleryData[name].length;
@@ -1430,99 +3388,75 @@ updatePrices('realistic');
         updateGallery(name);
     }
 
-    // --- INITIALIZATION ---
-    // This function handles the jump from the Nav bar to the Gallery
-function selectGalleryStyle(name, shouldScroll = false) {
-    // 1. Find the button in your gallery switcher (the blue pill) and click it
-    const targetBtn = document.querySelector(`[data-style-select="${name}"]`);
-    if (targetBtn) {
-        targetBtn.click(); 
-    }
-    
-    // 2. Smoothly scroll the user down to the examples section
-    if (shouldScroll) {
-        const element = document.getElementById('examples');
-        if (element) {
-            window.scrollTo({
-                top: element.offsetTop - 100, // -100 accounts for your fixed nav bar
-                behavior: 'smooth'
-            });
-        }
-    }
-}
+    // 5. INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
-        // Render both galleries
         renderGallery('realistic');
         renderGallery('ctr');
 
-     // FIXED STYLE SWITCHER
-     // Style Switcher Logic
-// ELITE STYLE SWITCHER LOGIC
-document.querySelectorAll('[data-style-select]').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const target = btn.dataset.styleSelect;
-        const uiContainer = document.getElementById('style-toggle-ui');
-        activeGalleryName = target; 
-
-        // 1. Update active button text color
-        document.querySelectorAll('[data-style-select]').forEach(b => b.classList.remove('is-active'));
-        btn.classList.add('is-active');
-
-        // 2. Slide the blue pill (CSS handles the animation)
-        if (target === 'ctr') {
-            uiContainer.classList.add('is-ctr');
-        } else {
-            uiContainer.classList.remove('is-ctr');
-        }
-
-        // 3. Toggle Galleries and Dots
-        document.querySelectorAll('.style-gallery').forEach(g => {
-            g.classList.toggle('hidden', g.dataset.gallery !== target);
-        });
-        document.querySelectorAll('.gallery-dots').forEach(d => {
-            d.classList.toggle('hidden', d.dataset.galleryDots !== target);
+        // Gallery Switcher logic
+        document.querySelectorAll('[data-style-select]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.styleSelect;
+                const uiContainer = document.getElementById('style-toggle-ui');
+                activeGalleryName = target; 
+                document.querySelectorAll('[data-style-select]').forEach(b => b.classList.remove('is-active'));
+                btn.classList.add('is-active');
+                uiContainer.classList.toggle('is-ctr', target === 'ctr');
+                document.querySelectorAll('.style-gallery').forEach(g => g.classList.toggle('hidden', g.dataset.gallery !== target));
+                document.querySelectorAll('.gallery-dots').forEach(d => d.classList.toggle('hidden', d.dataset.galleryDots !== target));
+                
+                const label = document.getElementById('viewing-text');
+                if(label) label.innerText = target === 'ctr' ? 'High CTR' : 'Realistic';
+                updateGallery(target);
+            });
         });
 
-        // 4. Update helper text
-        const label = document.getElementById('viewing-text');
-        if(label) label.innerText = target === 'ctr' ? 'High CCU' : 'Realistic';
-
-        updateGallery(target);
-    });
-});
-        
-        // Load Reviews
+        // Review Loading
         loadDynamicReviews();
+
+        // Price Observer (Zero out first)
+        ['price-icon-usd', 'price-bundle-usd', 'price-thumb-usd', 'price-icon-rbx', 'price-bundle-rbx', 'price-thumb-rbx'].forEach(id => {
+            const el = document.getElementById(id);
+            if(el) el.innerText = "0";
+        });
+        const pricingSection = document.getElementById('pricing');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    updatePrices('realistic');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        if (pricingSection) observer.observe(pricingSection);
     });
 
-  async function loadDynamicReviews() {
+   // 1. RE-DESIGNED REVIEW LOADER
+async function loadDynamicReviews() {
     const container = document.getElementById('dynamic-reviews-container');
     if (!container) return;
 
-    // Change this to YOUR GitHub Raw URL or your review website URL
     const YOUR_REVIEW_URL = 'https://raw.githubusercontent.com/hehim552-glitch/reviews/main/reviews.json';
 
     const cardTemplate = (rev) => {
-        // This part makes sure the stars show up correctly
-        let stars = '⭐'.repeat(parseInt(rev.stars) || 5);
-        
+        let stars = '★'.repeat(parseInt(rev.stars) || 5);
         return `
-            <div class="review-card w-[420px] p-10 bg-[#0a0a0a] border border-white/5 rounded-[2.5rem] shrink-0">
-                <div class="flex items-center gap-5 mb-8">
-                    <!-- This pulls the first letter of the username for the profile icon -->
-                    <div class="w-14 h-14 bg-brand/10 flex items-center justify-center rounded-2xl border border-white/10 text-brand font-bold text-2xl">
-                        ${(rev.username || 'U').charAt(0).toUpperCase()}
+            <div class="terminal-signal shrink-0">
+                <div class="flex justify-between items-start mb-8">
+                    <div class="flex items-center gap-4">
+                        <div class="avatar-block">${(rev.username || 'U').charAt(0).toUpperCase()}</div>
+                        <div>
+                            <p class="font-black text-white text-lg uppercase tracking-tight">${rev.username || 'Anonymous'}</p>
+                            <p class="text-[9px] font-bold text-brand uppercase tracking-widest">Verified_Client</p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="font-extrabold text-white text-lg">${rev.username || 'Anonymous'}</p>
-                        <p class="text-[9px] font-bold text-brand uppercase tracking-widest">Verified Client</p>
-                    </div>
+                    <span class="signal-meta">Signal_Active</span>
                 </div>
-                <div class="flex gap-1 mb-6 text-xs">${stars}</div>
-                <p class="review-message text-gray-400 italic text-md leading-relaxed">"${rev.message || 'No message provided.'}"</p>
-                <div class="mt-8 pt-6 border-t border-white/5 flex justify-between">
-                    <p class="text-[9px] font-black uppercase text-gray-600 tracking-widest">${rev.date || 'RECENT'}</p>
-                    <span class="text-[9px] font-bold text-brand/50 uppercase">Verified Purchase</span>
+                <div class="flex gap-1 mb-6 text-[#ffd700] text-xs">${stars}</div>
+                <p class="review-text">"${rev.message}"</p>
+                <div class="mt-10 pt-6 border-t border-white/5 flex justify-between items-center">
+                    <span class="text-[8px] font-mono text-gray-600 uppercase tracking-widest">Archive_ID: ${rev.date || '06-2026'}</span>
+                    <span class="text-[8px] font-black text-brand/40 uppercase">Encrypted_Log</span>
                 </div>
             </div>
         `;
@@ -1530,77 +3464,102 @@ document.querySelectorAll('[data-style-select]').forEach(btn => {
 
     try {
         const response = await fetch(YOUR_REVIEW_URL);
-        if (!response.ok) throw new Error('Could not find your reviews');
-        
         const reviews = await response.json();
-        
-        // This converts your JSON data into the HTML cards
         const content = reviews.map(cardTemplate).join('');
-        
-        // This puts them on the page twice (for the infinite scrolling effect)
-        container.innerHTML = `
-            <div class="review-marquee-group">${content}</div>
-            <div class="review-marquee-group" aria-hidden="true">${content}</div>
-        `;
+        // We put it twice for a seamless infinite loop
+        container.innerHTML = `<div class="flex">${content}${content}</div>`; 
     } catch (e) {
-        // If your link fails, we show this message so you know it's broken
-        console.error("Review Error:", e);
-        container.innerHTML = `<p class="text-gray-500 py-20 text-center w-full font-bold">Failed to load your specific reviews. Check your URL link.</p>`;
+        container.innerHTML = `<p class="text-gray-500 py-10 w-full text-center">Neural Link Failure: Review Data Offline.</p>`;
     }
 }
 
-// Call the function
-loadDynamicReviews();
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxText = document.querySelector('.gallery-page .absolute.top-0');
-        if(parallaxText) {
-            // Adjust the 0.2 to make it move faster or slower
-            parallaxText.style.transform = `translateX(-50%) translateY(${scrolled * 0.15}px)`;
-        }
-    });
-    // 1. THE COUNTING LOGIC
-function animateCount(element, start, end, duration, suffix = '', decimals = 0) {
-    if (!element) return;
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        // Easing: easeOutExpo (makes it slow down as it reaches the end)
-        const easedProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        const currentValue = start + (end - start) * easedProgress;
+// 2. FIXED COUNTER ANIMATION ENGINE
+function runCounter(id, target, decimals = 0, suffix = "") {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let current = 0;
+    const duration = 2000;
+    const startTime = performance.now();
 
-        element.textContent = currentValue.toFixed(decimals) + suffix;
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
+    function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+        const val = ease * target;
+        el.innerText = val.toFixed(decimals) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
 }
 
-// 2. THE SCROLL DETECTION (Observer)
-const statsTrigger = document.getElementById('stats-trigger');
-const statsObserver = new IntersectionObserver((entries) => {
+// 3. SCROLL TRIGGER FOR COUNTERS
+const reviewsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        // When the stats block is visible on screen
         if (entry.isIntersecting) {
-            const statClients = document.getElementById('stat-clients');
-            const statRating = document.getElementById('stat-rating');
-
-            // Trigger the animations (Element, start, end, speed, suffix, decimals)
-            animateCount(statClients, 0, 100, 3000, '+', 0);
-            animateCount(statRating, 0, 5, 3000, '', 1);
-
-            // Stop watching once it has animated once
-            statsObserver.unobserve(entry.target);
+            runCounter('counter-clients', 150, 0, "+"); // Adjust 150 to your real count
+            runCounter('counter-rating', 5.0, 1);
+            reviewsObserver.unobserve(entry.target);
         }
     });
-}, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+}, { threshold: 0.5 });
 
-// Start watching the stats box
-if(statsTrigger) statsObserver.observe(statsTrigger);
+const statsBox = document.getElementById('reviews-stats-trigger');
+if(statsBox) reviewsObserver.observe(statsBox);
+
+// Initialize
+loadDynamicReviews();
+// SMOOTH MARQUEE SPEED CONTROLLER
+const marqueeTrack = document.querySelector('.review-marquee-track');
+const marqueeContainer = document.querySelector('.review-marquee-container');
+
+if (marqueeContainer && marqueeTrack) {
+    marqueeContainer.addEventListener('mouseenter', () => {
+        // Find the active CSS animation and slow it down to 0.2x speed
+        const animations = marqueeTrack.getAnimations();
+        animations.forEach(anim => anim.playbackRate = 0.5);
+    });
+
+    marqueeContainer.addEventListener('mouseleave', () => {
+        // Return to normal 1x speed
+        const animations = marqueeTrack.getAnimations();
+        animations.forEach(anim => anim.playbackRate = 1);
+    });
+}
+// --- FAQ CONTROLLER ---
+function toggleFaq(btn) {
+    const parent = btn.closest('.faq-elite-item');
+    const isActive = parent.classList.contains('is-active');
+    
+    // Smoothly close all other cards
+    document.querySelectorAll('.faq-elite-item').forEach(card => {
+        card.classList.remove('is-active');
+    });
+
+    // Toggle current
+    if (!isActive) {
+        parent.classList.add('is-active');
+    }
+}
+// --- NAVIGATION GALLERY HELPER ---
+function selectGalleryStyle(style, shouldScroll = false) {
+    // 1. Find the hidden button in your gallery section that matches the style and click it
+    const targetBtn = document.querySelector(`[data-style-select="${style}"]`);
+    if (targetBtn) {
+        targetBtn.click();
+    }
+
+    // 2. Smoothly scroll to the gallery section
+    if (shouldScroll) {
+        const section = document.getElementById('examples');
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+}
 </script>
 
    
 </body>
 </html>
+
+
