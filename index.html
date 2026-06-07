@@ -3458,11 +3458,11 @@ async function loadDynamicReviews() {
    const cardTemplate = (rev) => {
     let stars = '★'.repeat(parseInt(rev.stars) || 5);
     
-    // Use avatar_url if available, otherwise fall back to first letter
-    const avatarHtml = rev.avatar_url 
-        ? `<img src="${rev.avatar_url}" alt="${rev.username}" 
+    const avatarHtml = rev.avatar_url
+        ? `<img src="${rev.avatar_url}"
                style="width:55px;height:55px;object-fit:cover;border-radius:2px;box-shadow:0 10px 20px rgba(0,153,255,0.2);"
-               onerror="this.outerHTML='<div class=\\'avatar-block\\'>${(rev.username || 'U').charAt(0).toUpperCase()}</div>'">`
+               onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+           <div class="avatar-block" style="display:none">${(rev.username || 'U').charAt(0).toUpperCase()}</div>`
         : `<div class="avatar-block">${(rev.username || 'U').charAt(0).toUpperCase()}</div>`;
 
     return `
@@ -3531,8 +3531,7 @@ const reviewsObserver = new IntersectionObserver((entries) => {
 const statsBox = document.getElementById('reviews-stats-trigger');
 if(statsBox) reviewsObserver.observe(statsBox);
 
-// Initialize
-loadDynamicReviews();
+
 // SMOOTH MARQUEE SPEED CONTROLLER
 const marqueeTrack = document.querySelector('.review-marquee-track');
 const marqueeContainer = document.querySelector('.review-marquee-container');
