@@ -43,8 +43,8 @@ const FIREBASE_CONFIG = {
 // Dashboard home shows your "Cloud name". Create an unsigned upload
 // preset at Settings > Upload > Upload presets > Add upload preset >
 // Signing Mode: Unsigned > Save > copy its name.
-const CLOUDINARY_CLOUD_NAME = "FILL_IN_CLOUD_NAME";
-const CLOUDINARY_UPLOAD_PRESET = "FILL_IN_UPLOAD_PRESET";
+const CLOUDINARY_CLOUD_NAME = "qioty6cj";
+const CLOUDINARY_UPLOAD_PRESET = "dkqalls0";
 
 // ---- FILL IN: Discord webhook (optional — leave blank to skip pings) ----
 const DISCORD_WEBHOOK_URL = ""; // e.g. "https://discord.com/api/webhooks/..."
@@ -348,20 +348,15 @@ function statusBanner(color, icon, text) {
 async function listMyOrders() {
   const user = window.azeroAuth ? window.azeroAuth.getCurrentUser() : null;
   if (!user) return [];
-  const q = query(collection(db, "orders"), where("uid", "==", user.uid), orderBy("createdAt", "desc"));
+  const q = query(collection(db, "orders"), where("uid", "==", user.uid));
   return new Promise((resolve) => {
     onSnapshot(q,
-      (snap) => resolve(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
-      (err) => {
-        console.error("listMyOrders query failed:", err);
-        // Firestore throws this specific error when a query needs a composite
-        // index it doesn't have yet — the real error in your browser console
-        // (F12) includes a direct link to auto-create it in Firebase Console.
-        if (err.code === "failed-precondition") {
-          console.error("This query needs a Firestore index — check the link in this error message, open it, click 'Create Index', then wait ~1 minute and reload.");
-        }
-        resolve([]);
+      (snap) => {
+        const orders = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+        orders.sort((a, b) => (b.createdAt?.toMillis?.() || 0) - (a.createdAt?.toMillis?.() || 0));
+        resolve(orders);
       },
+      (err) => { console.error("listMyOrders failed:", err); resolve([]); },
       { onlyOnce: true }
     );
   });
