@@ -20,16 +20,21 @@ import {
 // Duplicated here on purpose — modules don't share scope, and this
 // keeps auth.js usable on its own if you ever split pages.
 const FIREBASE_CONFIG = {
-apiKey: "AIzaSyCXyemHrPApcIwYDW-ZLjtoUhFEk-t0Huk",
-authDomain: "website-test-64cac.firebaseapp.com",
-projectId: "website-test-64cac",
-storageBucket: "website-test-64cac.firebasestorage.app",
-messagingSenderId: "512176077221",
-appId: "1:512176077221:web:3d23bf04cecedafa03904c",
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 const app = getApps().length ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
 const auth = getAuth(app);
+
+// Must match ADMIN_EMAILS in admin.html exactly — only used here to decide
+// whether to show the small "Admin" link below, not for any actual access
+// control (admin.html's own check is what really guards the dashboard).
+const ADMIN_EMAILS = ["hehim552@gmail.com"];
 
 // Same guard as order-chat.js — only one of the two files should actually
 // call connectAuthEmulator, since they share the same Auth instance when
@@ -52,8 +57,10 @@ function renderAuthUI() {
   if (!slot) return;
 
   if (currentUser) {
+    const isAdmin = ADMIN_EMAILS.includes(currentUser.email);
     slot.innerHTML = `
       <div class="flex items-center gap-3">
+        ${isAdmin ? `<a href="admin.html" class="text-xs font-black text-brand uppercase tracking-widest hover:text-white">Admin</a>` : ""}
         <span class="text-xs text-gray-400">Hi, ${escapeHtml(currentUser.displayName || currentUser.email)}</span>
         <button id="azero-logout-btn" class="text-xs font-bold text-gray-400 hover:text-white uppercase tracking-widest">Log out</button>
       </div>
