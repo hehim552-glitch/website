@@ -31,12 +31,12 @@ import {
 import { getAuth, connectAuthEmulator } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const FIREBASE_CONFIG = {
-apiKey: "AIzaSyCXyemHrPApcIwYDW-ZLjtoUhFEk-t0Huk",
-authDomain: "website-test-64cac.firebaseapp.com",
-projectId: "website-test-64cac",
-storageBucket: "website-test-64cac.firebasestorage.app",
-messagingSenderId: "512176077221",
-appId: "1:512176077221:web:3d23bf04cecedafa03904c",
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 // ---- FILL IN: free Cloudinary account (cloudinary.com, no card) ----
@@ -350,7 +350,20 @@ async function listMyOrders() {
   if (!user) return [];
   const q = query(collection(db, "orders"), where("uid", "==", user.uid), orderBy("createdAt", "desc"));
   return new Promise((resolve) => {
-    onSnapshot(q, (snap) => resolve(snap.docs.map((d) => ({ id: d.id, ...d.data() }))), { onlyOnce: true });
+    onSnapshot(q,
+      (snap) => resolve(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
+      (err) => {
+        console.error("listMyOrders query failed:", err);
+        // Firestore throws this specific error when a query needs a composite
+        // index it doesn't have yet — the real error in your browser console
+        // (F12) includes a direct link to auto-create it in Firebase Console.
+        if (err.code === "failed-precondition") {
+          console.error("This query needs a Firestore index — check the link in this error message, open it, click 'Create Index', then wait ~1 minute and reload.");
+        }
+        resolve([]);
+      },
+      { onlyOnce: true }
+    );
   });
 }
 
