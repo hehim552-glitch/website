@@ -7,9 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <script type="module" src="order-chat.js"></script>
-    <script type="module" src="auth.js"></script>
-
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -2081,8 +2079,6 @@
 
     <!-- ORDER BUTTON (STAYS ON THE RIGHT) -->
     <div class="flex items-center gap-4">
-        <a href="myorders.html" class="text-sm font-bold dark:text-gray-300 text-gray-600 hover:text-brand transition-colors duration-300">My Orders</a>
-        <div id="azero-auth-slot"></div>
         <button onclick="toggleModal()" class="bg-brand px-8 py-3 rounded-full text-sm font-black text-white transition-all duration-300 shadow-lg shadow-brand/20 hover:shadow-[0_0_30px_#0099ff] hover:scale-105 active:scale-95">ORDER NOW!</button>
     </div>
 </nav>
@@ -2248,17 +2244,14 @@
         </div>
 
         <!-- STEP 3: SEND -->
-        <div id="modal-step-3" class="p-8 flex-grow hidden">
-            <h2 class="text-4xl font-extrabold text-white mb-1">Ready to Send</h2>
-            <div class="bg-[#111] border border-brand/20 rounded-2xl p-6 mt-8 relative">
-                <div class="absolute left-0 top-6 bottom-6 w-1 bg-brand rounded-full"></div>
-                <div id="final-preview" class="text-gray-300 italic space-y-1 text-sm leading-relaxed"></div>
-            </div>
-            <button id="start-order-btn" onclick="startOrderChat()" class="w-full bg-brand mt-10 py-5 rounded-2xl flex items-center justify-center gap-4 transition-all hover:scale-[1.01]">
-                <span class="text-white font-black uppercase tracking-widest">Place Order & Start Chat</span>
-            </button>
-            <div id="azero-chat-container" class="mt-6"></div>
-        </div>
+        <div id="modal-step-3" class="p-6 flex-grow hidden">
+    <h2 class="text-2xl font-extrabold text-white mb-4">Confirm & Order</h2>
+    <div id="final-preview" class="text-gray-400 text-sm mb-4"></div>
+    <button id="start-order-btn" onclick="startOrderChat()" class="w-full bg-brand py-4 rounded-2xl flex items-center justify-center gap-4 transition-all hover:scale-[1.01]">
+        <span class="text-white font-black uppercase tracking-widest text-sm">Place Order & Start Chat</span>
+    </button>
+    <div id="azero-chat-container" class="mt-4"></div>
+</div>
 
         <!-- FOOTER -->
         <div class="p-8 border-t border-white/5 flex justify-between items-center bg-black/20">
@@ -2413,23 +2406,10 @@ function setModalStyle(style) {
     }
 
     function generatePreview() {
-        const name = document.getElementById('form-name').value;
-        const disc = document.getElementById('form-discord').value;
-        const chars = document.getElementById('form-chars').value || '1';
-        const desc = document.getElementById('form-desc').value;
-        const refs = document.getElementById('form-refs').value || 'None provided';
-        const styleName = selectedStyle === 'realistic' ? 'Realistic Style' : 'High CTR Style';
-
-        const html = `
-            <p>Hey Azero! 👋 I'd like to commission you.</p>
-            <p class="mt-4">📦 <b>Package:</b> ${selectedPackage.name} (${styleName}) — $${selectedPackage.priceUsd}</p>
-            <p>👤 <b>Characters:</b> ${chars}</p>
-            <p>🎨 <b>Description:</b> ${desc}</p>
-            <p>🔗 <b>References:</b> ${refs}</p>
-            <p class="mt-4">— ${name} (Discord: ${disc})</p>
-        `;
-        document.getElementById('final-preview').innerHTML = html;
-    }
+    const styleName = selectedStyle === 'realistic' ? 'Realistic Style' : 'High CTR Style';
+    document.getElementById('final-preview').innerHTML =
+        `Ordering <b class="text-white">${selectedPackage.name}</b> (${styleName}) — $${selectedPackage.priceUsd}`;
+}
 
     function copyAndOpenDiscord() {
         const name = document.getElementById('form-name').value;
@@ -2444,30 +2424,6 @@ function setModalStyle(style) {
         navigator.clipboard.writeText(text).then(() => {
             window.open(discordProfileUrl, '_blank');
         });
-    }
-
-    async function startOrderChat() {
-        const btn = document.getElementById('start-order-btn');
-        const originalText = btn.innerHTML;
-        btn.disabled = true;
-        btn.innerText = "Creating order...";
-
-        const created = await window.azeroOrderChat.createOrderAndOpenChat({
-            name: document.getElementById('form-name').value,
-            discord: document.getElementById('form-discord').value,
-            chars: document.getElementById('form-chars').value,
-            desc: document.getElementById('form-desc').value,
-            refs: document.getElementById('form-refs').value,
-            style: selectedStyle,
-            pkg: selectedPackage
-        });
-
-        if (created) {
-            btn.style.display = 'none';
-        } else {
-            btn.disabled = false;
-            btn.innerHTML = originalText;
-        }
     }
 
     // Override your existing toggleModal to reset state
