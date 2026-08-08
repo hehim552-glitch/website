@@ -31,12 +31,12 @@ import {
 import { getAuth, connectAuthEmulator } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCXyemHrPApcIwYDW-ZLjtoUhFEk-t0Huk",
+  authDomain: "website-test-64cac.firebaseapp.com",
+  projectId: "website-test-64cac",
+  storageBucket: "website-test-64cac.firebasestorage.app",
+  messagingSenderId: "512176077221",
+  appId: "1:512176077221:web:3d23bf04cecedafa03904c"
 };
 
 // ---- FILL IN: free Cloudinary account (cloudinary.com, no card) ----
