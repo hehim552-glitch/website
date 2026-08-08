@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azero | Order Inbox</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#0099ff' } } } }
+    </script>
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="dark:bg-[#050505] bg-white dark:text-white text-gray-900 min-h-screen">
+
+    <div id="login-gate" class="max-w-sm mx-auto mt-32 px-6">
+        <h1 class="text-2xl font-black uppercase mb-6">Admin Login</h1>
+        <div id="login-error" class="text-red-400 text-xs mb-4 hidden"></div>
+        <input id="login-email" type="email" placeholder="Email" class="w-full bg-white/[0.03] border border-white/10 rounded-xl p-4 text-white text-sm outline-none focus:border-brand mb-3">
+        <input id="login-password" type="password" placeholder="Password" class="w-full bg-white/[0.03] border border-white/10 rounded-xl p-4 text-white text-sm outline-none focus:border-brand mb-4">
+        <button id="login-btn" class="w-full bg-brand py-4 rounded-xl text-white font-black text-xs uppercase">Log In</button>
+    </div>
+
+    <div id="dashboard" class="hidden max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-[320px_1fr] gap-8">
+        <div>
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-black uppercase tracking-tight">Orders<span class="text-brand">.</span></h1>
+                <button id="logout-btn" class="text-[10px] font-bold text-gray-500 hover:text-white uppercase">Log out</button>
+            </div>
+            <div id="order-list" class="space-y-3"></div>
+        </div>
+
+        <div class="bg-[#0a0a0a] border border-white/10 rounded-2xl flex flex-col" style="height: 80vh;">
+            <div id="order-header" class="p-5 border-b border-white/10 text-sm text-gray-400">
+                Select an order on the left to open its chat.
+            </div>
+            <div id="admin-messages" class="flex-1 overflow-y-auto p-5 space-y-3 text-sm"></div>
+            <div class="border-t border-white/10 p-3 flex gap-2 items-center">
+                <label class="cursor-pointer text-gray-400 hover:text-brand px-2" title="Send a file (e.g. final render)">
+                    📎<input id="admin-file" type="file" class="hidden" disabled>
+                </label>
+                <input id="admin-input" type="text" placeholder="Reply..." disabled
+                       class="flex-1 bg-white/[0.03] border border-white/10 rounded-xl px-4 py-3 text-white text-sm outline-none focus:border-brand disabled:opacity-40">
+                <button id="admin-send" disabled
+                        class="bg-brand px-6 rounded-xl text-white font-black text-xs uppercase disabled:opacity-40">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import {
+            getFirestore, collection, query, orderBy, onSnapshot, addDoc,
+            serverTimestamp, doc, updateDoc, connectFirestoreEmulator
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, connectAuthEmulator } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        // Same config as order-chat.js/auth.js — keep in sync.
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyCXyemHrPApcIwYDW-ZLjtoUhFEk-t0Huk",
+            authDomain: "website-test-64cac.firebaseapp.com",
+            projectId: "website-test-64cac",
+            storageBucket: "website-test-64cac.firebasestorage.app",
+            messagingSenderId: "512176077221",
+            appId: "1:512176077221:web:3d23bf04cecedafa03904c"
+        };
+
+        // Same free Cloudinary account as order-chat.js.
+        const CLOUDINARY_CLOUD_NAME = "qioty6cj";
+        const CLOUDINARY_UPLOAD_PRESET = "dkqalls0";
+
+        // FILL IN: only these emails can access this dashboard. Create this
+        // account once via the "Log in / Sign up" modal on your live site,
+        // then list it here.
+        const ADMIN_EMAILS = ["hehim552@gmail.com"];
+
+        const app = initializeApp(FIREBASE_CONFIG);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        if (["localhost", "127.0.0.1"].includes(location.hostname)) {
+            connectFirestoreEmulator(db, "localhost", 8080);
+            connectAuthEmulator(auth, "http://localhost:9099");
+        }
+
+        let activeOrderId = null;
+        let unsubMessages = null;
+        let unsubOrders = null;
+
+        onAuthStateChanged(auth, (user) => {
+            const isAdmin = user && ADMIN_EMAILS.includes(user.email);
+            document.getElementById("login-gate").classList.toggle("hidden", !!isAdmin);
+            document.getElementById("dashboard").classList.toggle("hidden", !isAdmin);
+            if (isAdmin) startOrdersListener();
+            else if (user) {
+                document.getElementById("login-error").innerText = "This account isn't authorized for admin access.";
+                document.getElementById("login-error").classList.remove("hidden");
+                signOut(auth);
+            }
+        });
+
+        document.getElementById("login-btn").addEventListener("click", async () => {
+            const errorEl = document.getElementById("login-error");
+            errorEl.classList.add("hidden");
+            try {
+                await signInWithEmailAndPassword(auth, document.getElementById("login-email").value, document.getElementById("login-password").value);
+            } catch (e) {
+                errorEl.innerText = "Login failed — check your email and password.";
+                errorEl.classList.remove("hidden");
+            }
+        });
+        document.getElementById("logout-btn").addEventListener("click", () => signOut(auth));
+
+        const statusColors = {
+            pending: "bg-yellow-500/10 text-yellow-400 border-yellow-500/20",
+            "in-progress": "bg-brand/10 text-brand border-brand/20",
+            delivered: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+            complete: "bg-green-500/10 text-green-400 border-green-500/20"
+        };
+
+        function startOrdersListener() {
+            if (unsubOrders) unsubOrders();
+            const ordersQuery = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+            unsubOrders = onSnapshot(ordersQuery, (snap) => {
+                const listEl = document.getElementById("order-list");
+                listEl.innerHTML = snap.docs.map((d) => {
+                    const o = d.data();
+                    const cls = statusColors[o.status] || statusColors.pending;
+                    const paidBadge = o.depositStatus === "paid" ? (o.finalStatus === "paid" ? "Fully paid" : "Deposit paid") : "Unpaid";
+                    return `
+                        <button data-id="${d.id}" class="order-item w-full text-left p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] transition-all ${activeOrderId === d.id ? 'border-brand' : ''}">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="font-bold text-sm">${o.clientName || "Unknown"}</span>
+                                <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full border ${cls}">${o.status}</span>
+                            </div>
+                            <p class="text-xs text-gray-500">${o.package} — $${o.priceUsd} · ${paidBadge}</p>
+                        </button>
+                    `;
+                }).join("") || `<p class="text-gray-500 text-sm">No orders yet.</p>`;
+
+                listEl.querySelectorAll(".order-item").forEach((btn) => {
+                    btn.addEventListener("click", () => openOrder(btn.dataset.id, snap.docs.find(d => d.id === btn.dataset.id).data()));
+                });
+            });
+        }
+
+        function openOrder(orderId, order) {
+            activeOrderId = orderId;
+            renderHeader(orderId, order);
+
+            document.getElementById("admin-input").disabled = false;
+            document.getElementById("admin-send").disabled = false;
+            document.getElementById("admin-file").disabled = false;
+
+            if (unsubMessages) unsubMessages();
+            const mq = query(collection(db, "orders", orderId, "messages"), orderBy("createdAt", "asc"));
+            unsubMessages = onSnapshot(mq, (snap) => {
+                const el = document.getElementById("admin-messages");
+                el.innerHTML = snap.docs.map((d) => {
+                    const m = d.data();
+                    const mine = m.sender === "admin";
+                    const cls = mine ? "bg-brand text-white ml-auto" : m.sender === "system" ? "bg-white/5 text-gray-400 italic mx-auto text-center" : "bg-white/10 text-white";
+                    if (m.type === "file") {
+                        const isImage = (m.fileType || "").startsWith("image/");
+                        return `<div class="max-w-[75%] px-3 py-3 rounded-xl ${cls}">
+                            ${isImage ? `<img src="${m.fileUrl}" class="rounded-lg max-h-48 mb-2">` : ""}
+                            <a href="${m.fileUrl}" target="_blank" class="text-xs underline break-all">${escapeHtml(m.fileName || "Download file")}</a>
+                        </div>`;
+                    }
+                    return `<div class="max-w-[75%] px-4 py-2.5 rounded-xl ${cls}">${escapeHtml(m.text)}</div>`;
+                }).join("");
+                el.scrollTop = el.scrollHeight;
+            });
+        }
+
+        function paymentActionButton(orderId, order) {
+            // Manual confirmation — you check Roblox/your wallet yourself, then click this.
+            if (order.depositStatus !== "paid" && order.depositStatus !== "unpaid" && order.depositStatus !== "not_due") {
+                return `<button id="confirm-payment-btn" data-field="depositStatus" class="text-[10px] font-black text-green-400 uppercase whitespace-nowrap">Mark deposit paid</button>`;
+            }
+            if (order.finalStatus !== "paid" && order.finalStatus !== "unpaid" && order.finalStatus !== "not_due") {
+                return `<button id="confirm-payment-btn" data-field="finalStatus" class="text-[10px] font-black text-green-400 uppercase whitespace-nowrap">Mark final paid</button>`;
+            }
+            return "";
+        }
+
+        function renderHeader(orderId, order) {
+            document.getElementById("order-header").innerHTML = `
+                <div class="flex justify-between items-start gap-4">
+                    <div>
+                        <p class="font-black text-white">${order.clientName} <span class="text-gray-500 font-normal">— ${order.clientDiscord || ""}</span></p>
+                        <p class="text-xs text-gray-500 mt-1">${order.package} (${order.style}) — $${order.priceUsd} · ${order.characters} character(s)</p>
+                        <p class="text-xs text-gray-500 mt-1">${order.description || ""}</p>
+                        <p class="text-[10px] mt-2 text-brand font-bold uppercase">Deposit: ${order.depositStatus} · Final: ${order.finalStatus}</p>
+                    </div>
+                    <div class="flex flex-col gap-2 items-end">
+                        <select id="status-select" class="bg-white/5 border border-white/10 rounded-lg text-xs px-3 py-2">
+                            ${["pending","in-progress","delivered","complete"].map(s => `<option value="${s}" ${order.status === s ? "selected" : ""}>${s}</option>`).join("")}
+                        </select>
+                        ${paymentActionButton(orderId, order)}
+                        ${order.finalStatus === "not_due" && order.depositStatus === "paid"
+                            ? `<button id="request-final-btn" class="text-[10px] font-black text-brand uppercase whitespace-nowrap">Request final payment</button>`
+                            : ""}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById("status-select").addEventListener("change", async (e) => {
+                const newStatus = e.target.value;
+                const updates = { status: newStatus };
+                if (newStatus === "delivered" && order.finalStatus === "not_due") updates.finalStatus = "unpaid";
+                await updateDoc(doc(db, "orders", orderId), updates);
+                if (updates.finalStatus) {
+                    await addDoc(collection(db, "orders", orderId, "messages"), {
+                        sender: "system", type: "text",
+                        text: "Your preview is ready! Pay the remaining 50% below to receive your final files.",
+                        createdAt: serverTimestamp()
+                    });
+                }
+            });
+
+            const requestBtn = document.getElementById("request-final-btn");
+            if (requestBtn) {
+                requestBtn.addEventListener("click", async () => {
+                    await updateDoc(doc(db, "orders", orderId), { finalStatus: "unpaid" });
+                    await addDoc(collection(db, "orders", orderId, "messages"), {
+                        sender: "system", type: "text",
+                        text: "Your preview is ready! Pay the remaining 50% below to receive your final files.",
+                        createdAt: serverTimestamp()
+                    });
+                });
+            }
+
+            const confirmBtn = document.getElementById("confirm-payment-btn");
+            if (confirmBtn) {
+                confirmBtn.addEventListener("click", async () => {
+                    const field = confirmBtn.dataset.field;
+                    await updateDoc(doc(db, "orders", orderId), { [field]: "paid" });
+                    await addDoc(collection(db, "orders", orderId, "messages"), {
+                        sender: "system", type: "text",
+                        text: `${field === "depositStatus" ? "Deposit" : "Final balance"} confirmed paid. Thank you!`,
+                        createdAt: serverTimestamp()
+                    });
+                });
+            }
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.innerText = str;
+            return div.innerHTML;
+        }
+
+        async function sendReply() {
+            const input = document.getElementById("admin-input");
+            const text = input.value.trim();
+            if (!text || !activeOrderId) return;
+            input.value = "";
+            await addDoc(collection(db, "orders", activeOrderId, "messages"), {
+                sender: "admin", type: "text", text, createdAt: serverTimestamp()
+            });
+        }
+        document.getElementById("admin-send").addEventListener("click", sendReply);
+        document.getElementById("admin-input").addEventListener("keydown", (e) => { if (e.key === "Enter") sendReply(); });
+
+        document.getElementById("admin-file").addEventListener("change", async (e) => {
+            const file = e.target.files[0];
+            if (!file || !activeOrderId) return;
+            if (file.size > 20 * 1024 * 1024) { alert("Max file size is 20MB on the free Cloudinary plan."); return; }
+
+            const form = new FormData();
+            form.append("file", file);
+            form.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+            const r = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`, { method: "POST", body: form });
+            if (!r.ok) { alert("Upload failed — try again."); return; }
+            const data = await r.json();
+
+            await addDoc(collection(db, "orders", activeOrderId, "messages"), {
+                sender: "admin", type: "file", fileUrl: data.secure_url, fileName: file.name, fileType: file.type, createdAt: serverTimestamp()
+            });
+            e.target.value = "";
+        });
+    </script>
+</body>
+</html>
