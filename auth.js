@@ -20,12 +20,12 @@ import {
 // Duplicated here on purpose — modules don't share scope, and this
 // keeps auth.js usable on its own if you ever split pages.
 const FIREBASE_CONFIG = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCXyemHrPApcIwYDW-ZLjtoUhFEk-t0Huk",
+  authDomain: "website-test-64cac.firebaseapp.com",
+  projectId: "website-test-64cac",
+  storageBucket: "website-test-64cac.firebasestorage.app",
+ messagingSenderId: "512176077221",
+ appId: "1:512176077221:web:3d23bf04cecedafa03904c"
 };
 
 const app = getApps().length ? getApps()[0] : initializeApp(FIREBASE_CONFIG);
