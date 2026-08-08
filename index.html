@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -8,7 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+    <script type="module" src="order-chat.js"></script>
+    <script type="module" src="auth.js"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -2080,6 +2081,8 @@
 
     <!-- ORDER BUTTON (STAYS ON THE RIGHT) -->
     <div class="flex items-center gap-4">
+        <a href="myorders.html" class="text-sm font-bold dark:text-gray-300 text-gray-600 hover:text-brand transition-colors duration-300">My Orders</a>
+        <div id="azero-auth-slot"></div>
         <button onclick="toggleModal()" class="bg-brand px-8 py-3 rounded-full text-sm font-black text-white transition-all duration-300 shadow-lg shadow-brand/20 hover:shadow-[0_0_30px_#0099ff] hover:scale-105 active:scale-95">ORDER NOW!</button>
     </div>
 </nav>
@@ -2251,9 +2254,10 @@
                 <div class="absolute left-0 top-6 bottom-6 w-1 bg-brand rounded-full"></div>
                 <div id="final-preview" class="text-gray-300 italic space-y-1 text-sm leading-relaxed"></div>
             </div>
-            <button onclick="copyAndOpenDiscord()" class="w-full bg-[#5865F2] mt-10 py-5 rounded-2xl flex items-center justify-center gap-4 transition-all hover:bg-[#4752c4] hover:scale-[1.01]">
-                <span class="text-white font-black uppercase tracking-widest">Copy Message & Open Discord</span>
+            <button id="start-order-btn" onclick="startOrderChat()" class="w-full bg-brand mt-10 py-5 rounded-2xl flex items-center justify-center gap-4 transition-all hover:scale-[1.01]">
+                <span class="text-white font-black uppercase tracking-widest">Place Order & Start Chat</span>
             </button>
+            <div id="azero-chat-container" class="mt-6"></div>
         </div>
 
         <!-- FOOTER -->
@@ -2440,6 +2444,30 @@ function setModalStyle(style) {
         navigator.clipboard.writeText(text).then(() => {
             window.open(discordProfileUrl, '_blank');
         });
+    }
+
+    async function startOrderChat() {
+        const btn = document.getElementById('start-order-btn');
+        const originalText = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerText = "Creating order...";
+
+        const created = await window.azeroOrderChat.createOrderAndOpenChat({
+            name: document.getElementById('form-name').value,
+            discord: document.getElementById('form-discord').value,
+            chars: document.getElementById('form-chars').value,
+            desc: document.getElementById('form-desc').value,
+            refs: document.getElementById('form-refs').value,
+            style: selectedStyle,
+            pkg: selectedPackage
+        });
+
+        if (created) {
+            btn.style.display = 'none';
+        } else {
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+        }
     }
 
     // Override your existing toggleModal to reset state
@@ -3521,7 +3549,7 @@ function runCounter(id, target, decimals = 0, suffix = "") {
 const reviewsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            runCounter('counter-clients', 150, 0, "+"); // Adjust 150 to your real count
+            runCounter('counter-clients', 100, 0, "+"); // Adjust 150 to your real count
             runCounter('counter-rating', 5.0, 1);
             reviewsObserver.unobserve(entry.target);
         }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azero | My Orders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: '#0099ff' } } } }
+    </script>
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; }</style>
+</head>
+<body class="dark:bg-[#050505] bg-white dark:text-white text-gray-900 min-h-screen">
+
+    <nav class="px-6 md:px-10 py-6 flex justify-between items-center border-b border-white/5">
+        <a href="index.html" class="font-black text-xl tracking-tighter">Azero<span class="text-brand">.</span></a>
+        <div id="azero-auth-slot"></div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8">
+        <div>
+            <h1 class="text-3xl font-black uppercase tracking-tight mb-6">My Orders<span class="text-brand">.</span></h1>
+            <div id="order-list" class="space-y-3">
+                <p class="text-gray-500 text-sm">Log in to see your orders.</p>
+            </div>
+        </div>
+
+        <div id="azero-chat-container"></div>
+    </div>
+
+    <script type="module">
+        // Waits for auth.js + order-chat.js (loaded separately below) to be ready.
+        document.addEventListener("azero-auth-changed", async (e) => {
+            const listEl = document.getElementById("order-list");
+            if (!e.detail.user) {
+                listEl.innerHTML = `<p class="text-gray-500 text-sm">Log in to see your orders.</p>`;
+                document.getElementById("azero-chat-container").innerHTML = "";
+                return;
+            }
+
+            const orders = await window.azeroOrderChat.listMyOrders();
+            if (!orders.length) {
+                listEl.innerHTML = `<p class="text-gray-500 text-sm">No orders yet.</p>`;
+                return;
+            }
+
+            listEl.innerHTML = orders.map((o) => `
+                <button data-id="${o.id}" class="order-item w-full text-left p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                    <p class="font-bold text-sm">${o.package} <span class="text-gray-500 font-normal">(${o.style})</span></p>
+                    <p class="text-xs text-gray-500 mt-1 capitalize">${o.status.replace('-', ' ')} · $${o.priceUsd}</p>
+                </button>
+            `).join("");
+
+            listEl.querySelectorAll(".order-item").forEach((btn) => {
+                btn.addEventListener("click", () => window.azeroOrderChat.openChatUI(btn.dataset.id));
+            });
+
+            // Auto-open the first order for convenience
+            if (orders[0]) window.azeroOrderChat.openChatUI(orders[0].id);
+        });
+    </script>
+
+    <script type="module" src="order-chat.js"></script>
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
